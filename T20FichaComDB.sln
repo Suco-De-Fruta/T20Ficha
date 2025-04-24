@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35728.132 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T20FichaComDB", "T20FichaComDB.csproj", "{4562EA7D-621D-44A8-A13D-93E11C91419C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4562EA7D-621D-44A8-A13D-93E11C91419C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4562EA7D-621D-44A8-A13D-93E11C91419C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4562EA7D-621D-44A8-A13D-93E11C91419C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4562EA7D-621D-44A8-A13D-93E11C91419C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4562EA7D-621D-44A8-A13D-93E11C91419C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4562EA7D-621D-44A8-A13D-93E11C91419C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

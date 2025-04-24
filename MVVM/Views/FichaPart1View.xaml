@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="T20FichaComDB.MVVM.Views.FichaPart1View"
+             xmlns:viewmodel="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+             xmlns:Models="clr-namespace:T20FichaComDB.MVVM.Models"
+             Title="FichaPart1View">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+                <VerticalStackLayout Spacing="10">
+
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                        <Label Text="Personagem:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
+                        <Entry Placeholder="Nome do Personagem" Grid.Row="0" Grid.Column="1" Text="{Binding Personagem.Nome}" />
+
+                        <Label Text="Jogador(a):" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                        <Entry Placeholder="Nome do Jogador" Grid.Row="1" Grid.Column="1" Text="{Binding Personagem.PlayerNome}" />
+
+                        <Label Text="Raça:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+                        <Picker Title="Selecione a Raça" Grid.Row="2" Grid.Column="1" 
+                                ItemsSource="{Binding RaçasDisponiveis}" SelectedItem="{Binding Personagem.Raça}"/>
+
+                        <Label Text="Origem:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+                        <Picker Title="Selecione a Origem" Grid.Row="3" Grid.Column="1" 
+                                ItemsSource="{Binding OrigensDisponiveis}" SelectedItem="{Binding Personagem.Origem}"/>
+
+                        <Label Text="Classe &amp; Nível:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
+                        <HorizontalStackLayout Grid.Row="4" Grid.Column="1" Spacing="5">
+                            <Picker Title="Classe" HorizontalOptions="FillAndExpand" WidthRequest="137" 
+                                    ItemsSource="{Binding ClassesDisponiveis}" SelectedItem="{Binding Personagem.Classe}"/>
+
+                            <Entry Placeholder="Nível" WidthRequest="50" Keyboard="Numeric" HorizontalTextAlignment="Center" 
+                                   Text="{Binding Personagem.Nivel}"/>
+                        </HorizontalStackLayout>
+
+                        <Label Text="Divindade:" Grid.Row="5" Grid.Column="0" VerticalOptions="Center"/>
+                        <Picker Title="Devoto de" Grid.Row="5" Grid.Column="1" 
+                                ItemsSource="{Binding DivindadesDisponiveis}" SelectedItem="{Binding Personagem.Divindade}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Atributos" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="Auto, Auto" ColumnSpacing="5" RowSpacing="5">
+                        <Label Text="FOR" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="DES" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="CON" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="INT" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="SAB" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="CAR" Grid.Row="0" Grid.Column="5" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding Personagem.Força}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding Personagem.Destreza}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="2" Text="{Binding Personagem.Constituição}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="3" Text="{Binding Personagem.Inteligencia}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="4" Text="{Binding Personagem.Sabedoria}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="5" Text="{Binding Personagem.Carisma}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+                <Grid ColumnDefinitions="0.3*, 1*, *" RowDefinitions="Auto, Auto, Auto" ColumnSpacing="1" RowSpacing="5">
+                    <Label Text="" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="Máximo" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                    <Label Text="Atuais" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+
+                    <Label Text="PV" FontSize="Medium" FontAttributes="Bold" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                    <Label Text="{Binding Personagem.MaxPV}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                    <Entry Placeholder="PV Atuais" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"
+                           Text="{Binding Personagem.PVatual}" />
+
+                    <Label Text="PM" FontSize="Medium" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+                    <Label Text="{Binding Personagem.MaxPM}" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                    <Entry Placeholder="PM Atuais" Keyboard="Numeric" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Center"
+                           Text="{Binding Personagem.PMatual}" />
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
