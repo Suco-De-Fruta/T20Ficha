@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
+using T20FichaComDB.Data.Entities;
 
 namespace T20FichaComDB.MVVM.Models
 {
@@ -89,6 +91,9 @@ namespace T20FichaComDB.MVVM.Models
 
         // ------ MAGIAS PLACEHOLDER -------- //
         //public ObservableCollection<string> Magias { get; set; } = new();
+
+        [ObservableProperty]
+        private ObservableCollection<int> _magiasConhecidasID = new();
 
         // ------- PROPRIEDADE DO PATAMAR --------- // 
         public string Patamar

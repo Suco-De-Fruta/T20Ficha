@@ -37,6 +37,7 @@ namespace T20FichaComDB.Services
                     await _connection.CreateTableAsync<ClassesData>();
                     await _connection.CreateTableAsync<DivindadesData>();
                     await _connection.CreateTableAsync<PersonagemData>();
+                    await _connection.CreateTableAsync<MagiasData>();
 
                     await DataBaseSeeder.SeedDataAsync(_connection);
                 }
@@ -76,6 +77,47 @@ namespace T20FichaComDB.Services
         {
             await EnsureInitializedAsync();
             return await _connection.Table<DivindadesData>().OrderBy(d => d.Nome).ToListAsync();
+        }
+
+
+        // MAGIAS E BUSCA DE MAGIAS
+        public async Task<List<MagiasData>> GetMagiasAsync()
+        {
+            await EnsureInitializedAsync();
+            return await _connection.Table<MagiasData>().OrderBy(m => m.Circulo).ThenBy(m => m.Nome).ToListAsync();
+        }
+
+        public async Task<List<MagiasData>> GetMagiasPorCirculoETipoAsync(int circulo, string tipo)
+        {
+            await EnsureInitializedAsync();
+            bool buscarUniversal = tipo != TipoMagia.Universal.ToString();
+
+            var query = _connection.Table<MagiasData>().Where(m => m.Circulo == circulo);
+            if (buscarUniversal)
+            {
+                query = query.Where(m => m.Nome == tipo || m.Tipo == TipoMagia.Universal.ToString());
+            } else
+            {
+                query = query.Where(m => m.Tipo == tipo);
+            }
+
+            return await query.OrderBy(m => m.Nome).ToListAsync();
+        }
+
+        public async Task <List<MagiasData>> GetMagiasArcanasPorCirculoAsync(int circulo)
+        {
+            await EnsureInitializedAsync();
+            return await _connection.Table<MagiasData>()
+                                    .Where(m => m.Circulo == circulo && (m.Tipo == "Arcana" || m.Tipo == "Universal"))
+                                    .OrderBy(m => m.Nome).ToListAsync();
+        }
+
+        public async Task<List<MagiasData>> GetMagiasDivinasPorCirculoAsync(int circulo)
+        {
+            await EnsureInitializedAsync();
+            return await _connection.Table<MagiasData>()
+                                    .Where(m => m.Circulo == circulo && (m.Tipo == "Divina" || m.Tipo == "Universal"))
+                                    .OrderBy(m => m.Nome).ToListAsync();
         }
 
         // ----- MÉTODOS PARA GERENCIAR PERSONAGENS -----
