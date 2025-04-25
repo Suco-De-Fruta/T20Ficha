@@ -7,7 +7,7 @@ namespace T20FichaComDB.Data.Entities
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [MaxLength(100), Unique]
+        [MaxLength(100)]
         public string Nome { get; set; }
     }
 }

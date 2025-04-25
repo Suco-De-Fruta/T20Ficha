@@ -11,5 +11,6 @@
         Title="Ficha"
         ContentTemplate="{DataTemplate local:FichaPart1View}"
         Route="FichaPart1View" />
+    
 
 </Shell>

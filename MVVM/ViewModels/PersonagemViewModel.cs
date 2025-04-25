@@ -35,13 +35,10 @@ namespace T20FichaComDB.MVVM.ViewModels
             Personagem.PropertyChanged += Personagem_PropertyChanged;
 
             // Inicializa o comando de salvar
-            SalvarPersonagemCommand = new AsyncRelayCommand(SalvarPersonagemAsync);
+            // SalvarPersonagemCommand = new AsyncRelayCommand(SalvarPersonagemAsync);
 
             // Carrega os dados iniciais (raças, classes, etc.)
-            // É comum chamar isso na navegação ou no OnAppearing da View
-            // await InitializeAsync();
-
-            // Calcula valores iniciais baseados no modelo padrão
+            InitializeAsync();
             RecalculateAll();
         }
 
@@ -84,16 +81,15 @@ namespace T20FichaComDB.MVVM.ViewModels
 
                 // TODO: Carregar Perícias, Poderes, Inventário, Magias se/quando implementado
 
-                // Desregistra o handler antigo (se houver) e registra um novo
-                // Personagem.PropertyChanged -= Personagem_PropertyChanged;
-                // Personagem.PropertyChanged += Personagem_PropertyChanged;
+                Personagem.PropertyChanged -= Personagem_PropertyChanged;
+                Personagem.PropertyChanged += Personagem_PropertyChanged;
             }
             else
             {
                 await Shell.Current.DisplayAlert("Erro", $"Personagem com ID {id} não encontrado.", "OK");
-                // Personagem = new PersonagemModel();
-                // _personagemAtualID = 0;
-                // RecalculateAll();
+                Personagem = new PersonagemModel();
+                _personagemAtualID = 0;
+                RecalculateAll();
             }
         }
 

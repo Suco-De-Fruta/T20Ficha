@@ -1,16 +1,33 @@
-namespace T20FichaComDB.MVVM.Views;
 using T20FichaComDB.MVVM.ViewModels;
+using T20FichaComDB.Services;
+
+namespace T20FichaComDB.MVVM.Views;
+
 
 public partial class FichaPart1View : ContentPage
 {
-    public FichaPart1View(PersonagemViewModel viewModel)
+    private PersonagemViewModel _viewModel;
+
+    public FichaPart1View()
     {
         InitializeComponent();
-        BindingContext = viewModel; // Define o BindingContext
+
+        var databaseService = new DataService(); // ou usar Singleton/DI se tiver
+        _viewModel = new PersonagemViewModel(databaseService);
+        this.BindingContext = _viewModel;
     }
+    
+
+    //public FichaPart1View(PersonagemViewModel viewModel)
+    //{
+    //    InitializeComponent();
+    //    BindingContext = viewModel;
+
+    //}
 
     protected override async void OnAppearing()
     {
+
         base.OnAppearing();
         if (BindingContext is PersonagemViewModel vm)
         {

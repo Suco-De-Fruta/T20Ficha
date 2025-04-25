@@ -3,7 +3,8 @@ using SQLitePCL;
 using System.IO;
 using Microsoft.Maui.Storage;
 using T20FichaComDB.Data.Entities;
-using T20FichaComDB.Data;      
+using T20FichaComDB.Data;
+using T20FichaComDB.MVVM.ViewModels;
 
 namespace T20FichaComDB.Services
 {
@@ -23,19 +24,32 @@ namespace T20FichaComDB.Services
         // Garante que a conexão seja inicializada apenas uma vez
         private async Task EnsureInitializedAsync()
         {
+            System.Diagnostics.Debug.WriteLine("Entrando em EnsureInitializedAsync");
+
             if (_connection == null)
             {
-                _connection = new SQLiteAsyncConnection(DatabasePath, Flags);
+                try
+                {
+                    _connection = new SQLiteAsyncConnection(DatabasePath, Flags);
 
-                await _connection.CreateTableAsync<RacasData>();     
-                await _connection.CreateTableAsync<OrigensData>();   
-                await _connection.CreateTableAsync<ClassesData>();   
-                await _connection.CreateTableAsync<DivindadesData>();
-                await _connection.CreateTableAsync<PersonagemData>();
+                    await _connection.CreateTableAsync<RacasData>();
+                    await _connection.CreateTableAsync<OrigensData>();
+                    await _connection.CreateTableAsync<ClassesData>();
+                    await _connection.CreateTableAsync<DivindadesData>();
+                    await _connection.CreateTableAsync<PersonagemData>();
 
-                await DataBaseSeeder.SeedDataAsync(_connection);
+                    await DataBaseSeeder.SeedDataAsync(_connection);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Erro ao inicializar o banco de dados: {ex.Message}");
+                    throw;
+                }
             }
+
+            System.Diagnostics.Debug.WriteLine("Finalizando EnsureInitializedAsync");
         }
+
 
         // ----- MÉTODOS PARA OBTER DADOS DE REFERÊNCIA -----
 
@@ -43,6 +57,7 @@ namespace T20FichaComDB.Services
         {
             await EnsureInitializedAsync();
             return await _connection.Table<RacasData>().OrderBy(r => r.Nome).ToListAsync();
+
         }
 
         public async Task<List<ClassesData>> GetClassesAsync()

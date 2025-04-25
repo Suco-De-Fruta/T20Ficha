@@ -33,7 +33,7 @@
 
                         <Label Text="Classe &amp; Nível:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
                         <HorizontalStackLayout Grid.Row="4" Grid.Column="1" Spacing="5">
-                            <Picker Title="Classe" HorizontalOptions="FillAndExpand" WidthRequest="137" 
+                            <Picker Title="Selecione a Classe" HorizontalOptions="FillAndExpand" WidthRequest="137" 
                                     ItemsSource="{Binding ClassesDisponiveis}" SelectedItem="{Binding Personagem.Classe}"/>
 
                             <Entry Placeholder="Nível" WidthRequest="50" Keyboard="Numeric" HorizontalTextAlignment="Center" 
