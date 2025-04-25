@@ -6,6 +6,10 @@
              xmlns:Models="clr-namespace:T20FichaComDB.MVVM.Models"
              Title="FichaPart1View">
 
+    <ContentPage.BindingContext>
+        <viewmodel:PersonagemViewModel/>
+    </ContentPage.BindingContext>
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
@@ -17,11 +21,11 @@
                         <Entry Placeholder="Nome do Personagem" Grid.Row="0" Grid.Column="1" Text="{Binding Personagem.Nome}" />
 
                         <Label Text="Jogador(a):" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
-                        <Entry Placeholder="Nome do Jogador" Grid.Row="1" Grid.Column="1" Text="{Binding Personagem.PlayerNome}" />
+                        <Entry Placeholder="Nome do Jogador" Grid.Row="1" Grid.Column="1" Text="{Binding Personagem.JogadorNome}" />
 
                         <Label Text="Raça:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
                         <Picker Title="Selecione a Raça" Grid.Row="2" Grid.Column="1" 
-                                ItemsSource="{Binding RaçasDisponiveis}" SelectedItem="{Binding Personagem.Raça}"/>
+                                ItemsSource="{Binding RacasDisponiveis}" SelectedItem="{Binding Personagem.Raca}"/>
 
                         <Label Text="Origem:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
                         <Picker Title="Selecione a Origem" Grid.Row="3" Grid.Column="1" 
@@ -54,9 +58,9 @@
                         <Label Text="SAB" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
                         <Label Text="CAR" Grid.Row="0" Grid.Column="5" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
 
-                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding Personagem.Força}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Text="{Binding Personagem.Forca}"/>
                         <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding Personagem.Destreza}"/>
-                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="2" Text="{Binding Personagem.Constituição}"/>
+                        <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="2" Text="{Binding Personagem.Constituicao}"/>
                         <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="3" Text="{Binding Personagem.Inteligencia}"/>
                         <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="4" Text="{Binding Personagem.Sabedoria}"/>
                         <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="5" Text="{Binding Personagem.Carisma}"/>
