@@ -8,6 +8,18 @@ namespace T20FichaComDB.Data.Entities
         Divina,
         Universal
     }
+
+    public enum EscolaMagia
+    {
+        Abjuracao,
+        Adivinhacao,
+        Convocacao,
+        Encantamento,
+        Evocacao,
+        Ilusao,
+        Necromancia,
+        Transmutacao,
+    }
     public class MagiasData
     {
         [PrimaryKey, AutoIncrement]
@@ -20,6 +32,9 @@ namespace T20FichaComDB.Data.Entities
 
         [MaxLength(20)]
         public string Tipo { get; set; }
+
+        [MaxLength(30)]
+        public string Escola { get; set; }
 
         [MaxLength(50)]
         public string Execucao { get; set; }
@@ -36,7 +51,6 @@ namespace T20FichaComDB.Data.Entities
         [MaxLength(100)]
         public string Resistencia { get; set; }
 
-        [MaxLength(1000)]
         public string Descricao { get; set; }
 
         [Ignore]
@@ -46,5 +60,24 @@ namespace T20FichaComDB.Data.Entities
             set => Tipo = value.ToString();
         }
 
+        [Ignore]
+        public EscolaMagia EscolaEnum
+        {
+            get
+            {
+                return Escola?.ToLower() switch
+                {
+                    "abjuração" or "abjur" => EscolaMagia.Abjuracao,
+                    "adivinhação" or "adiv" => EscolaMagia.Adivinhacao,
+                    "convocação" or "conv" => EscolaMagia.Convocacao,
+                    "encantamento" or "encan" => EscolaMagia.Encantamento,
+                    "evocação" or "evoc" => EscolaMagia.Evocacao,
+                    "ilusão" => EscolaMagia.Ilusao,
+                    "necromancia" or "necro" => EscolaMagia.Necromancia,
+                    "transmutação" or "trans" => EscolaMagia.Transmutacao,
+                };
+            }
+            set => Escola = value.ToString();
+        }
     }
 }

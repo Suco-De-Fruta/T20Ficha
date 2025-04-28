@@ -1,5 +1,6 @@
 ﻿using T20FichaComDB.MVVM.ViewModels;
 using T20FichaComDB.MVVM.Views;
+using T20FichaComDB.MVVM.Views.Popup;
 
 namespace T20FichaComDB
 {
@@ -9,6 +10,8 @@ namespace T20FichaComDB
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(FichaPart1View), typeof(FichaPart1View));
+            Routing.RegisterRoute(nameof(FichaMagiasView), typeof(FichaMagiasView));
+            Routing.RegisterRoute(nameof(SelecaoMagiasPopupView), typeof(SelecaoMagiasPopupView));
 
         }
     }

@@ -90,10 +90,9 @@ namespace T20FichaComDB.MVVM.Models
         //[ObservableProperty] int _tibares;
 
         // ------ MAGIAS PLACEHOLDER -------- //
-        //public ObservableCollection<string> Magias { get; set; } = new();
-
         [ObservableProperty]
-        private ObservableCollection<int> _magiasConhecidasID = new();
+        public ObservableCollection<MagiasData> _magiasConhecidas = new();
+
 
         // ------- PROPRIEDADE DO PATAMAR --------- // 
         public string Patamar

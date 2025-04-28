@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+               xmlns:model="clr-namespace:T20FichaComDB.Data.Entities"
+               x:Class="T20FichaComDB.MVVM.Views.Popup.SelecaoMagiaPopup"
+               x:DataType="vm:SelecaoMagiaPopupViewModel"
+               Color="Transparent">
+
+    <Frame Margin="15" Padding="0" CornerRadius="10" BorderColor="Gray" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="350">
+        <VerticalStackLayout>
+            <Label Text="{Binding TituloPopup}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" Padding="10" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"/>
+
+            <ScrollView MaximumHeightRequest="450" Padding="10">
+                <VerticalStackLayout Spacing="10">
+
+                    <VerticalStackLayout IsVisible="{Binding IsAddingMode}" Spacing="10">
+                        <Label Text="Magias Disponíveis:" FontAttributes="Italic"/>
+                        <CollectionView ItemsSource="{Binding MagiasDisponiveis}"
+                                        SelectionMode="Single"
+                                        SelectedItem="{Binding MagiaSelecionada}"
+                                        HeightRequest="150"
+                                        EmptyView="Nenhuma magia disponível para este círculo.">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:MagiaData">
+                                    <Label Padding="5,2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nome}" FontAttributes="Bold"/>
+                                                <Span Text=" | "/>
+                                                <Span Text="{Binding Tipo}"/>
+                                                <Span Text=" ("/>
+                                                <Span Text="{Binding Escola}"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <Frame Padding="5" CornerRadius="5" BorderColor="LightGray" IsVisible="{Binding MagiaSelecionada, Converter={StaticResource IsNotNullConverter}}">
+                            <VerticalStackLayout Spacing="3">
+                                <Label Text="{Binding MagiaSelecionada.Nome}" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Exec: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding MagiaSelecionada.Execucao}"/>
+                                            <Span Text=" | Alc: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding MagiaSelecionada.Alcance}"/>
+                                            <Span Text=" | Dur: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding MagiaSelecionada.Duracao}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Alvo/Área: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding MagiaSelecionada.AlvoAreaEfeito}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Resistência: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding MagiaSelecionada.Resistencia}"/>
+                                            <Span Text=" | Escola: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding MagiaSelecionada.Escola}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Text="{Binding MagiaSelecionada.Descricao}" LineBreakMode="WordWrap"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Frame Padding="5" CornerRadius="5" BorderColor="LightGray" IsVisible="{Binding IsAddingMode, Converter={StaticResource InverseBoolConverter}}">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="{Binding MagiaParaExibirRemover.Nome}" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Exec: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding MagiaParaExibirRemover.Execucao}"/>
+                                        <Span Text=" | Alc: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding MagiaParaExibirRemover.Alcance}"/>
+                                        <Span Text=" | Dur: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding MagiaParaExibirRemover.Duracao}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Alvo/Área: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding MagiaParaExibirRemover.AlvoAreaEfeito}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Resistência: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding MagiaParaExibirRemover.Resistencia}"/>
+                                        <Span Text=" | Escola: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding MagiaParaExibirRemover.Escola}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{Binding MagiaParaExibirRemover.Descricao}" LineBreakMode="WordWrap"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Grid ColumnDefinitions="*,*" Padding="10">
+                <Button Grid.Column="0" Text="Cancelar" Command="{Binding FecharPopupCommand}" IsVisible="{Binding IsAddingMode}" HorizontalOptions="Fill"/>
+                <Button Grid.Column="1" Text="Confirmar Adição" Command="{Binding ConfirmarAdicaoCommand}" IsVisible="{Binding IsAddingMode}" HorizontalOptions="Fill"/>
+
+                <Button Grid.Column="0" Text="Fechar" Command="{Binding FecharPopupCommand}" IsVisible="{Binding IsAddingMode, Converter={StaticResource InverseBoolConverter}}" HorizontalOptions="Fill"/>
+                <Button Grid.Column="1" Text="Remover Magia" Command="{Binding RemoverMagiaCommand}" IsVisible="{Binding IsAddingMode, Converter={StaticResource InverseBoolConverter}}" BackgroundColor="Red" TextColor="White" HorizontalOptions="Fill"/>
+            </Grid>
+
+        </VerticalStackLayout>
+    </Frame>
+
+</toolkit:Popup>

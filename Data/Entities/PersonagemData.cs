@@ -27,6 +27,8 @@ namespace T20FichaComDB.Data.Entities
 
         [MaxLength(100)]
         public string DivindadeNome { get; set; }
+        
+        public string MagiasConhecidasIDs { get; set; } = string.Empty;
 
         // ATRIBUTOS    
         public int Forca { get; set; }

@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Text.Json;
 using T20FichaComDB.Data.Entities;
 
 namespace T20FichaComDB.Data
@@ -105,19 +106,42 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<MagiasData>().CountAsync() == 0)
             {
-                var magiasBase = new List<MagiasData>
+                return;
+            }
+            List<MagiasData> magiasBase = null;
+            try
+            {
+                string jsonFileName = "MagiasDataBase.json";
+
+                using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
+                if (stream == null)
                 {
-                    // --- MAGIAS DE 1º CÍRCULO ---
-                    // --- ARCANAS
-                    new MagiasData {
-                        Nome = "Adaga Mental", Circulo = 1, Tipo = "Arcana", Alcance = "Curto",
-                        Duracao = "Instantânea", AlvoAreaEfeito = "1 criatura", Resistencia = "Vontade parcial",
-                        Descricao = "Você manifesta e dispara uma adagaimaterial contra a mente do alvo, quesofre 2d6 pontos de dano psíquico enfica atordoado por uma rodada. Se passar no teste de resistência, sofre apenas metade do dano e evita a condição. Uma criatura só pode ficar atordoada por esta magia uma vez por cena." +
-                        " +1 PM: você lança a magia sem gesticuar ou pronunciar palavras (o que permite lançar esta magia de armadura) e a adaga se torna invisível. Se o alvo falhar no teste de resistência, não percebeque você lançou uma magia contra ele." +
-                        "+2 PM: muda a duração para um dia.Além do normal, você “finca” a adagana mente do alvo. Enquanto a magiadurar, você sabe a direção e localizaçãodo alvo, desde que ele esteja no mesmo mundo." +
-                        "+2 PM: aumenta o dano em +1d6." 
-                    },
+                    System.Diagnostics.Debug.WriteLine($"Erro: Não foi possível encontrar o arquivo {jsonFileName} no pacote do aplicativo.");
+                    return;
                 }
+
+                using var reader = new StreamReader(stream);
+                string jsonContent = await reader.ReadToEndAsync();
+
+                magiasBase = JsonSerializer.Deserialize<List<MagiasData>>(jsonContent, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erro ao ler ou desserializar o arquivo JSON de magias: {ex.Message}");
+                return;
+            }
+
+            if (magiasBase != null && magiasBase.Any())
+            {
+                await connection.InsertAllAsync(magiasBase);
+                System.Diagnostics.Debug.WriteLine($"Populadas {magiasBase.Count} magias a partir do JSON");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Nenhuma magia encontrada no arquivo JSON ou erro na desserialização.");
             }
         }
     }

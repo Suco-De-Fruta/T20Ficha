@@ -120,6 +120,7 @@ namespace T20FichaComDB.Services
                                     .OrderBy(m => m.Nome).ToListAsync();
         }
 
+
         // ----- MÉTODOS PARA GERENCIAR PERSONAGENS -----
 
         public async Task<int> SalvarPersonagemAsync(PersonagemData personagem)

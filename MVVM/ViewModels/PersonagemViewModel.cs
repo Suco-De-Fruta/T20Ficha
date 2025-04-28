@@ -34,8 +34,7 @@ namespace T20FichaComDB.MVVM.ViewModels
             Personagem = new PersonagemModel();
             Personagem.PropertyChanged += Personagem_PropertyChanged;
 
-            // Inicializa o comando de salvar
-            // SalvarPersonagemCommand = new AsyncRelayCommand(SalvarPersonagemAsync);
+            SalvarPersonagemCommand = new AsyncRelayCommand(SalvarPersonagemAsync);
 
             // Carrega os dados iniciais (raças, classes, etc.)
             InitializeAsync();
@@ -456,7 +455,7 @@ namespace T20FichaComDB.MVVM.ViewModels
         */
 
 
-        // ---------- NAVEGAÇÃO (COMENTADA) -----------
+        // ---------- NAVEGAÇÃO -----------
         // Adapte conforme a estrutura de navegação do seu App (MAUI Shell, etc.)
         /*
         public INavigation Navigation { get; set; } // Injete ou obtenha de outra forma

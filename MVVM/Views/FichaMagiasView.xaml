@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+             xmlns:model="clr-namespace:T20FichaComDB.Data.Entities"
+             xmlns:converters="clr-namespace:T20FichaComDB.Converters"
+             x:Class="T20FichaComDB.MVVM.Views.FichaMagiasView"
+             x:DataType="vm:MagiasViewModel"
+             Title="Magias">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="15">
+
+            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Cálculo da CD das Magias" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Label Text="CD Base:" VerticalOptions="Center"/>
+                        <Label Text="10 +" VerticalOptions="Center"/>
+                        <Picker Title="Atributo"
+                                ItemsSource="{Binding AtributosChave}"
+                                SelectedItem="{Binding AtributoChaveSelecionado}"
+                                WidthRequest="120" VerticalOptions="Center"/>
+                        <Label Text="+" VerticalOptions="Center"/>
+                        <Entry Placeholder="Equip" Keyboard="Numeric" WidthRequest="50"
+                               Text="{Binding BonusEquip}" VerticalOptions="Center"/>
+                        <Label Text="+" VerticalOptions="Center"/>
+                        <Entry Placeholder="Outros" Keyboard="Numeric" WidthRequest="50"
+                               Text="{Binding BonusOutros}" VerticalOptions="Center"/>
+                        <Label Text="=" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Label Text="{Binding CDCalculado}" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, Auto" ColumnSpacing="10" RowSpacing="10">
+
+                <Frame Grid.Row="0" Grid.Column="0" Padding="10" CornerRadius="5" BorderColor="Gray">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="1º Círculo - 1 PM" FontAttributes="Bold"/>
+                        <CollectionView ItemsSource="{Binding MagiasCirculo1}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:MagiaData">
+                                    <Label Padding="5,2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nome}"/>
+                                                <Span Text=" | "/>
+                                                <Span Text="{Binding Tipo}"/>
+                                                <Span Text=" ("/>
+                                                <Span Text="{Binding Escola}"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MagiasViewModel}}, Path=MostrarDetalhesMagiaCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="1"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="1" Padding="10" CornerRadius="5" BorderColor="Gray">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="2º Círculo - 3 PM" FontAttributes="Bold"/>
+                        <CollectionView ItemsSource="{Binding MagiasCirculo2}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:MagiaData">
+                                    <Label Padding="5,2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nome}"/>
+                                                <Span Text=" | "/>
+                                                <Span Text="{Binding Tipo}"/>
+                                                <Span Text=" ("/>
+                                                <Span Text="{Binding Escola}"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MagiasViewModel}}, Path=MostrarDetalhesMagiaCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="2"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" Padding="10" CornerRadius="5" BorderColor="Gray">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="3º Círculo - 6 PM" FontAttributes="Bold"/>
+                        <CollectionView ItemsSource="{Binding MagiasCirculo3}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:MagiasData">
+                                    <Label Padding="5,2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nome}"/>
+                                                <Span Text=" | "/>
+                                                <Span Text="{Binding Tipo}"/>
+                                                <Span Text=" ("/>
+                                                <Span Text="{Binding Escola}"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MagiasViewModel}}, Path=MostrarDetalhesMagiaCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="3"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" Padding="10" CornerRadius="5" BorderColor="Gray">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="4º Círculo - 10 PM" FontAttributes="Bold"/>
+                        <CollectionView ItemsSource="{Binding MagiasCirculo4}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:MagiasData">
+                                    <Label Padding="5,2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nome}"/>
+                                                <Span Text=" | "/>
+                                                <Span Text="{Binding Tipo}"/>
+                                                <Span Text=" ("/>
+                                                <Span Text="{Binding Escola}"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MagiasViewModel}}, Path=MostrarDetalhesMagiaCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="4"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="10" CornerRadius="5" BorderColor="Gray">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="5º Círculo - 15 PM" FontAttributes="Bold"/>
+                        <CollectionView ItemsSource="{Binding MagiasCirculo5}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:MagiasData">
+                                    <Label Padding="5,2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nome}"/>
+                                                <Span Text=" | "/>
+                                                <Span Text="{Binding Tipo}"/>
+                                                <Span Text=" ("/>
+                                                <Span Text="{Binding Escola}"/>
+                                                <Span Text=")"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MagiasViewModel}}, Path=MostrarDetalhesMagiaCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="5"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
