@@ -45,9 +45,9 @@
                 <Frame Grid.Row="0" Grid.Column="0" Padding="10" CornerRadius="5" BorderColor="Gray">
                     <VerticalStackLayout Spacing="5">
                         <Label Text="1º Círculo - 1 PM" FontAttributes="Bold"/>
-                        <CollectionView ItemsSource="{Binding MagiasCirculo1}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                        <CollectionView ItemsSource="{Binding MagiasCirculo1}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="model:MagiaData">
+                                <DataTemplate x:DataType="model:MagiasData">
                                     <Label Padding="5,2">
                                         <Label.FormattedText>
                                             <FormattedString>
@@ -67,16 +67,20 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="1"/>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}">
+                            <Button.CommandParameter>
+                                <x:Int32>1</x:Int32>
+                            </Button.CommandParameter>
+                        </Button>
                     </VerticalStackLayout>
                 </Frame>
 
                 <Frame Grid.Row="0" Grid.Column="1" Padding="10" CornerRadius="5" BorderColor="Gray">
                     <VerticalStackLayout Spacing="5">
                         <Label Text="2º Círculo - 3 PM" FontAttributes="Bold"/>
-                        <CollectionView ItemsSource="{Binding MagiasCirculo2}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                        <CollectionView ItemsSource="{Binding MagiasCirculo2}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="model:MagiaData">
+                                <DataTemplate x:DataType="model:MagiasData">
                                     <Label Padding="5,2">
                                         <Label.FormattedText>
                                             <FormattedString>
@@ -96,14 +100,18 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="2"/>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}">
+                            <Button.CommandParameter>
+                                <x:Int32>2</x:Int32>
+                            </Button.CommandParameter>
+                        </Button>
                     </VerticalStackLayout>
                 </Frame>
 
                 <Frame Grid.Row="1" Grid.Column="0" Padding="10" CornerRadius="5" BorderColor="Gray">
                     <VerticalStackLayout Spacing="5">
                         <Label Text="3º Círculo - 6 PM" FontAttributes="Bold"/>
-                        <CollectionView ItemsSource="{Binding MagiasCirculo3}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                        <CollectionView ItemsSource="{Binding MagiasCirculo3}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:MagiasData">
                                     <Label Padding="5,2">
@@ -125,14 +133,18 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="3"/>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}">
+                            <Button.CommandParameter>
+                                <x:Int32>3</x:Int32>
+                            </Button.CommandParameter>
+                        </Button>
                     </VerticalStackLayout>
                 </Frame>
 
                 <Frame Grid.Row="1" Grid.Column="1" Padding="10" CornerRadius="5" BorderColor="Gray">
                     <VerticalStackLayout Spacing="5">
                         <Label Text="4º Círculo - 10 PM" FontAttributes="Bold"/>
-                        <CollectionView ItemsSource="{Binding MagiasCirculo4}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                        <CollectionView ItemsSource="{Binding MagiasCirculo4}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:MagiasData">
                                     <Label Padding="5,2">
@@ -154,14 +166,18 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="4"/>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}">
+                            <Button.CommandParameter>
+                                <x:Int32>4</x:Int32>
+                            </Button.CommandParameter>
+                        </Button>
                     </VerticalStackLayout>
                 </Frame>
 
                 <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="10" CornerRadius="5" BorderColor="Gray">
                     <VerticalStackLayout Spacing="5">
                         <Label Text="5º Círculo - 15 PM" FontAttributes="Bold"/>
-                        <CollectionView ItemsSource="{Binding MagiasCirculo5}" MinimumHeightRequest="50" MaxHeight="150" EmptyView="Nenhuma magia conhecida">
+                        <CollectionView ItemsSource="{Binding MagiasCirculo5}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:MagiasData">
                                     <Label Padding="5,2">
@@ -183,7 +199,11 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}" CommandParameter="5"/>
+                        <Button Text="Adicionar Magia" Command="{Binding MostrarSelecaoMagiaCommand}">
+                            <Button.CommandParameter>
+                                <x:Int32>5</x:Int32>
+                            </Button.CommandParameter>
+                        </Button>
                     </VerticalStackLayout>
                 </Frame>
 

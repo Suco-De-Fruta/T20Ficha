@@ -2,13 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using T20FichaComDB.Data.Entities; 
-using T20FichaComDB.MVVM.Models;  
-using T20FichaComDB.MVVM.Views; 
-using Microsoft.Maui.Controls;
-using T20FichaComDB.Data;
+using T20FichaComDB.Data.Entities;
+using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.Services;
 
 namespace T20FichaComDB.MVVM.ViewModels

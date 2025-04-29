@@ -106,42 +106,54 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<MagiasData>().CountAsync() == 0)
             {
-                return;
-            }
-            List<MagiasData> magiasBase = null;
-            try
-            {
-                string jsonFileName = "MagiasDataBase.json";
+                System.Diagnostics.Debug.WriteLine("--- SeedMagiasAsync: Tabela de Magias vazia, tentando popular... ---");
 
-                using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
-                if (stream == null)
+                List<MagiasData> magiasBase = null;
+                try
                 {
-                    System.Diagnostics.Debug.WriteLine($"Erro: Não foi possível encontrar o arquivo {jsonFileName} no pacote do aplicativo.");
+                    string jsonFileName = "Data/Seeds/MagiasDatabase.json";
+                    System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: Tentando ler o arquivo: {jsonFileName} ---");
+                    using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
+                    if (stream == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedMagiasAsync: Não foi possível encontrar o arquivo {jsonFileName} no pacote. Verifique a Build Action! ---");
+                        return;
+                    }
+
+                    using var reader = new StreamReader(stream);
+                    string jsonContent = await reader.ReadToEndAsync();
+                    System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: Conteúdo JSON lido (primeiros 200 chars): {jsonContent.Substring(0, Math.Min(jsonContent.Length, 200))} ---");
+
+                    magiasBase = JsonSerializer.Deserialize<List<MagiasData>>(jsonContent, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                    System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: JSON desserializado. Número de magias encontradas: {magiasBase?.Count ?? 0} ---");
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"--- ERRO FATAL SeedMagiasAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
                     return;
                 }
 
-                using var reader = new StreamReader(stream);
-                string jsonContent = await reader.ReadToEndAsync();
-
-                magiasBase = JsonSerializer.Deserialize<List<MagiasData>>(jsonContent, new JsonSerializerOptions
+                if (magiasBase != null && magiasBase.Any())
                 {
-                    PropertyNameCaseInsensitive = true
-                });
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Erro ao ler ou desserializar o arquivo JSON de magias: {ex.Message}");
-                return;
-            }
-
-            if (magiasBase != null && magiasBase.Any())
-            {
-                await connection.InsertAllAsync(magiasBase);
-                System.Diagnostics.Debug.WriteLine($"Populadas {magiasBase.Count} magias a partir do JSON");
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Nenhuma magia encontrada no arquivo JSON ou erro na desserialização.");
+                    try
+                    {
+                        System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: Tentando inserir {magiasBase.Count} magias no banco... ---");
+                        await connection.InsertAllAsync(magiasBase);
+                        System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: {magiasBase.Count} magias INSERIDAS com sucesso! ---");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine("--- SeedMagiasAsync: Nenhuma magia encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                    }
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("--- SeedMagiasAsync: Tabela de Magias já contém dados. Pulo a população. ---");
+                }
             }
         }
     }

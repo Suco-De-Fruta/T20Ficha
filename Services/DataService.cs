@@ -1,10 +1,6 @@
 ﻿using SQLite;
-using SQLitePCL;
-using System.IO;
-using Microsoft.Maui.Storage;
-using T20FichaComDB.Data.Entities;
 using T20FichaComDB.Data;
-using T20FichaComDB.MVVM.ViewModels;
+using T20FichaComDB.Data.Entities;
 
 namespace T20FichaComDB.Services
 {

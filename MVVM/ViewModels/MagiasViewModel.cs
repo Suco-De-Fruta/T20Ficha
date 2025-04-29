@@ -1,10 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using CommunityToolkit.Maui.Views;
 using T20FichaComDB.Data.Entities;
-using CommunityToolkit.Maui.Extensions;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.MVVM.Views.Popup;
 using T20FichaComDB.Services;
@@ -14,14 +13,12 @@ namespace T20FichaComDB.MVVM.ViewModels
     public partial class MagiasViewModel : ObservableObject
     {
         private readonly DataService _dataService;
-
-        private readonly PersonagemModel _personagem;
+        private PersonagemModel _personagem;
 
         // ---- PROPRIEDADES DE CD ----
         public ObservableCollection<string> AtributosChave { get; } = new() { "Força", "Destreza", "Constituição", "Inteligência", "Sabedoria", "Carisma" };
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(CDCalculado))]
         private string _atributoChaveSelecionado = "Inteligência";
 
         [ObservableProperty]
@@ -35,7 +32,6 @@ namespace T20FichaComDB.MVVM.ViewModels
         public int CDCalculado => CalcularCD();
 
         // ------ MAGIAS POR CICULO
-
         public ObservableCollection<MagiasData> MagiasCirculo1 { get; } = new();
         public ObservableCollection<MagiasData> MagiasCirculo2 { get; } = new();
         public ObservableCollection<MagiasData> MagiasCirculo3 { get; } = new();
@@ -43,32 +39,44 @@ namespace T20FichaComDB.MVVM.ViewModels
         public ObservableCollection<MagiasData> MagiasCirculo5 { get; } = new();
 
         // ----- CONSTRUTOR
-        public MagiasViewModel (DataService dataService, PersonagemModel personagem)
+        public MagiasViewModel (DataService dataService)
         {
             _dataService = dataService;
-            _personagem = personagem;
 
-            if (_personagem == null)
-            {
-                _personagem._magiasConhecidas.CollectionChanged += MagiasConhecidas_CollectionChanged;
-                FiltrarMagiasConhecidas();
-                _personagem.PropertyChanged += Personagem_PropertyChanged;
-            }
         }
 
         public void Initialize (PersonagemModel personagem)
         {
-            if (_personagem == null)
+            string idPersonagem = personagem != null ? personagem.GetHashCode().ToString() : "NULL";
+            System.Diagnostics.Debug.WriteLine($"--- MagiasViewModel Initialize chamado com Personagem ID: {idPersonagem} ---");
+
+            if (_personagem != null)
             {
-                _personagem.MagiasConhecidas.CollectionChanged -= MagiasConhecidas_CollectionChanged;
+                if (_personagem.MagiasConhecidas != null)
+                {
+                    _personagem.MagiasConhecidas.CollectionChanged -= MagiasConhecidas_CollectionChanged;
+                }
+
                 _personagem.PropertyChanged -= Personagem_PropertyChanged;
+
             }
 
-            if (_personagem == null)
+            _personagem = personagem;
+
+            if (_personagem != null)
             {
                 _personagem.MagiasConhecidas.CollectionChanged += MagiasConhecidas_CollectionChanged;
                 _personagem.PropertyChanged += Personagem_PropertyChanged;
                 FiltrarMagiasConhecidas();
+                OnPropertyChanged(nameof(CDCalculado));
+            }
+            else
+            {
+                MagiasCirculo1.Clear();
+                MagiasCirculo2.Clear();
+                MagiasCirculo3.Clear();
+                MagiasCirculo4.Clear();
+                MagiasCirculo5.Clear();
                 OnPropertyChanged(nameof(CDCalculado));
             }
         }
@@ -101,25 +109,25 @@ namespace T20FichaComDB.MVVM.ViewModels
                 case "carisma": modAtributo = CalculaMod(_personagem.Carisma ?? 0); break;
             }
 
-            return 10 + modAtributo + BonusEquip + BonusOutros;
+            return 10 + modAtributo + (_personagem.NMetade) + BonusEquip + BonusOutros;
         }
 
         private int CalculaMod(int atributoValor)
         {
-            return (atributoValor - 10) / 2;
+            return (int)Math.Floor((atributoValor - 10) / 2.0);
         }
 
         private void FiltrarMagiasConhecidas()
         {
-            if (_personagem == null) return;
-
-            var todasMagias = _personagem.MagiasConhecidas.ToList();
-
             MagiasCirculo1.Clear();
             MagiasCirculo2.Clear();
             MagiasCirculo3.Clear();
             MagiasCirculo4.Clear();
             MagiasCirculo5.Clear();
+
+            if (_personagem == null) return;
+
+            var todasMagias = _personagem.MagiasConhecidas.ToList();
 
             foreach (var magia in todasMagias.OrderBy(m => m.Nome))
             {
@@ -137,18 +145,19 @@ namespace T20FichaComDB.MVVM.ViewModels
         [RelayCommand]
         private async Task MostrarSelecaoMagia(int circulo)
         {
-            if (_personagem == null) return;
+            if (_personagem == null)
             System.Diagnostics.Debug.WriteLine($"Abrir seleção para Círculo {circulo}");
 
             var popupViewModel = new SelecaoMagiasPopupViewModel(
                 _dataService,
                 circulo,
-                _personagem.MagiasConhecidas,
-                () => Shell.Current.CurrentPage.ClosePopup()
+                _personagem.MagiasConhecidas
             );
 
-            var popup = new SelecaoMagiasPopupView(popupViewModel);
-            await Shell.Current.CurrentPage.ShowPopuoAsync(popup);
+            var popup = new SelecaoMagiasPopupView( popupViewModel );
+            await Shell.Current.ShowPopupAsync( popup );
+            System.Diagnostics.Debug.WriteLine($"Popup de seleção para Círculo {circulo} fechado.");
+            return;
         }
 
 
@@ -161,12 +170,12 @@ namespace T20FichaComDB.MVVM.ViewModels
 
             var popupViewModel = new SelecaoMagiasPopupViewModel(
                 magia,
-                _personagem.MagiasConhecidas,
-                () => Shell.Current.CurrentPage.ClosePopup()
+                _personagem.MagiasConhecidas
             );
 
             var popup = new SelecaoMagiasPopupView(popupViewModel);
-            await Shell.Current.CurrentPage.ShowPopupAsync(popup);
+            await Shell.Current.ShowPopupAsync(popup);
+            System.Diagnostics.Debug.WriteLine($"Popup de detalhes para {magia.Nome} fechado.");
         }
     }
 }

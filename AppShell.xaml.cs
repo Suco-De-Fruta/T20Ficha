@@ -1,5 +1,4 @@
-﻿using T20FichaComDB.MVVM.ViewModels;
-using T20FichaComDB.MVVM.Views;
+﻿using T20FichaComDB.MVVM.Views;
 using T20FichaComDB.MVVM.Views.Popup;
 
 namespace T20FichaComDB
