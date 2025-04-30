@@ -9,6 +9,9 @@ namespace T20FichaComDB.MVVM.Models
         public int MaxNivel = 20;
 
         [ObservableProperty]
+        private int _id;
+
+        [ObservableProperty]
         private string _nome;
 
         [ObservableProperty]

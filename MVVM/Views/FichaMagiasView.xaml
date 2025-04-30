@@ -16,33 +16,93 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="15">
-
-            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+        <StackLayout Padding="10" Spacing="15">
+            <Border Padding="10" StrokeThickness="3" Stroke="LightGray" >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+                
                 <VerticalStackLayout Spacing="5">
-                    <Label Text="Cálculo da CD das Magias" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
-                        <Label Text="CD Base:" VerticalOptions="Center"/>
-                        <Label Text="10 +" VerticalOptions="Center"/>
-                        <Picker Title="Atributo"
+                    <Label Text="CD das suas Magias" 
+                           FontAttributes="Bold" 
+                           FontSize="Medium" HorizontalTextAlignment="Center"/>
+
+                    <Grid ColumnSpacing="3" RowSpacing="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="18*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="10" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="+" VerticalOptions="Center" Margin="3,0"/>
+
+                        <Picker Grid.Row="0" Grid.Column="2"
+                                Title="Atributo"
                                 ItemsSource="{Binding AtributosChave}"
                                 SelectedItem="{Binding AtributoChaveSelecionado}"
-                                WidthRequest="120" VerticalOptions="Center"/>
-                        <Label Text="+" VerticalOptions="Center"/>
-                        <Entry Placeholder="Equip" Keyboard="Numeric" WidthRequest="50"
-                               Text="{Binding BonusEquip}" VerticalOptions="Center"/>
-                        <Label Text="+" VerticalOptions="Center"/>
-                        <Entry Placeholder="Outros" Keyboard="Numeric" WidthRequest="50"
-                               Text="{Binding BonusOutros}" VerticalOptions="Center"/>
-                        <Label Text="=" FontAttributes="Bold" VerticalOptions="Center"/>
-                        <Label Text="{Binding CDCalculado}" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center"/>
-                    </HorizontalStackLayout>
+                                MinimumWidthRequest="110" VerticalOptions="Center"/>
+
+                        <Label Grid.Row="0" Grid.Column="3" Text="+" VerticalOptions="Center" Margin="1,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="4"
+                               Text="{Binding NivelMetade}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="0" Grid.Column="5" Text="+" VerticalOptions="Center" Margin="1,0"/>
+
+                        <Entry Grid.Row="0" Grid.Column="6"
+                               Placeholder="0" Keyboard="Numeric" WidthRequest="40"
+                               Text="{Binding BonusEquip}"
+                               HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                        <Label Grid.Row="0" Grid.Column="7" Text="+" VerticalOptions="Center" Margin="1,0"/>
+
+                        <Entry Grid.Row="0" Grid.Column="8"
+                               Placeholder="0" Keyboard="Numeric" WidthRequest="40"
+                               Text="{Binding BonusOutros}"
+                               HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Base" FontSize="Small" HorizontalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="2" Text="Atributo" FontSize="Small" HorizontalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="4" Text="Nível/2" FontSize="Small" HorizontalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="6" Text="Itens" FontSize="Small" HorizontalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="8" Text="Outros" FontSize="Small" HorizontalOptions="Center"/>
+                    </Grid>
+                    <Border WidthRequest="130" StrokeThickness="2" Stroke="Black">
+                        <Grid ColumnDefinitions="*">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="{Binding CDCalculado}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" Text="Total" FontSize="Small" HorizontalOptions="Center"/>
+                        </Grid>
+                    </Border>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <Grid ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, Auto" ColumnSpacing="10" RowSpacing="10">
-
-                <Frame Grid.Row="0" Grid.Column="0" Padding="10" CornerRadius="5" BorderColor="Gray">
+                <Border Grid.Row="0" Grid.Column="0" Padding="10" Stroke="Gray">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    
                     <VerticalStackLayout Spacing="5">
                         <Label Text="1º Círculo - 1 PM" FontAttributes="Bold"/>
                         <CollectionView ItemsSource="{Binding MagiasCirculo1}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
@@ -73,7 +133,7 @@
                             </Button.CommandParameter>
                         </Button>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
                 <Frame Grid.Row="0" Grid.Column="1" Padding="10" CornerRadius="5" BorderColor="Gray">
                     <VerticalStackLayout Spacing="5">
@@ -209,7 +269,7 @@
 
             </Grid>
 
-        </VerticalStackLayout>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

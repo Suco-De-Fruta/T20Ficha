@@ -140,6 +140,13 @@ namespace T20FichaComDB.Services
             // _connection.FindAsync<PersonagemData>(id);
         }
 
+        public async Task<PersonagemData> GetPersonagemPorNomeAsync(string nome)
+        {
+            await EnsureInitializedAsync();
+            return await _connection.Table<PersonagemData>()
+                            .Where(p => p.Nome == nome)
+                            .FirstOrDefaultAsync();
+        }
 
         public async Task<int> DeletarPersonagemAsync(PersonagemData personagem)
         {

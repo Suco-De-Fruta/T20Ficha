@@ -19,6 +19,7 @@ namespace T20FichaComDB.MVVM.ViewModels
         public ObservableCollection<string> AtributosChave { get; } = new() { "Força", "Destreza", "Constituição", "Inteligência", "Sabedoria", "Carisma" };
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(CDCalculado))]
         private string _atributoChaveSelecionado = "Inteligência";
 
         [ObservableProperty]
@@ -28,6 +29,8 @@ namespace T20FichaComDB.MVVM.ViewModels
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CDCalculado))]
         private int _bonusOutros;
+
+        public int NivelMetade => _personagem?.NMetade ?? 0;
 
         public int CDCalculado => CalcularCD();
 
@@ -47,8 +50,7 @@ namespace T20FichaComDB.MVVM.ViewModels
 
         public void Initialize (PersonagemModel personagem)
         {
-            string idPersonagem = personagem != null ? personagem.GetHashCode().ToString() : "NULL";
-            System.Diagnostics.Debug.WriteLine($"--- MagiasViewModel Initialize chamado com Personagem ID: {idPersonagem} ---");
+            //string idPersonagem = personagem != null ? personagem.GetHashCode().ToString() : "NULL";
 
             if (_personagem != null)
             {
@@ -65,10 +67,14 @@ namespace T20FichaComDB.MVVM.ViewModels
 
             if (_personagem != null)
             {
-                _personagem.MagiasConhecidas.CollectionChanged += MagiasConhecidas_CollectionChanged;
                 _personagem.PropertyChanged += Personagem_PropertyChanged;
+
+                if (_personagem.MagiasConhecidas  != null)
+                _personagem.MagiasConhecidas.CollectionChanged += MagiasConhecidas_CollectionChanged;
+
                 FiltrarMagiasConhecidas();
                 OnPropertyChanged(nameof(CDCalculado));
+                OnPropertyChanged(nameof(NivelMetade));
             }
             else
             {
@@ -78,12 +84,41 @@ namespace T20FichaComDB.MVVM.ViewModels
                 MagiasCirculo4.Clear();
                 MagiasCirculo5.Clear();
                 OnPropertyChanged(nameof(CDCalculado));
+                OnPropertyChanged(nameof(NivelMetade));
             }
         }
 
         private void Personagem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (AtributosChave.Any(a => a.Equals(e.PropertyName, StringComparison.OrdinalIgnoreCase)))
+            bool recalcularCD = false;
+
+            if (e.PropertyName == nameof(PersonagemModel.Nivel))
+            {
+                OnPropertyChanged(nameof(NivelMetade));
+                recalcularCD = true;
+            }
+
+            string nomePropriedade = e.PropertyName;
+            string atributoSelecionado = AtributoChaveSelecionado;
+
+            bool atributoRelevanteMudou = nomePropriedade switch
+            {
+                nameof(PersonagemModel.Forca) => atributoSelecionado == "Força",
+                nameof(PersonagemModel.Destreza) => atributoSelecionado == "Destreza",
+                nameof(PersonagemModel.Constituicao) => atributoSelecionado == "Constituição",
+                nameof(PersonagemModel.Inteligencia) => atributoSelecionado == "Inteligência",
+                nameof(PersonagemModel.Sabedoria) => atributoSelecionado == "Sabedoria",
+                nameof(PersonagemModel.Carisma) => atributoSelecionado == "Carisma",
+                _ => false
+
+            };
+
+            if (atributoRelevanteMudou)
+            {
+                recalcularCD = true;
+            }
+
+            if (recalcularCD)
             {
                 OnPropertyChanged(nameof(CDCalculado));
             }
@@ -98,23 +133,19 @@ namespace T20FichaComDB.MVVM.ViewModels
         {
             if (_personagem == null) return 10;
 
-            int modAtributo = 0;
+            int atributoValor = 0;
+
             switch (AtributoChaveSelecionado?.ToLower())
             {
-                case "força": modAtributo = CalculaMod(_personagem.Forca ?? 0); break;
-                case "destreza": modAtributo = CalculaMod(_personagem.Destreza ?? 0); break;
-                case "constituição": modAtributo = CalculaMod(_personagem.Constituicao ?? 0); break;
-                case "inteligência": modAtributo = CalculaMod(_personagem.Inteligencia ?? 0); break;
-                case "sabedoria": modAtributo = CalculaMod(_personagem.Sabedoria ?? 0); break;
-                case "carisma": modAtributo = CalculaMod(_personagem.Carisma ?? 0); break;
+                case "força": atributoValor = _personagem.Forca ?? 0; break;
+                case "destreza": atributoValor = _personagem.Destreza ?? 0; break;
+                case "constituição": atributoValor = _personagem.Constituicao ?? 0; break;
+                case "inteligência": atributoValor = _personagem.Inteligencia ?? 0; break;
+                case "sabedoria": atributoValor = _personagem.Sabedoria ?? 0; break;
+                case "carisma": atributoValor = _personagem.Carisma ?? 0; break;
             }
 
-            return 10 + modAtributo + (_personagem.NMetade) + BonusEquip + BonusOutros;
-        }
-
-        private int CalculaMod(int atributoValor)
-        {
-            return (int)Math.Floor((atributoValor - 10) / 2.0);
+            return 10 + atributoValor + NivelMetade + BonusEquip + BonusOutros;
         }
 
         private void FiltrarMagiasConhecidas()
@@ -156,7 +187,7 @@ namespace T20FichaComDB.MVVM.ViewModels
 
             var popup = new SelecaoMagiasPopupView( popupViewModel );
             await Shell.Current.ShowPopupAsync( popup );
-            System.Diagnostics.Debug.WriteLine($"Popup de seleção para Círculo {circulo} fechado.");
+
             return;
         }
 
@@ -166,7 +197,6 @@ namespace T20FichaComDB.MVVM.ViewModels
         {
             if (magia == null || _personagem == null) return;
 
-            System.Diagnostics.Debug.WriteLine($"Mostrar detalhes/remover: {magia.Nome}");
 
             var popupViewModel = new SelecaoMagiasPopupViewModel(
                 magia,
@@ -175,7 +205,6 @@ namespace T20FichaComDB.MVVM.ViewModels
 
             var popup = new SelecaoMagiasPopupView(popupViewModel);
             await Shell.Current.ShowPopupAsync(popup);
-            System.Diagnostics.Debug.WriteLine($"Popup de detalhes para {magia.Nome} fechado.");
         }
     }
 }

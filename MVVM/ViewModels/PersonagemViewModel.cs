@@ -22,7 +22,7 @@ namespace T20FichaComDB.MVVM.ViewModels
         public ObservableCollection<string> OrigensDisponiveis { get; } = new();
         public ObservableCollection<string> DivindadesDisponiveis { get; } = new();
 
-        // Construtor para injeção de dependência (recomendado)
+        // Construtor para injeção de dependência 
         public PersonagemViewModel(DataService databaseService)
         {
             _databaseService = databaseService;
@@ -33,60 +33,14 @@ namespace T20FichaComDB.MVVM.ViewModels
 
             // Carrega os dados iniciais (raças, classes, etc.)
             InitializeAsync();
-            RecalculateAll();
         }
 
         public PersonagemViewModel()
         {
-            // Se usar este, _databaseService precisará ser injetado/definido posteriormente
-            // ou obtido de um Service Locator / DI Container estático.
             Personagem = new PersonagemModel();
+            RecalculateAll();
             // ... inicialização de comandos e coleções ...
         }
-
-        public async Task CarregarPersonagemAsync(int id)
-        {
-            PersonagemData data = await _databaseService.GetPersonagemPorIdAsync(id);
-            if (data != null)
-            {
-                _personagemAtualID = data.Id;
-
-                
-                Personagem.Nome = data.Nome;
-                Personagem.JogadorNome = data.JogadorNome;
-                Personagem.Nivel = data.Nivel;
-                Personagem.Raca = data.RacaNome;
-                Personagem.Classe = data.ClasseNome;
-                Personagem.Origem = data.OrigemNome;
-                Personagem.Divindade = data.DivindadeNome;
-                Personagem.Forca = data.Forca;
-                Personagem.Destreza = data.Destreza;
-                Personagem.Constituicao = data.Constituicao;
-                Personagem.Inteligencia = data.Inteligencia;
-                Personagem.Sabedoria = data.Sabedoria;
-                Personagem.Carisma = data.Carisma;
-
-                // Recalcula PV/PM com base nos dados carregados
-                RecalculateAll();
-
-                // Define PV/PM atuais (se não foram salvos, define como máximo)
-                Personagem.PVatual = data.PVatuais > 0 ? data.PVatuais : Personagem.MaxPV;
-                Personagem.PMatual = data.PMatuais > 0 ? data.PMatuais : Personagem.MaxPM;
-
-                // TODO: Carregar Perícias, Poderes, Inventário, Magias se/quando implementado
-
-                Personagem.PropertyChanged -= Personagem_PropertyChanged;
-                Personagem.PropertyChanged += Personagem_PropertyChanged;
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Erro", $"Personagem com ID {id} não encontrado.", "OK");
-                Personagem = new PersonagemModel();
-                _personagemAtualID = 0;
-                RecalculateAll();
-            }
-        }
-
 
         // Método para carregar listas de Raças, Classes, etc.
         public async Task InitializeAsync()
@@ -127,33 +81,50 @@ namespace T20FichaComDB.MVVM.ViewModels
         {
             try
             {
-                var personagemData = new PersonagemData
+                if (this.Personagem == null)
                 {
-                    Id = _personagemAtualID,
-                    Nome = Personagem.Nome,
-                    JogadorNome = Personagem.JogadorNome,
-                    Nivel = Personagem.Nivel,
-                    RacaNome = Personagem.Raca,
-                    ClasseNome = Personagem.Classe,
-                    OrigemNome = Personagem.Origem,
-                    DivindadeNome = Personagem.Divindade,
-                    Forca = Personagem.Forca ?? 0,
-                    Destreza = Personagem.Destreza ?? 0,
-                    Constituicao = Personagem.Constituicao ?? 0,
-                    Inteligencia = Personagem.Inteligencia ?? 0,
-                    Sabedoria = Personagem.Sabedoria ?? 0,
-                    Carisma = Personagem.Carisma ?? 0,
-                    PVatuais = Personagem.PVatual,
-                    PMatuais = Personagem.PMatual
-                    // UltimoSave será definido pelo DataService
-                    // TODO: Salvar Perícias, Poderes, Inventário, Magias se/quando implementado
-                };
+                    await Shell.Current.DisplayAlert("Erro", "Nenhum personagem carregado para salvar.", "OK");
+                    return;
+                }
+                    var personagemData = new PersonagemData
+                    {
+                        Id = Personagem.Id,
+                        Nome = Personagem.Nome,
+                        JogadorNome = Personagem.JogadorNome,
+                        Nivel = Personagem.Nivel,
+                        RacaNome = Personagem.Raca,
+                        ClasseNome = Personagem.Classe,
+                        OrigemNome = Personagem.Origem,
+                        DivindadeNome = Personagem.Divindade,
+                        Forca = Personagem.Forca ?? 0,
+                        Destreza = Personagem.Destreza ?? 0,
+                        Constituicao = Personagem.Constituicao ?? 0,
+                        Inteligencia = Personagem.Inteligencia ?? 0,
+                        Sabedoria = Personagem.Sabedoria ?? 0,
+                        Carisma = Personagem.Carisma ?? 0,
+                        PVatuais = Personagem.PVatual,
+                        PMatuais = Personagem.PMatual,
+                        // UltimoSave será definido pelo DataService
+                    };
 
-                int savedId = await _databaseService.SalvarPersonagemAsync(personagemData);
+                int savedRowCount = await _databaseService.SalvarPersonagemAsync(personagemData);
 
-                if (_personagemAtualID == 0 && savedId != 0)
+                if (Personagem.Id == 0 && savedRowCount > 0)
                 {
-                    _personagemAtualID = savedId;
+                    var savedData = await _databaseService.GetPersonagemPorNomeAsync(Personagem.Nome);
+                    if (savedData != null)
+                    {
+                        Personagem.Id = savedData.Id;
+                        System.Diagnostics.Debug.WriteLine($"Novo ID {Personagem.Id} atribuído ao personagem {Personagem.Nome}.");
+                    }
+                }
+                else if (savedRowCount > 0)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Personagem {Personagem.Nome} (ID: {Personagem.Id} salvo com sucesso.");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"Falha ao salvar personagem {Personagem.Nome} (ID: {Personagem.Id}).");
                 }
 
                 await Shell.Current.DisplayAlert("Sucesso", "Personagem salvo com sucesso!", "OK");
@@ -166,6 +137,74 @@ namespace T20FichaComDB.MVVM.ViewModels
             }
         }
 
+        public async Task CarregarPersonagemAsync(int id)
+        {
+            PersonagemData data = await _databaseService.GetPersonagemPorIdAsync(id);
+            if (data != null)
+            {
+                if (this.Personagem == null || this.Personagem.Id != data.Id)
+                {
+                    this.Personagem = new PersonagemModel();
+                }
+
+                Personagem.Id = data.Id;
+                Personagem.Nome = data.Nome;
+                Personagem.JogadorNome = data.JogadorNome;
+                Personagem.Nivel = data.Nivel;
+                Personagem.Raca = data.RacaNome;
+                Personagem.Classe = data.ClasseNome;
+                Personagem.Origem = data.OrigemNome;
+                Personagem.Divindade = data.DivindadeNome;
+                Personagem.Forca = data.Forca;
+                Personagem.Destreza = data.Destreza;
+                Personagem.Constituicao = data.Constituicao;
+                Personagem.Inteligencia = data.Inteligencia;
+                Personagem.Sabedoria = data.Sabedoria;
+                Personagem.Carisma = data.Carisma;
+
+                // Recalcula PV/PM com base nos dados carregados
+                RecalculateAll();
+
+                // Define PV/PM atuais (se não foram salvos, define como máximo)
+                Personagem.PVatual = data.PVatuais > 0 ? data.PVatuais : Personagem.MaxPV;
+                Personagem.PMatual = data.PMatuais > 0 ? data.PMatuais : Personagem.MaxPM;
+
+                // TODO: Carregar Perícias, Poderes, Inventário, Magias se/quando implementado
+
+                System.Diagnostics.Debug.WriteLine($"Personagem {Personagem.Nome} (ID: {Personagem.Id}) carregado.");
+
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Erro", $"Personagem com ID {id} não encontrado.", "OK");
+                this.Personagem = new PersonagemModel();
+                // _personagemAtualID = 0;
+                RecalculateAll();
+            }
+        }
+
+        public async Task<PersonagemData> GetPersonagemPorNomeAsync(string nome)
+        {
+            return await _databaseService.GetPersonagemPorNomeAsync(nome);
+        }
+
+        public async Task<int?> GetPersonagemMaisRecenteIdAsync()
+        {
+            try
+            {
+                var personagens = await _databaseService.GetPersonagensAsync();
+                if (personagens != null && personagens.Any())
+                {
+                    return personagens.First().Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erro ao buscar último personagem: {ex.Message}");
+            }
+            return null;
+        }
+
 
         // --- Seção de Recálculo ---
         private void Personagem_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -176,21 +215,21 @@ namespace T20FichaComDB.MVVM.ViewModels
                 case nameof(PersonagemModel.Classe):
                     CalculatePV();
                     CalculatePM();
-                    //CalculatePericias(); // Descomente se implementar perícias
+                    //CalculatePericias();
                     break;
 
                 case nameof(PersonagemModel.Constituicao):
                     CalculatePV();
-                    //CalculatePericiasAtributoChave("CON"); // Descomente se implementar perícias
+                    //CalculatePericiasAtributoChave("CON");
                     break;
 
                 // Adicione outros atributos que afetam PM ou Pericias
                 case nameof(PersonagemModel.Inteligencia):
-                    CalculatePM(); // Exemplo: se INT afeta PM
+                    CalculatePM(); 
                                    //CalculatePericiasAtributoChave("INT");
                     break;
                 case nameof(PersonagemModel.Sabedoria):
-                    CalculatePM(); // Exemplo: se SAB afeta PM
+                    CalculatePM(); 
                                    //CalculatePericiasAtributoChave("SAB");
                     break;
                 case nameof(PersonagemModel.Carisma):
@@ -228,9 +267,7 @@ namespace T20FichaComDB.MVVM.ViewModels
             if (Personagem.Nivel < Personagem.MaxNivel)
             {
                 Personagem.Nivel++;
-                // Recalculos são acionados pelo PropertyChanged se o handler estiver ativo,
-                // ou chame RecalculateAll() ou métodos específicos aqui se não estiver usando o handler.
-                RecalculateAll(); // Exemplo de chamada direta
+                RecalculateAll();
             }
         }
 
@@ -334,7 +371,6 @@ namespace T20FichaComDB.MVVM.ViewModels
             }
         }
 
-        // Retorna o valor do atributo baseado na string de abreviação
         private int GetAtributoMod(string atributoChave)
         {
             return atributoChave switch
@@ -355,120 +391,12 @@ namespace T20FichaComDB.MVVM.ViewModels
             int destrezaMod = Personagem.Destreza ?? 0;
 
             // --- Placeholder para Bônus de Armadura e Escudo ---
-            // o item equipado e então buscar o bônus desse item.
-            int armaduraBonus = 0; // Ex: GetBonusFromItem(Personagem.EquipArmadura);
-            int escudoBonus = 0;   // Ex: GetBonusFromItem(Personagem.EquipEscudo);
-            int outroBonus = 0;   // Ex: Bônus de raça, poder, etc.
-
-            // --- Placeholder para Penalidade de Armadura e Limite de Destreza ---
-            // bool usingArmaduraPesada = false; // Ex: IsArmaduraPesada(Personagem.EquipArmadura);
-            // int maxDexBonus = 99; // Ex: GetMaxDexBonus(Personagem.EquipArmadura);
-            // destrezaMod = Math.Min(destrezaMod, maxDexBonus); // Aplica limite de DES
-            // if (usingArmaduraPesada && destrezaMod > 0) destrezaMod = 0; // Regra de armadura pesada (verificar T20 JdA)
+            int armaduraBonus = 0;
+            int escudoBonus = 0;
+            int outroBonus = 0; 
 
             Personagem.Defesa = baseDef + destrezaMod + armaduraBonus + escudoBonus + outroBonus;
         }
 
-
-        // ---------- LOGICA DE PERICIAS -----------
-
-        /*
-        private void Pericia_PropertyChanged (object? sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Pericias.ETreinado) && sender is Pericias changedPercia)
-            {
-                CalculatePericiaIndividual(changedPercia);
-            }
-          // if (e.PropertyName == nameof(Pericias.BonusOutros) && sender is Pericias changedPericia) { recalcular TotalBonus... }
-        }
-
-        private void CalculatePericiaIndividual(Pericias pericias)
-        {
-            if (pericias?.AtributoChave == null) return;
-
-            // Usa Personagem.NMetade da classe PersonagemModel
-            int bonusNivel = Personagem.NMetade;
-            int bonusAtributo = GetAtributoMod(pericias.AtributoChave);
-            int bonusTreinado = 0;
-
-            if (pericias.ETreinado)
-            {
-                // Bônus de treinamento T20 JdA pág. 118
-                if (Personagem.Nivel >= 15) bonusTreinado = 6;
-                else if (Personagem.Nivel >= 7) bonusTreinado = 4;
-                else bonusTreinado = 2;
-            }
-
-            int bonusOutros = pericias.BonusOutros; // Assumindo que Pericias tem essa propriedade
-
-            // Penalidade por usar perícia não treinada que exige treinamento
-            // (ApenasTreinada é uma propriedade hipotética na classe Pericias)
-            // if (pericias.ApenasTreinada && !pericias.ETreinado)
-            // {
-            //     // Em T20, você simplesmente não pode usar a perícia,
-            //     // a menos que regras específicas permitam.
-            //     // Poderia definir o bônus total como um valor muito baixo ou lançar exceção?
-            //     // Ou a UI deveria desabilitar a rolagem?
-            //     // Vamos assumir que a UI impede ou mostra um aviso.
-            //     // Definir um valor numérico aqui pode ser enganoso.
-            // }
-
-            // --- Placeholder para Penalidade de Armadura ---
-            // int armorPenalty = GetCurrentArmorPenalty(); // Precisa buscar do item de armadura equipado
-            // if (pericias.AplicaPenalidadeArmadura) // Propriedade hipotética em Pericias
-            // {
-            //    bonusOutros -= armorPenalty;
-            // }
-
-            // Atualiza as propriedades da perícia (se existirem na classe Pericias)
-            // pericias.BonusNivel = bonusNivel;
-            // pericias.BonusAtributo = bonusAtributo;
-            // pericias.BonusTreino = bonusTreinado;
-            // pericias.BonusOutros = bonusOutros; // Já inclui penalidade de armadura, se houver
-            // pericias.BonusTotal = bonusNivel + bonusAtributo + bonusTreinado + bonusOutros;
-        }
-
-        private void CalculatePericias()
-        {
-            // Assumindo que Personagem.Pericias é ObservableCollection<Pericias> em PersonagemModel
-            if (Personagem?.Pericias == null) return;
-            foreach (var pericias in Personagem.Pericias)
-            {
-                CalculatePericiaIndividual(pericias);
-            }
-        }
-
-        private void CalculatePericiasAtributoChave(string atributoNome)
-        {
-             if (Personagem?.Pericias == null) return;
-            // Usa LINQ para filtrar as perícias relevantes
-            foreach (var pericias in Personagem.Pericias.Where(s => s.AtributoChave == atributoNome))
-            {
-                CalculatePericiaIndividual(pericias);
-            }
-        }
-        */
-
-
-        // ---------- NAVEGAÇÃO -----------
-        // Adapte conforme a estrutura de navegação do seu App (MAUI Shell, etc.)
-        /*
-        public INavigation Navigation { get; set; } // Injete ou obtenha de outra forma
-
-        [RelayCommand]
-        private async Task NavigateToDetails()
-        {
-            if (Navigation != null)
-            {
-                // Certifique-se que PersonagemDetalhesView existe e aceita este ViewModel
-                await Navigation.PushAsync(new PersonagemDetalhesView { BindingContext = this });
-            }
-            else
-            {
-                 System.Diagnostics.Debug.WriteLine("Erro: Serviço de Navegação não disponível.");
-                 // Talvez um DisplayAlert aqui
-            }
-        }
-        */
     }
 }

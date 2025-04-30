@@ -25,6 +25,7 @@ namespace T20FichaComDB
             builder.Services.AddTransient<MagiasViewModel>(); 
             builder.Services.AddTransient<FichaMagiasView>();
             builder.Services.AddTransient<SelecaoMagiasPopupViewModel>();
+            builder.Services.AddTransient<FichaPart1View>();
 
 #if DEBUG
             builder.Logging.AddDebug();
