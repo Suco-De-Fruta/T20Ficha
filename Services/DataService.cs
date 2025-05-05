@@ -116,6 +116,19 @@ namespace T20FichaComDB.Services
                                     .OrderBy(m => m.Nome).ToListAsync();
         }
 
+        public async Task<List<MagiasData>> GetMagiasPorIdsAsync(List<int> ids)
+        {
+            await EnsureInitializedAsync();
+            if (ids == null || !ids.Any())
+            {
+                return new List<MagiasData>();
+            }
+
+            return await _connection.Table<MagiasData>()
+                                    .Where(m => ids.Contains(m.Id))
+                                    .ToListAsync();
+        }
+
 
         // ----- MÉTODOS PARA GERENCIAR PERSONAGENS -----
 

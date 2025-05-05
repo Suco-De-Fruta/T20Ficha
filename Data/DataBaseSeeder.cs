@@ -19,27 +19,60 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<RacasData>().CountAsync() == 0)
             {
-                var racasBase = new List<RacasData>
+                System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças vazia, tentando popular do JSON... ---");
+
+                List<RacasData> racasBase = null;
+
+                try
                 {
-                    new RacasData { Nome = "Humano" }, new RacasData { Nome = "Anão" }, new RacasData { Nome = "Dahllan" },
-                    new RacasData { Nome = "Elfo" }, new RacasData { Nome = "Goblin" }, new RacasData { Nome = "Minotauro" },
-                    new RacasData { Nome = "Qareen" }, new RacasData { Nome = "Golem" }, new RacasData { Nome = "Hynne" },
-                    new RacasData { Nome = "Kliren" }, new RacasData { Nome = "Medusa" }, new RacasData { Nome = "Osteon" },
-                    new RacasData { Nome = "Sereia/Tritão" }, new RacasData { Nome = "Sílfide" }, new RacasData { Nome = "Suraggel" },
-                    new RacasData { Nome = "Trog" }, new RacasData { Nome = "Bugbear" }, new RacasData { Nome = "Centauro" },
-                    new RacasData { Nome = "Ceratops" }, new RacasData { Nome = "Elfo-do-Mar" }, new RacasData { Nome = "Finntroll" },
-                    new RacasData { Nome = "Gnoll" }, new RacasData { Nome = "Harpia" }, new RacasData { Nome = "Hobgoblin" },
-                    new RacasData { Nome = "Kallyanach" }, new RacasData { Nome = "Kaijin" }, new RacasData { Nome = "Kappa" },
-                    new RacasData { Nome = "Kobolds" }, new RacasData { Nome = "Mashin" }, new RacasData { Nome = "Meio-orc" },
-                    new RacasData { Nome = "Minauro" }, new RacasData { Nome = "Moreau" }, new RacasData { Nome = "Nagah" },
-                    new RacasData { Nome = "Nezumi" }, new RacasData { Nome = "Ogro" }, new RacasData { Nome = "Orc" },
-                    new RacasData { Nome = "Pteros" }, new RacasData { Nome = "Soterrado" }, new RacasData { Nome = "Tabrachi" },
-                    new RacasData { Nome = "Tengu" }, new RacasData { Nome = "Trog anão" }, new RacasData { Nome = "Velocis" },
-                    new RacasData { Nome = "Voracis" }, new RacasData { Nome = "Yidishan" }, new RacasData { Nome = "Duende" },
-                    new RacasData { Nome = "Eiradaan" }, new RacasData { Nome = "Galokk" }, new RacasData { Nome = "Meio-Elfo" },
-                    new RacasData { Nome = "Sátiro" }
-                };
-                await connection.InsertAllAsync(racasBase);
+                    string jsonFileName = "Data/Seeds/RacasDatabase.json";
+                    System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: Tentando ler o arquivo: {jsonFileName} ---");
+
+                    using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
+                    if (stream == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedRacasAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
+                        return;
+                    }
+
+                    using var reader = new StreamReader(stream);
+                    string jsonContent = await reader.ReadToEndAsync();
+
+                    racasBase = JsonSerializer.Deserialize<List<RacasData>>(jsonContent, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                    System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: JSON desserializado. Número de raças encontradas: {racasBase?.Count ?? 0} ---");
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"--- ERRO FATAL SeedRacasAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
+                    return;
+                }
+
+                if (racasBase != null && racasBase.Any()) 
+                {
+                    try
+                    {
+                        System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: Tentando inserir {racasBase.Count} raças no banco... ---");
+                        await connection.InsertAllAsync(racasBase);
+                        System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: {racasBase.Count} raças INSERIDAS com sucesso! ---");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedRacasAsync: Falha ao inserir raças no banco: {ex.ToString()} ---");
+                    }
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Nenhuma raça encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças já contém dados. Pulo a população. ---");
             }
         }
 

@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Data\Seeds\MagiasDatabase.json" />
+	  <None Remove="Data\Seeds\RacasDatabase.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -88,6 +89,7 @@
 
 	<ItemGroup>
 	  <MauiAsset Include="Data\Seeds\MagiasDatabase.json" />
+	  <MauiAsset Include="Data\Seeds\RacasDatabase.json" />
 	</ItemGroup>
 
 	<ItemGroup>

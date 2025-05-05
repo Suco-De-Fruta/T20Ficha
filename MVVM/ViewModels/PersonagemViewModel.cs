@@ -5,6 +5,9 @@ using System.ComponentModel;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.Services;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.Maui.Controls.Compatibility;
 
 namespace T20FichaComDB.MVVM.ViewModels
 {
@@ -21,6 +24,9 @@ namespace T20FichaComDB.MVVM.ViewModels
         public ObservableCollection<string> ClassesDisponiveis { get; } = new();
         public ObservableCollection<string> OrigensDisponiveis { get; } = new();
         public ObservableCollection<string> DivindadesDisponiveis { get; } = new();
+
+        private List<RacasData> _todasRacasComDetalhes = new ();
+        private Dictionary<string, int> _modRaciaisAtuais = new();
 
         // Construtor para injeção de dependência 
         public PersonagemViewModel(DataService databaseService)
@@ -57,12 +63,15 @@ namespace T20FichaComDB.MVVM.ViewModels
                 ClassesDisponiveis.Clear();
                 DivindadesDisponiveis.Clear();
 
+                // -- CARREGAR DO BANCO DE DADOS
                 var racasDB = await _databaseService.GetRacasAsync();
                 var origensDB = await _databaseService.GetOrigensAsync();
                 var classesDB = await _databaseService.GetClassesAsync();
                 var divindadesDB = await _databaseService.GetDivindadesAsync();
 
-                foreach (var raca in racasDB) RacasDisponiveis.Add(raca.Nome);
+                _todasRacasComDetalhes.AddRange(racasDB);
+
+                foreach (var raca in racasDB.OrderBy(r => r.Nome)) RacasDisponiveis.Add(raca.Nome);
                 foreach (var origem in origensDB) OrigensDisponiveis.Add(origem.Nome);
                 foreach (var classe in classesDB) ClassesDisponiveis.Add(classe.Nome);
                 foreach (var divindade in divindadesDB) DivindadesDisponiveis.Add(divindade.Nome);
@@ -86,6 +95,14 @@ namespace T20FichaComDB.MVVM.ViewModels
                     await Shell.Current.DisplayAlert("Erro", "Nenhum personagem carregado para salvar.", "OK");
                     return;
                 }
+
+                string magiasIdString = string.Empty;
+
+                if (Personagem.MagiasConhecidas != null && Personagem.MagiasConhecidas.Any())
+                {
+                    magiasIdString = string.Join(",", Personagem.MagiasConhecidas.Select(m => m.Id));
+                }
+
                     var personagemData = new PersonagemData
                     {
                         Id = Personagem.Id,
@@ -96,6 +113,7 @@ namespace T20FichaComDB.MVVM.ViewModels
                         ClasseNome = Personagem.Classe,
                         OrigemNome = Personagem.Origem,
                         DivindadeNome = Personagem.Divindade,
+                        MagiasConhecidasIDs = magiasIdString,
                         Forca = Personagem.Forca ?? 0,
                         Destreza = Personagem.Destreza ?? 0,
                         Constituicao = Personagem.Constituicao ?? 0,
@@ -144,23 +162,58 @@ namespace T20FichaComDB.MVVM.ViewModels
             {
                 if (this.Personagem == null || this.Personagem.Id != data.Id)
                 {
-                    this.Personagem = new PersonagemModel();
+                    if (this.Personagem != null)
+                    {
+                        this.Personagem.PropertyChanged -= Personagem_PropertyChanged;
+                    }
+                    this.Personagem = new PersonagemModel
+                    {
+                        Id = data.Id,
+                        Nome = data.Nome,
+                        JogadorNome = data.JogadorNome,
+                        Nivel = data.Nivel,
+                        Raca = data.RacaNome,
+                        Classe = data.ClasseNome,
+                        Origem = data.OrigemNome,
+                        Divindade = data.DivindadeNome,
+                        Forca = data.Forca,
+                        Destreza = data.Destreza,
+                        Constituicao = data.Constituicao,
+                        Inteligencia = data.Inteligencia,
+                        Sabedoria = data.Sabedoria,
+                        Carisma = data.Carisma
+                    };
+
+                    this.Personagem.PropertyChanged += Personagem_PropertyChanged;
                 }
 
-                Personagem.Id = data.Id;
-                Personagem.Nome = data.Nome;
-                Personagem.JogadorNome = data.JogadorNome;
-                Personagem.Nivel = data.Nivel;
-                Personagem.Raca = data.RacaNome;
-                Personagem.Classe = data.ClasseNome;
-                Personagem.Origem = data.OrigemNome;
-                Personagem.Divindade = data.DivindadeNome;
-                Personagem.Forca = data.Forca;
-                Personagem.Destreza = data.Destreza;
-                Personagem.Constituicao = data.Constituicao;
-                Personagem.Inteligencia = data.Inteligencia;
-                Personagem.Sabedoria = data.Sabedoria;
-                Personagem.Carisma = data.Carisma;
+                Personagem.MagiasConhecidas.Clear();
+
+                if (!string.IsNullOrWhiteSpace(data.MagiasConhecidasIDs))
+                {
+                    try
+                    {
+                        List<int> magiasIds = data.MagiasConhecidasIDs
+                                                  .Split(',')
+                                                  .Select(int.Parse)
+                                                  .ToList();
+                        if (magiasIds.Any())
+                        {
+                            List<MagiasData> magiasDoBanco = await _databaseService.GetMagiasPorIdsAsync(magiasIds);
+
+                            foreach (var magia in magiasDoBanco.OrderBy(m => m.Circulo).ThenBy(m => m.Nome))
+                            {
+                                Personagem.MagiasConhecidas.Add(magia);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Erro ao processar Magias Conhecidas ID '{data.MagiasConhecidasIDs}': {ex.Message}");
+                    }
+                }
+
+                AplicarModificadoresRaca(data.RacaNome);
 
                 // Recalcula PV/PM com base nos dados carregados
                 RecalculateAll();
@@ -177,8 +230,13 @@ namespace T20FichaComDB.MVVM.ViewModels
             else
             {
                 await Shell.Current.DisplayAlert("Erro", $"Personagem com ID {id} não encontrado.", "OK");
+                if (this.Personagem != null)
+                {
+                    this.Personagem.PropertyChanged -= Personagem_PropertyChanged;
+                }
                 this.Personagem = new PersonagemModel();
-                // _personagemAtualID = 0;
+                this.Personagem.PropertyChanged += Personagem_PropertyChanged;
+                _modRaciaisAtuais.Clear();
                 RecalculateAll();
             }
         }
@@ -209,51 +267,136 @@ namespace T20FichaComDB.MVVM.ViewModels
         // --- Seção de Recálculo ---
         private void Personagem_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
+            bool recalcularStatus = false;
+
+            if (e.PropertyName == nameof(PersonagemModel.Raca))
+            {
+                AplicarModificadoresRaca(Personagem.Raca);
+                recalcularStatus = true;
+            }
+
             switch (e.PropertyName)
             {
                 case nameof(PersonagemModel.Nivel):
                 case nameof(PersonagemModel.Classe):
-                    CalculatePV();
-                    CalculatePM();
-                    //CalculatePericias();
-                    break;
-
                 case nameof(PersonagemModel.Constituicao):
-                    CalculatePV();
-                    //CalculatePericiasAtributoChave("CON");
-                    break;
-
-                // Adicione outros atributos que afetam PM ou Pericias
                 case nameof(PersonagemModel.Inteligencia):
-                    CalculatePM(); 
-                                   //CalculatePericiasAtributoChave("INT");
-                    break;
                 case nameof(PersonagemModel.Sabedoria):
-                    CalculatePM(); 
-                                   //CalculatePericiasAtributoChave("SAB");
-                    break;
                 case nameof(PersonagemModel.Carisma):
-                    CalculatePM(); // Exemplo: se CAR afeta PM
-                                   //CalculatePericiasAtributoChave("CAR");
-                    break;
-
                 case nameof(PersonagemModel.Destreza):
-                    CalculateDefesa();
-                    //CalculatePericiasAtributoChave("DES");
-                    break;
-
                 case nameof(PersonagemModel.Forca):
-                    //CalculatePericiasAtributoChave("FOR");
+                    recalcularStatus = true;
+
                     break;
-                    // case nameof(PersonagemModel.EquipArmadura): // Exemplo: Se mudar armadura, recalcula defesa
-                    //    CalculateDefesa();
-                    //    break;
+            }
+
+            if (recalcularStatus)
+            {
+                RecalculateAll();
             }
         }
+
+        // --- LÓGICA PARA APLICAR OS MOD DE RAÇA
+        private void AplicarModificadoresRaca (string? nomeNovaRaca)
+        {
+            if (Personagem == null) return;
+
+            RemoverModRacaAnterior();
+
+            // 1. REMOVER MOD RAÇA  
+            if (string.IsNullOrWhiteSpace(nomeNovaRaca))
+            {
+                System.Diagnostics.Debug.WriteLine("Raça limpa ou inválida. Nenhum modificador aplicado.");
+                return;
+            }
+
+            // 2. ENCONTRAR DADOS DA NOVA RAÇA
+            var racaSelecionada = _todasRacasComDetalhes.FirstOrDefault(r => r.Nome.Equals(nomeNovaRaca, StringComparison.OrdinalIgnoreCase));
+
+            if (racaSelecionada != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Raça '{nomeNovaRaca}' não encontrada nos dados carregados.");
+                return; // Raça não encontrada
+            }
+
+            System.Diagnostics.Debug.WriteLine($"Aplicando modificadores para a raça: {racaSelecionada.Nome}");
+
+            // 3. APLICAR MODIFICADORES FIXOS E GUARDAR
+            AplicarModificador("Forca", racaSelecionada.ModForca);
+            AplicarModificador("Destreza", racaSelecionada.ModDestreza);
+            AplicarModificador("Constituicao", racaSelecionada.ModConstituicao);
+            AplicarModificador("Inteligencia", racaSelecionada.ModInteligencia);
+            AplicarModificador("Sabedoria", racaSelecionada.ModSabedoria);
+            AplicarModificador("Carismoa", racaSelecionada.ModCarisma);
+
+            // 4. LIDAR COM MODIFICADORES LIVRES
+            if (racaSelecionada.ModLivres > 0 && !string.IsNullOrWhiteSpace(racaSelecionada.DescricaoModLivres))
+            {
+                System.Diagnostics.Debug.WriteLine($"Raça {racaSelecionada.Nome} tem {racaSelecionada.ModLivres} bônus livres: {racaSelecionada.DescricaoModLivres}");
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await Shell.Current.DisplayAlert(
+                        "Atributos Livres da Raça", $"Lembre-se de distribuir os bônus de atributo {racaSelecionada.Nome}: {racaSelecionada.DescricaoModLivres}", "OK");
+                });
+            }
+        }
+
+        private void AplicarModificador (string atributo, int valor)
+        {
+            if (valor == 0) return;
+
+            _modRaciaisAtuais[atributo] = valor;
+
+            switch (atributo)
+            {
+                case "Forca": Personagem.Forca = (Personagem.Forca ?? 0) + valor; break;
+                case "Destreza": Personagem.Destreza = (Personagem.Destreza ?? 0) + valor; break;
+                case "Constituicao": Personagem.Constituicao = (Personagem.Constituicao ?? 0) + valor; break;
+                case "Inteligencia": Personagem.Inteligencia = (Personagem.Inteligencia ?? 0) + valor; break;
+                case "Sabedoria": Personagem.Sabedoria = (Personagem.Sabedoria ?? 0) + valor; break;
+                case "Carisma": Personagem.Carisma = (Personagem.Carisma ?? 0) + valor; break; 
+            }
+
+            System.Diagnostics.Debug.WriteLine($"Aplicado modificador racial: {atributo} +({valor})");
+        }
+
+        private void RemoverModRacaAnterior()
+        {
+            if (Personagem == null || !_modRaciaisAtuais.Any())
+            {
+                return; // Não há modificadores anteriores para remover
+            }
+
+            System.Diagnostics.Debug.WriteLine("Removendo modificadores raciais anteriores...");
+
+            foreach (var mod in _modRaciaisAtuais)
+            {
+                string atributo = mod.Key;
+                int valorRemover = mod.Value;
+
+                switch (atributo)
+                {
+                    case "Forca": Personagem.Forca = (Personagem.Forca ?? 0) - valorRemover; break;
+                    case "Destreza": Personagem.Destreza = (Personagem.Destreza ?? 0) - valorRemover; break;
+                    case "Constituicao": Personagem.Constituicao = (Personagem.Constituicao ?? 0) - valorRemover; break;
+                    case "Inteligencia": Personagem.Inteligencia = (Personagem.Inteligencia ?? 0) - valorRemover; break;
+                    case "Sabedoria": Personagem.Sabedoria = (Personagem.Sabedoria ?? 0) - valorRemover; break;
+                    case "Carisma": Personagem.Carisma = (Personagem.Carisma ?? 0) - valorRemover; break;
+                }
+
+                System.Diagnostics.Debug.WriteLine($"Removido modificador racial: {atributo} -({valorRemover})");
+            }
+
+            _modRaciaisAtuais.Clear();
+        }
+
 
         // Recalcula tudo - útil ao carregar um personagem
         private void RecalculateAll()
         {
+            if (Personagem == null) return;
+            System.Diagnostics.Debug.WriteLine("Recalculando Status (PV, PM, Defesa)...");
+
             CalculatePV();
             CalculatePM();
             CalculateDefesa();

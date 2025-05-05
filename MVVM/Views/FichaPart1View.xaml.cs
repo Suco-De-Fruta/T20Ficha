@@ -1,19 +1,16 @@
-using T20FichaComDB.MVVM.ViewModels;
-using T20FichaComDB.Services;
 using T20FichaComDB.MVVM.Models;
+using T20FichaComDB.MVVM.ViewModels;
 
 namespace T20FichaComDB.MVVM.Views;
 
 
 public partial class FichaPart1View : ContentPage
 {
-    //private PersonagemViewModel _viewModel;
 
     public FichaPart1View(PersonagemViewModel viewModel)
     {
         InitializeComponent();
 
-        var databaseService = new DataService();
         BindingContext = viewModel;
     }
 
