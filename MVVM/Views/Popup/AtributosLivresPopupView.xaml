@@ -6,7 +6,7 @@
                x:Class="T20FichaComDB.MVVM.Views.Popup.AtributosLivresPopupView"
                x:DataType="viewmodels:AtributosLivresPopupViewModel"
                Color="Transparent">
-    
+
     <Border Margin="25"
            Padding="0"
            Stroke="Gray"
@@ -14,7 +14,7 @@
            VerticalOptions="Center"
            HorizontalOptions="Center"
            WidthRequest="320">
-        
+
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="10" />
         </Border.StrokeShape>

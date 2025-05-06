@@ -1,5 +1,17 @@
 [
   {
+    "Nome": "Aggelus",
+    "ModForca": 0,
+    "ModDestreza": 0,
+    "ModConstituicao": 0,
+    "ModInteligencia": 0,
+    "ModSabedoria": 2,
+    "ModCarisma": 1,
+    "ModLivres": 0,
+    "DescricaoModLivres": null,
+    "ExcecoesModLivres": null
+  },
+  {
     "Nome": "Anão",
     "ModForca": 0,
     "ModDestreza": -1,
@@ -701,6 +713,18 @@
     "ModDestreza": 1,
     "ModConstituicao": 0,
     "ModInteligencia": 0,
+    "ModSabedoria": 0,
+    "ModCarisma": 2,
+    "ModLivres": 0,
+    "DescricaoModLivres": null,
+    "ExcecoesModLivres": null
+  },
+  {
+    "Nome": "Sulfure",
+    "ModForca": 0,
+    "ModDestreza": 2,
+    "ModConstituicao": 0,
+    "ModInteligencia": 1,
     "ModSabedoria": 0,
     "ModCarisma": 2,
     "ModLivres": 0,

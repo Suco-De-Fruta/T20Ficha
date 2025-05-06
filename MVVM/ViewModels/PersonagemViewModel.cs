@@ -364,7 +364,7 @@ namespace T20FichaComDB.MVVM.ViewModels
 
                 if (!string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes?.ExcecoesModLivres))
                 {
-                    mensagemPopup += $"\n(Exceções: {RacaSelecionadaDetalhes.ExcecoesModLivres})";
+                    mensagemPopup += $"\n(Exceto em: {RacaSelecionadaDetalhes.ExcecoesModLivres})";
                 }
                 mensagemPopup += "\nLembre-se de distribuir estes pontos manualmente nos atributos.";
 
