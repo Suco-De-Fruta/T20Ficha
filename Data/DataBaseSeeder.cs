@@ -15,6 +15,7 @@ namespace T20FichaComDB.Data
             await SeedMagiasAsync(connection);
         }
 
+        // -------- RAÇAS --------
         private static async Task SeedRacasAsync(SQLiteAsyncConnection connection)
         {
             if (await connection.Table<RacasData>().CountAsync() == 0)
@@ -76,6 +77,8 @@ namespace T20FichaComDB.Data
             }
         }
 
+
+        // -------- CLASSES --------
         private static async Task SeedClassesAsync(SQLiteAsyncConnection connection)
         {
             if (await connection.Table<ClassesData>().CountAsync() == 0)
@@ -97,6 +100,7 @@ namespace T20FichaComDB.Data
             }
         }
 
+        // -------- DIVINDADES --------
         private static async Task SeedDivindadesAsync(SQLiteAsyncConnection connection)
         {
             if (await connection.Table<DivindadesData>().CountAsync() == 0)
@@ -116,6 +120,7 @@ namespace T20FichaComDB.Data
             }
         }
 
+        // -------- ORIGENS --------
         private static async Task SeedOrigensAsync(SQLiteAsyncConnection connection)
         { 
             if (await connection.Table<OrigensData>().CountAsync() == 0)
@@ -135,6 +140,7 @@ namespace T20FichaComDB.Data
             }
         }
 
+        // -------- MAGIAS --------
         private static async Task SeedMagiasAsync (SQLiteAsyncConnection connection)
         {
             if (await connection.Table<MagiasData>().CountAsync() == 0)

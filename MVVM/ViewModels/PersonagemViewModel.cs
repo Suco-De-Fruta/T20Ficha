@@ -5,9 +5,6 @@ using System.ComponentModel;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.Services;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Maui.Controls.Compatibility;
 
 namespace T20FichaComDB.MVVM.ViewModels
 {
@@ -38,14 +35,7 @@ namespace T20FichaComDB.MVVM.ViewModels
             SalvarPersonagemCommand = new AsyncRelayCommand(SalvarPersonagemAsync);
 
             // Carrega os dados iniciais (raças, classes, etc.)
-            InitializeAsync();
-        }
-
-        public PersonagemViewModel()
-        {
-            Personagem = new PersonagemModel();
-            RecalculateAll();
-            // ... inicialização de comandos e coleções ...
+            //InitializeAsync();
         }
 
         // Método para carregar listas de Raças, Classes, etc.
@@ -109,10 +99,10 @@ namespace T20FichaComDB.MVVM.ViewModels
                         Nome = Personagem.Nome,
                         JogadorNome = Personagem.JogadorNome,
                         Nivel = Personagem.Nivel,
-                        RacaNome = Personagem.Raca,
-                        ClasseNome = Personagem.Classe,
-                        OrigemNome = Personagem.Origem,
-                        DivindadeNome = Personagem.Divindade,
+                        RacaNome = Personagem.Raca ?? string.Empty,
+                        ClasseNome = Personagem.Classe ?? string.Empty,
+                        OrigemNome = Personagem.Origem ?? string.Empty,
+                        DivindadeNome = Personagem.Divindade ?? string.Empty,
                         MagiasConhecidasIDs = magiasIdString,
                         Forca = Personagem.Forca ?? 0,
                         Destreza = Personagem.Destreza ?? 0,
@@ -222,7 +212,6 @@ namespace T20FichaComDB.MVVM.ViewModels
                 Personagem.PVatual = data.PVatuais > 0 ? data.PVatuais : Personagem.MaxPV;
                 Personagem.PMatual = data.PMatuais > 0 ? data.PMatuais : Personagem.MaxPM;
 
-                // TODO: Carregar Perícias, Poderes, Inventário, Magias se/quando implementado
 
                 System.Diagnostics.Debug.WriteLine($"Personagem {Personagem.Nome} (ID: {Personagem.Id}) carregado.");
 

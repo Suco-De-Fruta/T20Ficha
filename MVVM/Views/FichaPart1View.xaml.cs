@@ -10,7 +10,6 @@ public partial class FichaPart1View : ContentPage
     public FichaPart1View(PersonagemViewModel viewModel)
     {
         InitializeComponent();
-
         BindingContext = viewModel;
     }
 

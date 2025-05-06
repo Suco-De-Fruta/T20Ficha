@@ -6,10 +6,6 @@
              xmlns:Models="clr-namespace:T20FichaComDB.MVVM.Models"
              Title="FichaPart1View">
 
-    <ContentPage.BindingContext>
-        <viewmodel:PersonagemViewModel/>
-    </ContentPage.BindingContext>
-
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 

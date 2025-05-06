@@ -264,18 +264,6 @@
     "ExcecoesModLivres": null
   },
   {
-    "Nome": "Herança da Serpente",
-    "ModForca": 0,
-    "ModDestreza": 0,
-    "ModConstituicao": 0,
-    "ModInteligencia": 1,
-    "ModSabedoria": 0,
-    "ModCarisma": 0,
-    "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
-    "ExcecoesModLivres": null
-  },
-  {
     "Nome": "Hobgoblin",
     "ModForca": 0,
     "ModDestreza": 1,
@@ -450,6 +438,18 @@
     "ModConstituicao": 0,
     "ModInteligencia": 0,
     "ModSabedoria": 1,
+    "ModCarisma": 0,
+    "ModLivres": 2,
+    "DescricaoModLivres": "+1 em dois atributos.",
+    "ExcecoesModLivres": null
+  },
+  {
+    "Nome": "Moreau Herança da Serpente",
+    "ModForca": 0,
+    "ModDestreza": 0,
+    "ModConstituicao": 0,
+    "ModInteligencia": 1,
+    "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
     "DescricaoModLivres": "+1 em dois atributos.",
