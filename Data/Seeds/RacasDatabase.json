@@ -284,7 +284,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 3,
-    "DescricaoModLivres": "+1 em Três Atributos Diferentes",
+    "DescricaoModLivres": "+1 em três Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -308,7 +308,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+2 em um atributo ou +1 em dois atributos",
+    "DescricaoModLivres": "+2 em um Atributo ou +1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -356,7 +356,7 @@
     "ModSabedoria": 0,
     "ModCarisma": -1,
     "ModLivres": 3,
-    "DescricaoModLivres": "+1 em Três Atributos Diferentes (exceto Carisma)",
+    "DescricaoModLivres": "+1 em três Atributos",
     "ExcecoesModLivres": "Carisma"
   },
   {
@@ -368,7 +368,7 @@
     "ModSabedoria": 0,
     "ModCarisma": -1,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos a sua escolha.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -392,7 +392,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos (exceto Constituição).",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -404,8 +404,8 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 1,
-    "DescricaoModLivres": "+1 em outro atributo (exceto Carisma)",
-    "ExcecoesModLivres": "Carisma"
+    "DescricaoModLivres": "+1 em outro Atributo",
+    "ExcecoesModLivres": "Carisma e Força"
   },
   {
     "Nome": "Minotauro",
@@ -428,7 +428,7 @@
     "ModSabedoria": 1,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -440,7 +440,7 @@
     "ModSabedoria": 1,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -452,7 +452,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -464,7 +464,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -476,7 +476,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -488,7 +488,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -500,7 +500,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -512,7 +512,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 1,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -524,7 +524,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -536,7 +536,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 1,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -548,7 +548,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -560,7 +560,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 2,
-    "DescricaoModLivres": "+1 em dois atributos.",
+    "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -632,7 +632,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 3,
-    "DescricaoModLivres": "+1 em Três Atributos Diferentes (exceto Constituição)",
+    "DescricaoModLivres": "+1 em três Atributos",
     "ExcecoesModLivres": "Constituição"
   },
   {
@@ -644,7 +644,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 3,
-    "DescricaoModLivres": "+1 em três atributos diferentes (exceto Constituição)",
+    "DescricaoModLivres": "+1 em três Atributos",
     "ExcecoesModLivres": "Constituição"
   },
   {
@@ -680,7 +680,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 3,
-    "DescricaoModLivres": "+1 em Três Atributos Diferentes.",
+    "DescricaoModLivres": "+1 em três Atributos",
     "ExcecoesModLivres": null
   },
   {
@@ -788,7 +788,7 @@
     "ModSabedoria": 0,
     "ModCarisma": 0,
     "ModLivres": 3,
-    "DescricaoModLivres": "+1 em três atributos diferentes (exceto Carisma)",
+    "DescricaoModLivres": "+1 em três Atributos",
     "ExcecoesModLivres": "Carisma"
   }
 ]

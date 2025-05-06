@@ -5,6 +5,8 @@ using System.ComponentModel;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.Services;
+using T20FichaComDB.MVVM.Views.Popup;
+using CommunityToolkit.Maui.Views;
 
 namespace T20FichaComDB.MVVM.ViewModels
 {
@@ -23,7 +25,11 @@ namespace T20FichaComDB.MVVM.ViewModels
         public ObservableCollection<string> DivindadesDisponiveis { get; } = new();
 
         private List<RacasData> _todasRacasComDetalhes = new ();
+
         private Dictionary<string, int> _modRaciaisAtuais = new();
+
+        [ObservableProperty]
+        private RacasData? _racaSelecionadaDetalhes;
 
         // Construtor para injeção de dependência 
         public PersonagemViewModel(DataService databaseService)
@@ -41,17 +47,21 @@ namespace T20FichaComDB.MVVM.ViewModels
         // Método para carregar listas de Raças, Classes, etc.
         public async Task InitializeAsync()
         {
-            await LoadDataAsync();
+            if (!RacasDisponiveis.Any())
+            {
+                await LoadDataAsync();
+            }
         }
 
         private async Task LoadDataAsync()
         {
             try
             {
-                RacasDisponiveis.Clear();
-                OrigensDisponiveis.Clear();
-                ClassesDisponiveis.Clear();
-                DivindadesDisponiveis.Clear();
+                if (RacasDisponiveis.Any()) RacasDisponiveis.Clear();
+                if (OrigensDisponiveis.Any()) OrigensDisponiveis.Clear();
+                if (ClassesDisponiveis.Any()) ClassesDisponiveis.Clear();
+                if (DivindadesDisponiveis.Any()) DivindadesDisponiveis.Clear();
+                _todasRacasComDetalhes.Clear();
 
                 // -- CARREGAR DO BANCO DE DADOS
                 var racasDB = await _databaseService.GetRacasAsync();
@@ -59,17 +69,19 @@ namespace T20FichaComDB.MVVM.ViewModels
                 var classesDB = await _databaseService.GetClassesAsync();
                 var divindadesDB = await _databaseService.GetDivindadesAsync();
 
-                _todasRacasComDetalhes.AddRange(racasDB);
-
-                foreach (var raca in racasDB.OrderBy(r => r.Nome)) RacasDisponiveis.Add(raca.Nome);
-                foreach (var origem in origensDB) OrigensDisponiveis.Add(origem.Nome);
-                foreach (var classe in classesDB) ClassesDisponiveis.Add(classe.Nome);
-                foreach (var divindade in divindadesDB) DivindadesDisponiveis.Add(divindade.Nome);
+                if (racasDB != null)
+                {
+                    _todasRacasComDetalhes.AddRange(racasDB);
+                    foreach (var raca in racasDB.OrderBy(r => r.Nome)) RacasDisponiveis.Add(raca.Nome);
+                }
+                if (origensDB != null) foreach (var origem in origensDB.OrderBy(o => o.Nome)) OrigensDisponiveis.Add(origem.Nome);
+                if (classesDB != null) foreach (var classe in classesDB.OrderBy(c => c.Nome)) ClassesDisponiveis.Add(classe.Nome);
+                if (divindadesDB != null) foreach (var divindade in divindadesDB.OrderBy(d => d.Nome)) DivindadesDisponiveis.Add(divindade.Nome);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Erro ao carregar dados: {ex.Message}");
-                await Shell.Current.DisplayAlert("Erro", "Não foi possível carregar os dados de raças/classes/etc.", "OK");
+                await Shell.Current.DisplayAlert("Erro", "Não foi possível carregar os dados de referência.", "OK");
             }
         }
 
@@ -147,7 +159,7 @@ namespace T20FichaComDB.MVVM.ViewModels
 
         public async Task CarregarPersonagemAsync(int id)
         {
-            PersonagemData data = await _databaseService.GetPersonagemPorIdAsync(id);
+            PersonagemData? data = await _databaseService.GetPersonagemPorIdAsync(id);
             if (data != null)
             {
                 if (this.Personagem == null || this.Personagem.Id != data.Id)
@@ -175,6 +187,24 @@ namespace T20FichaComDB.MVVM.ViewModels
                     };
 
                     this.Personagem.PropertyChanged += Personagem_PropertyChanged;
+                    this.Personagem.Raca = data.RacaNome;
+                    this.Personagem.Classe = data.ClasseNome;
+                    this.Personagem.Origem = data.OrigemNome;
+                    this.Personagem.Divindade = data.DivindadeNome;
+
+                    if (!string.IsNullOrWhiteSpace(Personagem.Raca))
+                    {
+                        if (!_todasRacasComDetalhes.Any())
+                        {
+                            var racasDB = await _databaseService.GetRacasAsync();
+                            if (racasDB != null) _todasRacasComDetalhes.AddRange(racasDB);
+                        }
+                        RacaSelecionadaDetalhes = _todasRacasComDetalhes.FirstOrDefault(r => r.Nome.Equals(Personagem.Raca, StringComparison.OrdinalIgnoreCase));
+                    }
+                    else
+                    {
+                        RacaSelecionadaDetalhes = null;
+                    }
                 }
 
                 Personagem.MagiasConhecidas.Clear();
@@ -203,7 +233,6 @@ namespace T20FichaComDB.MVVM.ViewModels
                     }
                 }
 
-                AplicarModificadoresRaca(data.RacaNome);
 
                 // Recalcula PV/PM com base nos dados carregados
                 RecalculateAll();
@@ -253,7 +282,7 @@ namespace T20FichaComDB.MVVM.ViewModels
         }
 
 
-        // --- Seção de Recálculo ---
+        // --- Sessão de Recálculo ---
         private void Personagem_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             bool recalcularStatus = false;
@@ -290,44 +319,64 @@ namespace T20FichaComDB.MVVM.ViewModels
         {
             if (Personagem == null) return;
 
+            // 1. REMOVER MOD RAÇA
             RemoverModRacaAnterior();
+            RacaSelecionadaDetalhes = null;
 
-            // 1. REMOVER MOD RAÇA  
+              
             if (string.IsNullOrWhiteSpace(nomeNovaRaca))
             {
                 System.Diagnostics.Debug.WriteLine("Raça limpa ou inválida. Nenhum modificador aplicado.");
+                RecalculateAll();
                 return;
             }
 
             // 2. ENCONTRAR DADOS DA NOVA RAÇA
-            var racaSelecionada = _todasRacasComDetalhes.FirstOrDefault(r => r.Nome.Equals(nomeNovaRaca, StringComparison.OrdinalIgnoreCase));
+            var racaEncontrada = _todasRacasComDetalhes.FirstOrDefault(r => r.Nome.Equals(nomeNovaRaca, StringComparison.OrdinalIgnoreCase));
 
-            if (racaSelecionada != null)
+            if (racaEncontrada == null)
             {
                 System.Diagnostics.Debug.WriteLine($"Raça '{nomeNovaRaca}' não encontrada nos dados carregados.");
+                RacaSelecionadaDetalhes = null;
+                RecalculateAll();
                 return; // Raça não encontrada
             }
 
-            System.Diagnostics.Debug.WriteLine($"Aplicando modificadores para a raça: {racaSelecionada.Nome}");
 
             // 3. APLICAR MODIFICADORES FIXOS E GUARDAR
-            AplicarModificador("Forca", racaSelecionada.ModForca);
-            AplicarModificador("Destreza", racaSelecionada.ModDestreza);
-            AplicarModificador("Constituicao", racaSelecionada.ModConstituicao);
-            AplicarModificador("Inteligencia", racaSelecionada.ModInteligencia);
-            AplicarModificador("Sabedoria", racaSelecionada.ModSabedoria);
-            AplicarModificador("Carismoa", racaSelecionada.ModCarisma);
+            RacaSelecionadaDetalhes = racaEncontrada;
+            System.Diagnostics.Debug.WriteLine($"Aplicando modificadores para a raça: {racaEncontrada.Nome}");
 
             // 4. LIDAR COM MODIFICADORES LIVRES
-            if (racaSelecionada.ModLivres > 0 && !string.IsNullOrWhiteSpace(racaSelecionada.DescricaoModLivres))
+            AplicarModificador("Forca", racaEncontrada.ModForca);
+            AplicarModificador("Destreza", racaEncontrada.ModDestreza);
+            AplicarModificador("Constituicao", racaEncontrada.ModConstituicao);
+            AplicarModificador("Inteligencia", racaEncontrada.ModInteligencia);
+            AplicarModificador("Sabedoria", racaEncontrada.ModSabedoria);
+            AplicarModificador("Carisma", racaEncontrada.ModCarisma);
+
+            // 5. LIDAR COM MODIFICADORES LIVRES
+            if (racaEncontrada.ModLivres > 0 && !string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes.DescricaoModLivres))
             {
-                System.Diagnostics.Debug.WriteLine($"Raça {racaSelecionada.Nome} tem {racaSelecionada.ModLivres} bônus livres: {racaSelecionada.DescricaoModLivres}");
+                System.Diagnostics.Debug.WriteLine($"Raça {racaEncontrada.Nome} tem {racaEncontrada.ModLivres} bônus livres: {racaEncontrada.DescricaoModLivres}");
+
+                string mensagemPopup = $"A raça {RacaSelecionadaDetalhes?.Nome} concede: {RacaSelecionadaDetalhes?.DescricaoModLivres}.";
+
+                if (!string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes?.ExcecoesModLivres))
+                {
+                    mensagemPopup += $"\n(Exceções: {RacaSelecionadaDetalhes.ExcecoesModLivres})";
+                }
+                mensagemPopup += "\nLembre-se de distribuir estes pontos manualmente nos atributos.";
+
+
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
-                    await Shell.Current.DisplayAlert(
-                        "Atributos Livres da Raça", $"Lembre-se de distribuir os bônus de atributo {racaSelecionada.Nome}: {racaSelecionada.DescricaoModLivres}", "OK");
+                    var popupViewModel = new AtributosLivresPopupViewModel(mensagemPopup);
+                    var popup = new AtributosLivresPopupView(popupViewModel);
+                    await Shell.Current.ShowPopupAsync(popup);
                 });
             }
+            RecalculateAll();
         }
 
         private void AplicarModificador (string atributo, int valor)
@@ -345,7 +394,6 @@ namespace T20FichaComDB.MVVM.ViewModels
                 case "Sabedoria": Personagem.Sabedoria = (Personagem.Sabedoria ?? 0) + valor; break;
                 case "Carisma": Personagem.Carisma = (Personagem.Carisma ?? 0) + valor; break; 
             }
-
             System.Diagnostics.Debug.WriteLine($"Aplicado modificador racial: {atributo} +({valor})");
         }
 
@@ -353,7 +401,7 @@ namespace T20FichaComDB.MVVM.ViewModels
         {
             if (Personagem == null || !_modRaciaisAtuais.Any())
             {
-                return; // Não há modificadores anteriores para remover
+                return;
             }
 
             System.Diagnostics.Debug.WriteLine("Removendo modificadores raciais anteriores...");
@@ -375,7 +423,6 @@ namespace T20FichaComDB.MVVM.ViewModels
 
                 System.Diagnostics.Debug.WriteLine($"Removido modificador racial: {atributo} -({valorRemover})");
             }
-
             _modRaciaisAtuais.Clear();
         }
 

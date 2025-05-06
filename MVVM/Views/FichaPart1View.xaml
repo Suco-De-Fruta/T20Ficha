@@ -9,7 +9,11 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+            <Border Padding="10" Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+
                 <VerticalStackLayout Spacing="10">
 
                     <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
@@ -41,9 +45,13 @@
                                 ItemsSource="{Binding DivindadesDisponiveis}" SelectedItem="{Binding Personagem.Divindade}"/>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
+            <Border Padding="10" Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Atributos" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"/>
                     <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="Auto, Auto" ColumnSpacing="5" RowSpacing="5">
@@ -62,7 +70,7 @@
                         <Entry Placeholder="0" Keyboard="Numeric" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="5" Text="{Binding Personagem.Carisma}"/>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <Frame Padding="10" CornerRadius="5" BorderColor="LightGray">
                 <Grid ColumnDefinitions="0.3*, 1*, *" RowDefinitions="Auto, Auto, Auto" ColumnSpacing="1" RowSpacing="5">

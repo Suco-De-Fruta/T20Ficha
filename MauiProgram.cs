@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using T20FichaComDB.MVVM.ViewModels;
 using T20FichaComDB.MVVM.Views;
 using T20FichaComDB.Services;
+using T20FichaComDB.MVVM.Views.Popup;
 
 namespace T20FichaComDB
 {
@@ -25,6 +26,7 @@ namespace T20FichaComDB
             builder.Services.AddTransient<MagiasViewModel>(); 
             builder.Services.AddTransient<FichaMagiasView>();
             builder.Services.AddTransient<SelecaoMagiasPopupViewModel>();
+            builder.Services.AddTransient<AtributosLivresPopupView>();
             builder.Services.AddTransient<FichaPart1View>();
 
 #if DEBUG

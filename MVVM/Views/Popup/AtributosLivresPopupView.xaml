@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:viewmodels="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+               x:Class="T20FichaComDB.MVVM.Views.Popup.AtributosLivresPopupView"
+               x:DataType="viewmodels:AtributosLivresPopupViewModel"
+               Color="Transparent">
+    
+    <Border Margin="25"
+           Padding="0"
+           Stroke="Gray"
+           BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}"
+           VerticalOptions="Center"
+           HorizontalOptions="Center"
+           WidthRequest="320">
+        
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10" />
+        </Border.StrokeShape>
+
+        <VerticalStackLayout>
+            <Label Text="Atributos Livres!"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Padding="12"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"/>
+
+            <Label Text="{Binding Mensagem}"
+                   Padding="15"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   MinimumHeightRequest="60"/>
+            <Button Text="OK"
+                    Command="{Binding FecharPopupCommand}"
+                    Margin="10,0,10,10" HorizontalOptions="Fill"/>
+        </VerticalStackLayout>
+    </Border>
+</toolkit:Popup>
