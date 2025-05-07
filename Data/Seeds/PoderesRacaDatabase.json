@@ -1,0 +1,1017 @@
+[
+  {
+    "Nome": "...Maior a Porrada!",
+    "Descricao": "Quando acerta um ataque corpo a corpo, você pode gastar 1 PM para causar +1d8 pontos de dano do mesmo tipo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Abraço de Urso",
+    "Descricao": "Você é Grande e pode usar Constituição como atributo-chave de Intimidação (em vez de Carisma).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Abraço Gélido",
+    "Descricao": "Você recebe +2 em testes para agarrar. Além disso, seus ataques desarmados e com armas naturais causam 2 pontos de dano de frio extras.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Adaptação Elemental",
+    "Descricao": "Quando sofre dano de ácido, eletricidade, fogo, frio, luz ou trevas, você pode gastar 2 PM para receber redução 10 contra esse tipo de dano até o fim da cena.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Adaptável",
+    "Descricao": "Você recebe +2 em Intimidação e se torna treinado em uma perícia a sua escolha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Agarra-me Se Puderes",
+    "Descricao": "Seu deslocamento é 12m (em vez de 9m) e você tem visão na penumbra.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ajuntamento Escamoso",
+    "Descricao": "Embora sejam um grupo de kobolds, para todos os efeitos vocês são uma única criatura Média com dois braços. Entretanto, contam como Pequenos para efeitos dos espaços por onde podem passar e, quando fazem um teste de resistência contra um efeito que afeta apenas uma criatura e não causa dano, rolam dois dados e usam o melhor resultado. Por fim, têm vulnerabilidade a dano de área.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Alma da Água",
+    "Descricao": "Você é uma criatura do tipo espírito e tem deslocamento de natação igual ao seu deslocamento terrestre.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ambição Herdada",
+    "Descricao": "Você recebe um poder geral ou poder único de origem (Tormenta20, p. 85) à sua escolha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Amiga das Plantas",
+    "Descricao": "Você pode lançar a magia Controlar Plantas (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Amontoados",
+    "Descricao": "Vocês são considerados uma criatura Grande para efeitos de espaço ocupado e modificadores de manobras de combate. Além disso, podem se organizar em qualquer forma equivalente a quatro cubos de 1,5m, desde cada um tenha pelo menos um lado adjacente a outro. Efeitos que aumentem seu tamanho se acumulam com este poder, e permitem que vocês se organizem em mais cubos (9 cubos de 1,5m para Enorme e 9 cubos de 3m para Colossal). Vocês podem mudar de configuração sempre que fizerem uma ação de movimento para se deslocar.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Arborícola",
+    "Descricao": "Você recebe deslocamento de escalada 6m e +2 em Furtividade.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Arma Acoplada",
+    "Descricao": "Você possui uma arma acoplada ao seu corpo. Ela fica recolhida em um compartimento e não pode ser desarmada, e você conta como se tivesse Saque Rápido para usá-la. Um personagem treinado em Ofício (artesão) pode substituir essa arma com uma hora de trabalho e o gasto de T$ 100.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Arma Elemental",
+    "Descricao": "Você pode gastar uma ação de movimento e 2 PM para fazer uma arma que esteja empunhando causar +1d6 pontos de dano do tipo de sua fonte elemental até o fim da cena. Pré-requisito: Fonte de Energia (elemental).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Armadilha Terrível",
+    "Descricao": "Escolham uma magia de 1º círculo que tenha como alvo uma criatura ou que tenha um efeito em área e que cause dano ou um efeito negativo (como uma condição ou penalidade). Vocês possuem uma armadilha portátil que contém essa magia. Sua armadilha usa as mesmas regras de engenhocas (veja Tormenta20, p. 70), mas é acionada com Sobrevivência e tem Sabedoria como atributo-chave. Vocês podem escolher esta habilidade mais de uma vez para magias diferentes.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Armadura Óssea",
+    "Descricao": "Você recebe redução de corte, frio e perfuração 5.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Armadura de Allihanna",
+    "Descricao": "Você pode gastar uma ação de movimento e 1 PM para transformar sua pele em casca de árvore, recebendo +2 na Defesa até o fim da cena.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Armamento Kallyanach",
+    "Descricao": "Você possui uma arma natural (dano 1d6, crítico x2) escolhida entre cauda (impacto), chifres (perfuração) ou mordida (perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com essa arma.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Arremessador",
+    "Descricao": "Quando faz um ataque à distância com uma funda ou uma arma de arremesso, seu dano aumenta em um passo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Arsenal do Oceano",
+    "Descricao": "Você recebe proficiência em arpão, rede e tridente e +2 em testes de ataque com essas armas. Se receber proficiência em uma dessas armas novamente, pode considerá-la uma arma leve.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Arte da Guerra",
+    "Descricao": "Você é treinado em Guerra e recebe proficiência em armas marciais. Se receber essa proficiência novamente, recebe +2 em rolagens de dano com essas armas.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "As Muitas Vidas de um Gato",
+    "Descricao": "Você soma seu Carisma em testes de Constituição para estabilizar sangramento e em Acrobacia e, se estiver consciente em uma queda, reduz o dano dela em 3d6.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Asas",
+    "Descricao": "Você pode pairar a 1,5m do chão com deslocamento 9m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Se não estiver usando armadura pesada, você pode gastar 1 PM por rodada para voar com deslocamento de 12m. Você precisa de espaço para abrir suas asas; quando paira ou voa, ocupa o espaço de uma criatura de uma categoria de tamanho maior que a sua.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Asas Dracônicas",
+    "Descricao": "Você pode gastar 1 PM por rodada para voar com deslocamento de 9m. Enquanto estiver voando desta forma, você fica vulnerável.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Asas de Abutre",
+    "Descricao": "Você possui asas no lugar dos braços e das mãos. Você pode pairar a 1,5m do chão com deslocamento 12m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Se não estiver usando armadura pesada, você pode gastar 1 PM por rodada para voar com deslocamento de 12m.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Asas de Borboleta",
+    "Descricao": "Seu tamanho é Minúsculo. Você pode pairar a 1,5m do chão com deslocamento 9m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Você pode gastar 1 PM por rodada para voar com deslocamento de 12m.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Asas Desorientadoras",
+    "Descricao": "Quando estão livres, suas asas podem ser usadas para distrair seus oponentes. Se não estiver usando-as para voar, você recebe os benefícios de Finta Aprimorada. Se tiver esse poder, em vez disso o bônus em Enganação para fintar aumenta para +5.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Através de Espinheiros",
+    "Descricao": "Você recebe redução de corte e perfuração 2 e não sofre redução em seu deslocamento por terreno difícil natural.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Avantajado",
+    "Descricao": "Seu tamanho é Grande e seu deslocamento é 12m.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Auxílio de Mira",
+    "Descricao": "Quando faz um ataque à distância, você pode pagar 1 PM para aumentar em +2 a margem de ameaça desse ataque.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Batráquio",
+    "Descricao": "Você recebe visão na penumbra e deslocamento de natação igual ao seu deslocamento terrestre.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Bênção de Kallyadranoch",
+    "Descricao": "Escolha dois dos poderes a seguir. Uma vez por patamar, você pode escolher uma bênção no lugar de um poder de classe.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Caminhante do Céu",
+    "Descricao": "Você pode pairar a 1,5m do chão com deslocamento 9m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Você pode gastar 1 PM por rodada para voar com deslocamento de 12m. Você precisa de espaço para abrir suas asas; quando paira ou voa, ocupa o espaço de uma criatura de uma categoria de tamanho maior que a sua.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Caminho da Perfeição",
+    "Descricao": "Escolha uma de suas perícias treinadas. Você recebe +2 nessa perícia.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Camada de Ingenuidade",
+    "Descricao": "Você sofre –5 em Intuição e Vontade.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Canalizar Reparos",
+    "Descricao": "Como uma ação completa, você pode gastar pontos de mana para recuperar pontos de vida, à taxa de 5 PV por PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Canção da Melancolia",
+    "Descricao": "Quando faz um teste de Vontade contra efeitos mentais, você rola dois dados e usa o pior.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Canção dos Mares",
+    "Descricao": "Você pode lançar duas das magias a seguir: Amedrontar, Comando, Despedaçar, Enfeitiçar, Hipnotismo ou Sono (atributo-chave Carisma). Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Canhão Energético",
+    "Descricao": "Se sua arma acoplada for uma arma de fogo, você pode gastar uma ação de movimento e 1 PM para energizá-la. Até o fim da cena, seu próximo ataque com ela causa +1 dado de dano do mesmo tipo. Múltiplos usos deste poder são cumulativos (limitado por sua Constituição). Pré-requisito: Arma Acoplada.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Carapaça Kappa",
+    "Descricao": "Você não pode ser flanqueado e recebe cobertura leve se estiver submerso ou caído. Você soma sua Constituição na Defesa, limitado pelo seu nível, mas apenas se não estiver usando armaduras pesadas (se já faz isso, como pela habilidade Casca Grossa, em vez disso você recebe +2 na Defesa).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cascos",
+    "Descricao": "Você possui uma arma natural de cascos (dano 1d8, crítico x2, impacto). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com os cascos.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Chassi",
+    "Descricao": "Você leva um dia para vestir ou remover uma armadura (pois precisa acoplar as peças dela a seu chassi). Entretanto, por ser acoplada, sua armadura não conta no limite de itens que você pode usar (mas você só pode usar uma armadura).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Chifres",
+    "Descricao": "Você possui uma arma natural de chifres (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com os chifres.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Chifres 2",
+    "Descricao": "Você possui uma arma natural de chifres (dano 1d8, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com os chifres.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Conhecimento das Rochas",
+    "Descricao": "Você recebe visão no escuro e +2 em testes de Percepção e Sobrevivência realizados no subterrâneo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Constritor",
+    "Descricao": "Você recebe +2 em testes para agarrar e em rolagens de dano contra criaturas que estiver agarrando.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Corpo Vegetal",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe natureza vegetal e visão no escuro.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Couraça Rubra",
+    "Descricao": "Você recebe redução de dano 2. Sua couraça conta como um poder da Tormenta, exceto para perda de Carisma.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Couro Rígido",
+    "Descricao": "Sua pele é dura como a de um touro. Você recebe +1 na Defesa.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cria da Tormenta",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe +5 em testes de resistência contra efeitos causados por lefeu e pela Tormenta.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cria da Tormenta Kaijin",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe +5 em testes de resistência contra efeitos causados por lefeu e pela Tormenta. Além disso, efeitos da Tormenta que não afetem lefou também não afetam você.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cria das Águas",
+    "Descricao": "Você possui deslocamento de natação igual a seu deslocamento em terra e visão na penumbra. Quando dentro d’água, você recebe percepção às cegas e +2 na Defesa e, em Furtividade e Sobrevivência.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cria de Masmorra",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe visão no escuro e +2 em Intimidação e Sobrevivência.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cria de Megalokk",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe visão no escuro.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Criatura Artificial",
+    "Descricao": "Você é uma criatura do tipo construto. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir, mas não se beneficia de cura mundana e de itens da categoria alimentação. Você precisa ficar inerte por oito horas por dia para recarregar sua fonte de energia. Se fizer isso, recupera PV e PM por descanso em condições normais (golens não são afetados por condições boas ou ruins de descanso). Por fim, a perícia Cura não funciona em você, mas Ofício (artesão) pode ser usada no lugar dela.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Criatura da Noite",
+    "Descricao": "Você recebe visão no escuro e +2 em Furtividade e Percepção.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Criatura das Profundezas",
+    "Descricao": "Você recebe visão no escuro e +2 em testes de Percepção e Sobrevivência realizados no subterrâneo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Cura das Águas",
+    "Descricao": "Você pode lançar a magia Curar Ferimentos (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM. Você não pode usar esta habilidade se a água de sua cabeça estiver derramada.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Deformidade",
+    "Descricao": "Todo lefou possui defeitos físicos que, embora desagradáveis, conferem certas vantagens. Você recebe +2 em duas perícias a sua escolha. Cada um desses bônus conta como um poder da Tormenta (exceto para perda de Crisma). Você pode trocar um desses bônus por um poder da Tormenta a sua escolha (ele também não conta para perda de Carisma).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Dependência de Água",
+    "Descricao": "Se permanecer mais de um dia sem contato com água, você não recupera PM com descanso até voltar para a água (ou, pelo menos, tomar um bom banho!).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Desejos",
+    "Descricao": "Se lançar uma magia que alguém tenha pedido desde seu último turno, o custo da magia diminui em –1 PM. Fazer um desejo ao qareen é uma ação livre.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Destemor",
+    "Descricao": "Você recebe +2 em rolagens de dano e em testes de resistência contra criaturas maiores que você.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Devagar e Sempre",
+    "Descricao": "Seu deslocamento é 6m (em vez de 9m). Porém, seu deslocamento não é reduzido por uso de armadura ou excesso de carga.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Diferentão",
+    "Descricao": "Escolham um poder de outra classe cujos requisitos vocês cumpram (como um poder de bardo da lista de Poderes de Bardo). Vocês recebem o poder escolhido; para efeitos de nível na classe desse poder, considere seu nível de personagem −4.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Disforme",
+    "Descricao": "Por sua anatomia anômala, você não pode empunhar nem vestir itens, a menos que sejam mágicos ou especialmente adaptados para você (o que demora um dia e custa 50% do preço do item, sem contar melhorias). Seus itens iniciais, e aqueles recebidos por sua origem ou habilidades, são adaptados para você. Esta habilidade conta como um poder da Tormenta, exceto para perda de Carisma.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Duro como Pedra",
+    "Descricao": "Você recebe +3 pontos de vida no 1o nível e +1 por nível seguinte.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Dínamo de Mana",
+    "Descricao": "Escolha uma de suas habilidades com um custo em PM. Você pode gastar uma ação de movimento para canalizar seu mana. Quando faz isso, até o fim do seu turno, o custo do próximo uso da habilidade escolhida é reduzido em –1 PM. Um personagem treinado em Ofício (artesão) pode substituir essa habilidade com uma hora de trabalho e o gasto de T$ 100.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ecolocalização",
+    "Descricao": "Você pode gastar 1 PM para receber percepção às cegas em alcance médio por 1 rodada.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Empatia Selvagem",
+    "Descricao": "Você pode se comunicar com animais por meio de linguagem corporal e vocalizações. Você pode usar Adestramento para mudar atitude e persuasão com animais (veja Diplomacia, no livro base na página 118). Caso receba esta habilidade novamente, recebe +2 em Adestramento.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Empunhadura Poderosa",
+    "Descricao": "Ao usar uma arma feita para uma categoria de tamanho maior que a sua (por exemplo, uma arma aumentada para uma criatura Pequena ou Média), a penalidade que você sofre nos testes de ataque diminui para –2. Caso receba esta habilidade novamente, a penalidade diminui para 0 e você pode também usar armas de até duas categorias de tamanho maiores que a sua com uma penalidade de –5 nos testes de ataque.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Engenhoso",
+    "Descricao": "Você não sofre penalidades em testes de perícia por não usar ferramentas. Se usar a ferramenta necessária, recebe +2 no teste de perícia.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Engenhosidade",
+    "Descricao": "Quando faz um teste de perícia, você pode gastar 2 PM para somar sua Inteligência no teste. Você não pode usar esta habilidade em testes de ataque. Caso receba esta habilidade novamente, seu custo é reduzido em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Entre Dois Mundos",
+    "Descricao": "Você recebe +1 em perícias baseadas em Carisma.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Escamas Elementais",
+    "Descricao": "Sua pele é recoberta de escamas resistentes e brilhantes, que fornecem +2 na Defesa e aumentam a RD de sua Herança Dracônica para 10.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Espelunqueiro",
+    "Descricao": "Você recebe visão no escuro e deslocamento de escalada igual ao seu deslocamento terrestre.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Esperteza Vulpina",
+    "Descricao": "Você recebe +2 em duas perícias originalmente baseadas em Inteligência ou Carisma, a sua escolha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Espreitador",
+    "Descricao": "Você recebe visão no escuro e +2 em Percepção e Vontade.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Espírito Corvino",
+    "Descricao": "Você é uma criatura do tipo espírito e recebe visão no escuro e +2 em Percepção.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Espírito da Natureza",
+    "Descricao": "Você é uma criatura do tipo espírito, recebe visão na penumbra e pode falar com animais livremente.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Esquife de Gelo",
+    "Descricao": "Você recebe redução de corte e perfuração 5 e redução de frio 10. Entretanto, sofre 1 ponto de dano adicional por dado de dano de fogo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Essência Feérica",
+    "Descricao": "Você é uma criatura do tipo espírito, recebe visão na penumbra e pode falar com animais livremente.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ex-Familiar",
+    "Descricao": "Vocês recebem +2 PM e os benefícios de um tipo de familiar, escolhidos entre os familiares básicos de arcanista (veja Tormenta20, p. 38). Se não tiverem um atributo-chave para conjuração, para efeitos desta habilidade vocês usam Carisma.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Faro",
+    "Descricao": "Você tem olfato apurado. Contra inimigos em alcance curto que não possa ver, você não fica desprevenido e camuflagem total lhe causa apenas 20% de chance de falha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Festeiro Feérico",
+    "Descricao": "Você é uma criatura do tipo espírito e recebe visão na penumbra e +2 em Atuação e Fortitude.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Fonte Alquímica",
+    "Descricao": "Uma mistura alquímica gera a energia necessária à sua vida. Você pode gastar uma ação padrão para ingerir um item alquímico qualquer; se fizer isso, recupera 1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Fonte Elemental",
+    "Descricao": "Você possui um espírito elemental preso em seu corpo. Escolha entre água (frio), ar (eletricidade), fogo (fogo) e terra (ácido). Você é imune a dano desse tipo. Se fosse sofrer dano mágico desse tipo, em vez disso cura PV em quantidade igual à metade do dano. Por exemplo, se um golem com espírito elemental do fogo é atingido por uma Bola de Fogo que causa 30 pontos de dano, em vez de sofrer esse dano, ele recupera 15 PV.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Fonte Sagrada",
+    "Descricao": "Você foi animado por um texto ou símbolo sagrado depositado em seu corpo. Você pode lançar uma magia divina de 1º círculo a sua escolha (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM. Alguém treinado em Religião pode trocar essa magia com um ritual que demora um dia e exige o gasto de um pergaminho mágico com outra magia de 1º círculo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Fonte a Vapor",
+    "Descricao": "Seu corpo é movido por vapor e engrenagens. Você é imune a dano de fogo; se fosse sofrer dano desse tipo, em vez disso seu deslocamento aumenta em 4,5m por 1 rodada. Entretanto, dano de frio deixa-o lento por 1 rodada. Você pode gastar uma ação padrão e PM para soprar um jato de vapor escaldante em um cone de 4,5m. Criaturas na área sofrem 1d6 pontos de dano de fogo por PM gasto e ficam em chamas (Ref CD Con reduz à metade e evita a condição).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Força dos Titãs",
+    "Descricao": "Quando acerta um ataque corpo a corpo ou de arremesso, você pode gastar 1 PM. Se fizer isso pode rolar mais uma vez qualquer resultado máximo da rolagem de dano e adicionar o novo resultado ao dano causado.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Fraquezas Ofídicas",
+    "Descricao": "Você sofre 1 ponto de dano adicional para cada dado de dano de frio e –5 em testes de resistência contra Músicas de bardo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Garras",
+    "Descricao": "Você tem duas armas naturais de garra (dano 1d6, crítico x2, corte), uma em cada mão. Uma vez por rodada, quando usa a ação agredir para atacar com uma arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com uma das garras, desde que ela esteja livre e não tenha sido usada para atacar neste turno. Como alternativa, se tiver habilidades que exijam uma arma secundária (como Estilo de Duas Armas), você pode usá-las com suas garras.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ginete Natural",
+    "Descricao": "Você é considerado montado para efeito de fazer investidas e para benefícios das armas que empunha, e pode escolher o poder Carga de Cavalaria mesmo sem cumprir seus pré-requisitos. Entretanto, não pode se beneficiar de uma montaria e, se estiver carregando um cavaleiro, sofre −2 em testes (além das penalidades de sobrecarga, se houver) e é considerado em condição ruim para lançar magias.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Graça de Glórienn",
+    "Descricao": "Seu deslocamento é 12m (em vez de 9m).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Grito Aterrorizante",
+    "Descricao": "Você pode gastar uma ação padrão e 1 PM para emitir um grito estridente. Criaturas em alcance curto ficam abaladas (Von CD Car evita).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Herança Divina",
+    "Descricao": "Você é uma criatura do tipo espírito e recebe visão no escuro.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Herança Dracônica",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe redução 5 contra um tipo de dano a sua escolha entre ácido, eletricidade, fogo, frio, luz ou trevas.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Híbrido",
+    "Descricao": "Sua natureza multifacetada fez com que você aprendesse conhecimentos variados. Você se torna treinado em uma perícia a sua escolha (não precisa ser da sua classe).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Híbrido Mecânico",
+    "Descricao": "Você é uma criatura do tipo construto. Recebe visão no escuro e imunidade a cansaço, efeitos metabólicos e veneno. Além disso, não precisa respirar, alimentar-se ou dormir, mas não se beneficia de itens da categoria alimentação e efeitos de cura mundana são reduzidos pela metade em você. Você precisa ficar inerte por 8 horas por dia para recarregar suas forças. Se fizer isso, recupera PV e PM por descanso em condições normais (yidishan não são afetados por condições boas ou ruins de descanso).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Infância Entre os Pequenos",
+    "Descricao": "Você se torna treinado em uma perícia a sua escolha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Inocência Dissimulada",
+    "Descricao": "Você recebe +2 em Enganação e pode gastar 2 PM para substituir um teste de perícia originalmente baseada em Inteligência, Sabedoria ou Carisma por Enganação.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Instintos Traiçoeiros",
+    "Descricao": "Você recebe visão no escuro e +2 em Diplomacia e na CD de seus efeitos mentais.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Instrumentista Mágico",
+    "Descricao": "Se estiver empunhando um instrumento musical, você pode lançar as magias Amedrontar, Enfeitiçar, Hipnotismo e Sono (atributo-chave Carisma). Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Intolerância a Luz",
+    "Descricao": "Você recebe sensibilidade a luz e, quando exposto à luz do sol ou similar, não consegue ativar sua Regeneração Vegetal.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ligação Natural",
+    "Descricao": "Você possui uma ligação mental com uma criatura inteligente (Int –3 ou mais). Vocês podem se comunicar mentalmente em alcance longo e sempre sabem em que direção e distância podem encontrar o outro. Você pode trocar a criatura com a qual mantém o vínculo no início de cada aventura.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Linguarudo",
+    "Descricao": "Sua língua é uma arma natural que pode atacar inimigos a até 3m (dano 1d4, crítico x2, impacto). Ela é uma arma versátil, fornecendo +2 em testes para desarmar e derrubar. Uma vez por rodada, quando usa a ação agredir com outra arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com a língua.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Luz Sagrada",
+    "Descricao": "Você recebe +2 em Diplomacia e Intuição. Além disso, pode lançar Luz (como uma magia divina; atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Magia Instintiva",
+    "Descricao": "Você pode usar Sabedoria no lugar de seu atributo-chave de magias arcanas e Misticismo. Além disso, quando lança uma magia com aprimoramentos, o custo total desses aprimoramentos diminui em –1 PM. Este efeito não reduz o custo básico da magia nem se acumula com reduções de custo normais dela.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Magia das Fadas",
+    "Descricao": "Você pode lançar duas das magias a seguir (atributo-chave Carisma): Criar Ilusão, Enfeitiçar, Luz (como uma magia arcana) e Sono. Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Maravilha Mecânica",
+    "Descricao": "Se escolher uma maravilha mecânica, você recebe um dos poderes a seguir. Uma vez por patamar, você pode escolher uma maravilha mecânica no lugar de um poder de classe.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Marrada Impressionante",
+    "Descricao": "Você recebe +2 em ataques em investida e em testes para empurrar, e pode usar Força como atributo-chave de Intimidação (em vez de Carisma).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mashin (chassi)",
+    "Descricao": "+1 em dois atributos a sua escolha. Você se torna treinado em duas perícias a sua escolha e pode substituir uma dessas perícias por uma maravilha mecânica. Entretanto, você é sempre Médio.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Barro",
+    "Descricao": "Constituição +2. Seu deslocamento não é afetado por terreno difícil e você passa automaticamente em testes de Acrobacia para passar por espaços apertados. Se permanecer mais de um dia sem contato com água, você não recupera PM com descanso até voltar para a água.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Bronze",
+    "Descricao": "+1 em dois atributos. Seu deslocamento não é reduzido por armaduras pesadas ou excesso de carga. Sua armadura não é acoplada ao seu corpo; você pode removê-la e colocá-la no tempo normal, mas ela conta em seu limite de itens vestidos.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Carne",
+    "Descricao": "Constituição +2, Força +1, Carisma –1. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe imunidade a metamorfose e trevas, mas não pode escolher elemental (água ou fogo) ou vapor como sua fonte de energia, e dano mágico de fogo e frio o deixa lento por 1d4 rodadas.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Espelhos",
+    "Descricao": "Carisma +2, Sabedoria +1, Constituição –1. Quando uma criatura em alcance curto usa uma habilidade de classe que você possa ver, você pode gastar 1 PM para copiar essa habilidade. Até o fim do seu próximo turno, você pode usá-la como uma habilidade de raça (se ela usar um atributo para algo, use seu Carisma). Se copiar outra habilidade, você perde a anterior.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Ferro",
+    "Descricao": "Força +1 e Constituição +1. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe +2 na Defesa, mas possui penalidade de armadura –2.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Gelo Eterno",
+    "Descricao": "Constituição +2. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe imunidade a frio e redução de fogo 10, mas não pode escolher elemental (fogo) ou vapor como sua fonte de energia (veja Golem de Nor no Ameaças de Arton na página 348).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Pedra",
+    "Descricao": "Constituição +2. Você não pode correr e seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe redução de corte, fogo e perfuração 5.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Material de Sucata",
+    "Descricao": "Força +1 e Constituição +1. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Quando recebe cuidados prolongados com a perícia Ofício (artesão), sua recuperação de PV aumenta em +2 por nível nesse dia (em vez de +1).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mau Cheiro",
+    "Descricao": "Você pode gastar uma ação padrão e 2 PM para expelir um gás fétido. Todas as criaturas (exceto trogs) em alcance curto devem passar em um teste de Fortitude contra veneno (CD Con) ou ficarão enjoadas durante 1d6 rodadas. Uma criatura que passe no teste de resistência fica imune a esta habilidade por um dia.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Medo de Altura",
+    "Descricao": "Se estiver adjacente a uma queda de 3m ou mais (como um buraco ou penhasco), você fica abalado.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Meio-Gigante",
+    "Descricao": "Você é uma criatura do tipo humanoide (gigante). Seu tamanho é Grande e você pode usar Força como atributo-chave de Intimidação (em vez de Carisma).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Memória Póstuma",
+    "Descricao": "Você se torna treinado em uma perícia (não precisa ser da sua classe) ou recebe um poder geral a sua escolha. Como alternativa, você pode ser um osteon de outra raça humanoide que não humano. Neste caso, você ganha uma habilidade dessa raça a sua escolha. Se a raça era de tamanho diferente de Médio, você também possui sua categoria de tamanho.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mente Aberta",
+    "Descricao": "Você recebe +2 em Diplomacia e Investigação.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Metalurgia Hobgoblin",
+    "Descricao": "Você recebe +2 em Ofício (armeiro) e, se for treinado nesta perícia, pode fabricar armas e armaduras superiores com uma melhoria. Se aprender a fabricar itens superiores desses tipos por outra habilidade, gasta apenas ¼ do preço das melhorias que aplica nesses itens (em vez de ⅓).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mestre do Tridente",
+    "Descricao": "Para você, o tridente é uma arma simples. Além disso, você recebe +2 em rolagens de dano com azagaias, lanças e tridentes.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mordida",
+    "Descricao": "Você possui uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mordida 2",
+    "Descricao": "Você possui uma arma natural de mordida (dano 1d8, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mordida Poderosa",
+    "Descricao": "Você possui uma arma natural de mordida (dano 1d6, crítico x2, perfuração), com a qual recebe +2 em testes de agarrar. Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Mãos Rudimentares",
+    "Descricao": "Suas mãos não permitem que você empunhe itens, a menos que sejam mágicos ou especialmente adaptados para você (o que demora um dia e custa 50% do preço do item, sem contar melhorias). Seus itens iniciais, e aqueles recebidos por sua origem ou habilidades, são adaptados para você.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Natureza Esquelética",
+    "Descricao": "Você é uma criatura do tipo morto-vivo. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos, de trevas e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir. Por fim, efeitos mágicos de cura de luz causam dano a você e você não se beneficia de itens da categoria alimentação, mas dano de trevas recupera seus PV.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Natureza Orgânica",
+    "Descricao": "Você se torna treinado em uma perícia (que não precisa ser da sua classe) ou recebe um poder geral a sua escolha. Como alternativa, você pode ser um yidishan de outra raça humanoide além de humano. Neste caso, você ganha uma habilidade dessa raça a sua escolha. Se a raça era de tamanho diferente de Médio, você também possui sua categoria de tamanho.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Natureza Venenosa",
+    "Descricao": "Você recebe resistência a veneno +5 e pode gastar uma ação de movimento e 1 PM para envenenar uma arma que esteja usando. A arma causa perda de 1d12 pontos de vida. O veneno dura até você acertar um ataque ou até o fim da cena (o que acontecer primeiro). Veneno.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "O Ousado",
+    "Descricao": "Uma vez por cena, vocês podem gastar 1 PM e uma ação de movimento para que um membro do bando se afaste e aja sozinho. Ele age a partir da sua próxima rodada, tem deslocamento 9m e pode gastar uma ação padrão para causar 2d4 pontos de dano de corte em uma criatura adjacente (a cada patamar além de iniciante, cada dado desse dano aumenta em um passo). Ele é Pequeno, tem as mesmas características do restante do bando, 1 PV, e retorna ao bando quando “morto” ou ao fim da cena. Usos criativos para o ousado ficam a critério do mestre.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Olhar Atordoante",
+    "Descricao": "Você pode gastar uma ação de movimento e 1 PM para forçar uma criatura em alcance curto a fazer um teste de Fortitude (CD Car). Se a criatura falhar, fica atordoada por uma rodada (apenas uma vez por cena).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Oportunista",
+    "Descricao": "Você recebe +2 nas rolagens de dano contra criaturas que tenham sofrido dano de outras criaturas desde seu último turno.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Organizadinhos",
+    "Descricao": "Vocês podem usar Destreza para estabelecer seu limite de carga (em vez de Força) e podem se beneficiar de um item vestido adicional.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Os do Fundo",
+    "Descricao": "Vocês conseguem formar o equivalente a um terceiro braço, que pode empunhar um objeto (mas não concede ações extras). Se usarem-no para empunhar uma arma leve, uma vez por rodada, quando usam a ação agredir para atacar com outra arma, podem gastar 1 PM para fazer um ataque corpo a corpo extra com essa arma. Pré-requisito: Organizadinhos.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Ossos Frágeis",
+    "Descricao": "Você sofre 1 ponto de dano adicional por dado de dano de impacto. Por exemplo, se for atingido por uma clava (dano 1d6), sofre 1d6+1 pontos de dano. Se cair de 3m de altura (dano 2d6), sofre 2d6+2 pontos de dano.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Papel Tribal",
+    "Descricao": "Você é treinado em uma perícia a sua escolha entre Cura, Intimidação, Ofício ou Sobrevivência.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Paquidérmico",
+    "Descricao": "Seu tamanho é Grande. Você recebe +1 na Defesa e pode usar Força como atributo-chave de Intimidação (em vez de Carisma).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Patas Ligeiras",
+    "Descricao": "Seu deslocamento é 12m e, quando faz uma investida ou um teste de Atletismo para correr, você não precisa percorrer uma linha reta.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pequeno e Rechonchudo",
+    "Descricao": "Seu tamanho é Pequeno (veja a página 106) e seu deslocamento é 6m. Você recebe +2 em Enganação e pode usar Destreza como atributo-chave de Atletismo (em vez de Força).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pequeno - Mas Não Metade",
+    "Descricao": "Seu tamanho é Pequeno, mas seu deslocamento se mantém 9m e você recebe resistência a medo +5 contra criaturas maiores que você e +2 em Intimidação.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pernas Aprimoradas",
+    "Descricao": "Você pode gastar 2 PM para receber +6m em seu deslocamento e +5 em Atletismo até o fim da cena.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pernas Caprinas",
+    "Descricao": "Seu deslocamento é 12m e você pode usar Destreza como atributo-chave de Atletismo (em vez de Força).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Peste Esguia",
+    "Descricao": "Seu tamanho é Pequeno (veja no livro base a página 106 Tormenta 20), mas seu deslocamento se mantém 9m. Apesar de pequenos, goblins são rápidos.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pestes Oportunistas",
+    "Descricao": "Uma vez por rodada, quando causam dano em uma criatura que já sofreu dano nessa rodada, vocês causam +1d6 pontos de dano do mesmo tipo. A cada patamar além de iniciante, esse dano extra aumenta em um passo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Peças Metálicas",
+    "Descricao": "As partes mecânicas que complementam seu corpo fornecem +2 na Defesa, mas impõem uma penalidade de armadura de –2.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Plurivalente",
+    "Descricao": "Você recebe um poder geral a sua escolha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Predador Aquático",
+    "Descricao": "Você tem deslocamento de natação 6m e recebe +1 na Defesa e +2 em Furtividade.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Presença Arcana",
+    "Descricao": "Você recebe +2 em Misticismo e resistência a magia +2.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Presentes de Sszzaas",
+    "Descricao": "Você recebe visão na penumbra, +1 na Defesa e resistência a veneno +5.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Propósito de Criação",
+    "Descricao": "Você foi construído “pronto” para um propósito específico e não teve uma infância. Você não tem direito a escolher uma origem, mas recebe um poder geral a sua escolha.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Praga Monstruosa",
+    "Descricao": "Vocês são criaturas do tipo monstro e recebem visão no escuro e +2 em Sobrevivência.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Prática Arcana",
+    "Descricao": "Escolha uma magia arcana de 1º círculo que cause dano do mesmo tipo de sua Herança Dracônica. Você pode lançar essa magia (atributo-chave Inteligência). Caso aprenda novamente essa magia, seu custo diminui em –1 PM. Você pode escolher esta bênção mais de uma vez para outras magias.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pé de Coelho",
+    "Descricao": "Quando faz um teste de uma perícia baseada em Destreza (exceto testes de ataque), você pode gastar 1 PM para rolar dois dados e usar o melhor resultado.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Pés Rapinantes",
+    "Descricao": "Seus pés podem ser usados como mãos ou como duas armas naturais de garras (dano 1d6 cada, crítico x2, corte). Uma vez por rodada, quando usa a ação agredir para atacar com uma arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com uma das garras, desde que ela esteja livre e não tenha sido usada para atacar neste turno. Como alternativa, se tiver habilidades que exijam uma arma secundária (como Estilo de Duas Armas), você pode usá-las com suas garras.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Quanto Maior o Tamanho...",
+    "Descricao": "Você é um humanoide do subtipo gigante; seu tamanho é Grande e você recebe visão na penumbra.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Quase Anão",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe visão no escuro e +1 PV por nível. Além disso, seu deslocamento é 6m (em vez de 9m), mas não é reduzido por uso de armadura ou excesso de carga.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Rainha da Selva",
+    "Descricao": "Você recebe deslocamento de escalada 9m, +2 em Atletismo e recupera +1 PV por nível quando descansa.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Rato das Ruas",
+    "Descricao": "Você recebe +2 em Fortitude e sua recuperação de PV e PM nunca é inferior ao seu nível.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Regeneração Vegetal",
+    "Descricao": "Uma vez por rodada, você pode gastar 1 PM para recuperar 5 PV. Esta habilidade não cura dano de ácido ou fogo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Rendição",
+    "Descricao": "Quando um inimigo se rende, você recebe 1d4 PM temporários cumulativos. Da mesma forma, quando é reduzido a um quarto de seus PV ou menos, seu instinto é se render. Caso continue lutando, fica alquebrado.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Reptiliano",
+    "Descricao": "Você é uma criatura do tipo monstro e recebe visão no escuro, +1 na Defesa e, se estiver sem armadura ou roupas pesadas, +5 em Furtividade.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Reservatório Alquímico",
+    "Descricao": "Você possui um reservatório em seu corpo que pode armazenar até duas doses de preparados alquímicos. Uma vez por rodada, você pode usar um desses preparados ou pode consumi-lo para sua fonte de energia. Carregar seu reservatório exige uma ação completa e o gasto dos itens com os quais você quiser carregá-lo. Pré-requisito: Fonte de Energia (alquímica).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Resistência Elemental",
+    "Descricao": "Conforme sua ascendência, você recebe redução 10 a um tipo de dano. Escolha uma: frio (qareen da água), eletricidade (do ar), fogo (do fogo), ácido (da terra), luz (da luz) ou trevas (qareen das trevas).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Roedor",
+    "Descricao": "Você possui uma arma natural de mordida (dano 1d6, crítico x2, corte). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida. Além disso, quando faz um acerto crítico com sua mordida, você deixa a armadura da vítima avariada ou, se ela estiver sem armadura, aumenta em +1 o multiplicador desse crítico.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Rugido Imponente",
+    "Descricao": "Você pode gastar uma ação de movimento e 1 PM para emitir um rugido assustador. Todos os inimigos em alcance curto sofrem -2 em rolagens de dano por 1 rodada. Medo.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Saborear Pavor",
+    "Descricao": "Você pode usar Força como atributo-chave de Intimidação (em vez de Carisma). Além disso, se estiver em alcance curto de outra criatura abalada ou apavorada, você recebe um bônus em testes de ataque igual à penalidade causada pela condição.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Saltador",
+    "Descricao": "Você recebe +10 em testes de Atletismo para saltar.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sangue Mágico",
+    "Descricao": "Você recebe +1 ponto de mana por nível.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sangue Orc",
+    "Descricao": "Você recebe +1 em rolagens de dano com armas corpo a corpo e de arremesso e é considerado um orc para efeitos relacionados a raça.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sangue Élficos",
+    "Descricao": "Você recebe visão na penumbra e +1 ponto de mana a cada nível ímpar (incluindo o 1o). Além disso, é considerado um elfo para efeitos relacionados à raça.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sapiência",
+    "Descricao": "Você pode lançar uma magia de 1º círculo de adivinhação a sua escolha (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Senhor dos Céus",
+    "Descricao": "Você pode pairar a 1,5m do chão com deslocamento 9m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Se não estiver usando armadura pesada, você pode gastar 1 PM por rodada para voar com deslocamento de 12m. Quando abre suas asas para pairar ou voar, você ocupa o espaço de uma criatura de uma categoria de tamanho maior que a sua.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sensibilidade a Luz",
+    "Descricao": "Quando expostos à luz do sol ou similar, vocês ficam ofuscados.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Senso de Preservação",
+    "Descricao": "Você recebe visão na penumbra e +2 em Percepção e Reflexos.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos Dracônicos",
+    "Descricao": "Seus sentidos são impregnados com poder dracônico. Você recebe faro e visão no escuro.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos Felinos",
+    "Descricao": "Você recebe visão na penumbra e +2 em Furtividade e Percepção.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos Místicos",
+    "Descricao": "Você está sempre sob o efeito básico da magia Visão Mística.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos Rapinantes",
+    "Descricao": "Você recebe visão na penumbra e +2 em Percepção e Sobrevivência.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos Selvagens",
+    "Descricao": "Você recebe +2 em Sobrevivência, visão na penumbra e faro (contra inimigos em alcance curto que não possa ver, você não fica desprevenido e camuflagem total lhe causa apenas 20% de chance de falha).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos da Realeza",
+    "Descricao": "Você recebe visão na penumbra e +2 em Intimidação e Percepção.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos de Predador",
+    "Descricao": "Você recebe faro e visão no escuro.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sentidos Élficos",
+    "Descricao": "Você recebe visão na penumbra e +2 em Misticismo e Percepção.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sombras Profanas",
+    "Descricao": "Você recebe +2 em Enganação e Furtividade. Além disso, pode lançar Escuridão (como uma magia divina; atributo-chave Inteligência). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Somos Explosivos",
+    "Descricao": "Vocês podem gastar uma ação completa, 1 PM e uma quantidade de PV (limitado pelo seu nível) para arremessar um kobold explosivo em um ponto em alcance curto. Criaturas a até 3m desse ponto sofrem 1d6 pontos de dano de impacto por PV gasto (Ref CD Des reduz à metade). Sempre que rolar o valor máximo em um dos dados de dano, o dano aumenta em +1d6.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sopro de Dragão",
+    "Descricao": "Você pode gastar uma ação padrão e 1 PM para soprar um cone de 6m que causa 1d12 pontos de dano do tipo de sua Herança Dracônica (Ref CD Constituição reduz à metade). A cada quatro níveis após o 1º, você pode gastar +1 PM para aumentar o dano do sopro em +1d12.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Sorte Salvadora",
+    "Descricao": "Quando faz um teste de resistência, você pode gastar 1 PM para rolar este teste novamente.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Surto Reptiliano",
+    "Descricao": "Uma vez por cena, você pode gastar 1 PM para realizar uma ação de movimento adicional em seu turno.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Talentos do Bando",
+    "Descricao": "Escolham dois dos poderes a seguir. Uma vez por patamar, vocês podem escolher outro desses poderes no lugar de um poder de classe.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Tatuagem Mística",
+    "Descricao": "Você pode lançar uma magia de 1º círculo a sua escolha (atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Terror Vivo",
+    "Descricao": "Você pode usar Força como atributo-chave de Intimidação (em vez de Carisma) e recebe um poder da Tormenta a sua escolha, que não conta para perda de Carisma.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Tigela D'água",
+    "Descricao": "Sempre que falhar por 5 ou mais em um teste para evitar ser agarrado, derrubado ou empurrado, você derrama a água de sua cabeça. Você fica enjoado até encher a tigela novamente (o que exige uma fonte de água e uma ação padrão).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Tradição de Heredrimm",
+    "Descricao": "Você é perito nas armas tradicionais anãs, seja por ter treinado com elas, seja por usá-las como ferramentas de ofício. Para você, todos os machados, martelos, marretas e picaretas são armas simples. Você recebe +2 em ataques com essas armas.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Transformação Anfíbia",
+    "Descricao": "Você pode respirar debaixo d’água e possui uma cauda que fornece deslocamento de natação 12m. Quando fora d’água, sua cauda desaparece e dá lugar a pernas (deslocamento 9m). Se permanecer mais de um dia sem contato com água, você não recupera PM com descanso até voltar para a água (ou, pelo menos, tomar um bom banho!).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Tática de Enxame",
+    "Descricao": "Vocês podem gastar 2 PM para assumir uma forma de enxame com duração sustentada. Nessa forma, vocês podem ocupar o espaço de criaturas inimigas, tornam-se imunes a manobras de combate e sofrem apenas metade do dano de armas. Entretanto, não podem fazer nenhuma ação que exija coordenação e concentração (como usar a perícia Furtividade ou lançar magias). Criaturas dentro do espaço que vocês ocupam são consideradas em condição ruim para lançar magias. Pré-requisito: Amontoados.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Táticas de Guerrilha",
+    "Descricao": "Você recebe visão no escuro e +2 em Furtividade.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Táticas de Matilha",
+    "Descricao": "Você recebe +2 nas rolagens de dano e na margem de ameaça em ataques contra oponentes que esteja flanqueando.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Vanguardista",
+    "Descricao": "Você recebe proficiência em armas de fogo e +2 em Ofício (um qualquer, a sua escolha).",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Velocista da Planície",
+    "Descricao": "Seu deslocamento é 12m. Você pode usar Destreza como atributo-chave de Atletismo (em vez de Força) e, quando faz testes de Atletismo para correr ou saltar, pode rolar dois dados e usar o melhor resultado.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Versátil",
+    "Descricao": "Você se torna treinado em duas perícias a sua escolha (não precisam ser da sua classe). Você pode trocar uma dessas perícias por um poder geral a sua escolha.",
+    "TipoPoder": "Raca"
+  }
+]

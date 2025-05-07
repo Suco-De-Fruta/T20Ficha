@@ -20,5 +20,17 @@ namespace T20FichaComDB.Data.Entities
         public int ModLivres {  get; set; }
         public string DescricaoModLivres { get; set; }
         public string ExcecoesModLivres { get; set; }
+
+        public string? PoderesRacaNome { get; set; }
+
+        [Ignore]
+        public List<string> ListaPoderesRacaNomes
+        {
+            get => string.IsNullOrWhiteSpace(PoderesRacaNome) 
+                   ? new List<string>() 
+                   : PoderesRacaNome.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+
+            set => PoderesRacaNome = value != null ? string.Join(",", value) : null;
+        }
     }
 }

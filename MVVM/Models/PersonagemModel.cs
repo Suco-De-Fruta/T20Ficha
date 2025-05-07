@@ -66,6 +66,22 @@ namespace T20FichaComDB.MVVM.Models
         [ObservableProperty]
         private int _PMatual;
 
+        // ----- PODERES --- //
+        [ObservableProperty]
+        private ObservableCollection<PoderesData> _poderesRaca = new();
+
+        [ObservableProperty]
+        private ObservableCollection<PoderesData> _poderesClasse = new();
+
+        [ObservableProperty]
+        private ObservableCollection<PoderesData> _poderesOrigem = new();
+
+        [ObservableProperty]
+        private ObservableCollection<PoderesData> _poderesConcedidos = new();
+
+        [ObservableProperty]
+        private ObservableCollection<PoderesData> _poderesGerais = new();
+
         // ----- COMBATE --- //
         [ObservableProperty]
         private int _defesa;
@@ -113,6 +129,11 @@ namespace T20FichaComDB.MVVM.Models
         public PersonagemModel()
         {
             Nivel = 1;
+            MagiasConhecidas = new ObservableCollection<MagiasData>();
+            PoderesRaca = new ObservableCollection<PoderesData>();
+            PoderesClasse = new ObservableCollection<PoderesData>();
+            PoderesGerais = new ObservableCollection<PoderesData>();
+            PoderesConcedidos = new ObservableCollection<PoderesData>();
         }
     }
 }

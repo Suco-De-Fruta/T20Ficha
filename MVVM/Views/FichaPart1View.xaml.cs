@@ -3,7 +3,6 @@ using T20FichaComDB.MVVM.ViewModels;
 
 namespace T20FichaComDB.MVVM.Views;
 
-
 public partial class FichaPart1View : ContentPage
 {
 

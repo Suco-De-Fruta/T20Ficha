@@ -34,6 +34,7 @@ namespace T20FichaComDB.Services
                     await _connection.CreateTableAsync<DivindadesData>();
                     await _connection.CreateTableAsync<PersonagemData>();
                     await _connection.CreateTableAsync<MagiasData>();
+                    await _connection.CreateTableAsync<PoderesData>();
 
                     await DataBaseSeeder.SeedDataAsync(_connection);
                 }
@@ -73,6 +74,30 @@ namespace T20FichaComDB.Services
         {
             await EnsureInitializedAsync();
             return await _connection.Table<DivindadesData>().OrderBy(d => d.Nome).ToListAsync();
+        }
+
+        public async Task<List<PoderesData>> GetPoderesPorNomeETipoAsync(List<string> nomes, TipoPoderEnum tipoPoder)
+        {
+            await EnsureInitializedAsync();
+            if (nomes == null || !nomes.Any())
+            {
+                return new List<PoderesData>();
+            }
+            string tipoPoderStr = tipoPoder.ToString();
+            return await _connection.Table<PoderesData>()
+                                    .Where(p => nomes.Contains(p.Nome) && p.TipoPoder == tipoPoderStr)
+                                    .OrderBy(p => p.Nome)
+                                    .ToListAsync();
+        }
+
+        public async Task<List<PoderesData>> GetPoderesPorTipoAsync(TipoPoderEnum tipoPoder)
+        {
+            await EnsureInitializedAsync();
+            string tipoPoderStr = tipoPoder.ToString();
+            return await _connection.Table<PoderesData>()
+                                    .Where(p => p.TipoPoder == tipoPoderStr)
+                                    .OrderBy(p => p.Nome)
+                                    .ToListAsync();
         }
 
 

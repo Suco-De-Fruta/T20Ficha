@@ -13,6 +13,7 @@ namespace T20FichaComDB.Data
             await SeedOrigensAsync(connection);
             await SeedDivindadesAsync(connection);
             await SeedMagiasAsync(connection);
+            await SeedPoderesRacaAsync(connection);
         }
 
         // -------- RAÇAS --------
@@ -74,6 +75,51 @@ namespace T20FichaComDB.Data
             else
             {
                 System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças já contém dados. Pulo a população. ---");
+            }
+        }
+
+        private static async Task SeedPoderesRacaAsync(SQLiteAsyncConnection connection)
+        {
+            if (await connection.Table<PoderesData>().CountAsync() == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("--- SeedPoderesAsync: Tabela de Poderes vazia, tentando popular do JSON... ---");
+                List<PoderesData> poderesBase = null;
+                try
+                {
+                    string jsonFileName = "Data/Seeds/PoderesRacaDatabase.json";
+                    using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
+                    if (stream == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedPoderesAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
+                        return;
+                    }
+                    using var reader = new StreamReader(stream);
+                    string jsonContent = await reader.ReadToEndAsync();
+                    poderesBase = JsonSerializer.Deserialize<List<PoderesData>>(jsonContent, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    System.Diagnostics.Debug.WriteLine($"--- SeedPoderesAsync: JSON desserializado. Número de poderes encontrados: {poderesBase?.Count ?? 0} ---");
+
+                    if (poderesBase != null && poderesBase.Any())
+                    {
+                        await connection.InsertAllAsync(poderesBase);
+                        System.Diagnostics.Debug.WriteLine($"--- SeedPoderesRacaAsync: {poderesBase.Count} poderes INSERIDOS com sucesso! ---");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("--- SeedPoderesRacaAsync: Nenhum poder encontrado no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"--- ERRO FATAL SeedPoderesRacaAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
+                    return;
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("--- SeedPoderesRacaAsync: Tabela de Poderes já contém dados. Pulo a população. ---");
             }
         }
 
