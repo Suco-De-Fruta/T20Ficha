@@ -5,7 +5,7 @@ using System.ComponentModel;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.Services;
-using T20FichaComDB.MVVM.Views.Popup;
+using T20FichaComDB.MVVM.Views.Popups;
 using CommunityToolkit.Maui.Views;
 
 namespace T20FichaComDB.MVVM.ViewModels
@@ -186,12 +186,6 @@ namespace T20FichaComDB.MVVM.ViewModels
                         Carisma = data.Carisma
                     };
 
-                    this.Personagem.PropertyChanged += Personagem_PropertyChanged;
-                    this.Personagem.Raca = data.RacaNome;
-                    this.Personagem.Classe = data.ClasseNome;
-                    this.Personagem.Origem = data.OrigemNome;
-                    this.Personagem.Divindade = data.DivindadeNome;
-
                     if (!string.IsNullOrWhiteSpace(Personagem.Raca))
                     {
                         if (!_todasRacasComDetalhes.Any())
@@ -205,6 +199,12 @@ namespace T20FichaComDB.MVVM.ViewModels
                     {
                         RacaSelecionadaDetalhes = null;
                     }
+
+                    this.Personagem.PropertyChanged += Personagem_PropertyChanged;
+                    this.Personagem.Raca = data.RacaNome;
+                    this.Personagem.Classe = data.ClasseNome;
+                    this.Personagem.Origem = data.OrigemNome;
+                    this.Personagem.Divindade = data.DivindadeNome;
                 }
 
                 Personagem.MagiasConhecidas.Clear();
@@ -281,15 +281,138 @@ namespace T20FichaComDB.MVVM.ViewModels
             return null;
         }
 
+        // --- LÓGICA PARA APLICAR OS MOD DE RAÇA
+        private async Task AplicarModificadoresRaca (string? nomeNovaRaca)
+        {
+            System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Iniciado. Nova Raça: '{nomeNovaRaca ?? "NULL"}'");
+
+            // ETAPA 0: VALIDAÇÃO INICIAL
+            if (Personagem == null)
+            {
+                System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] ERRO: Personagem é NULL. Abortando.");
+                return;
+            }
+
+            if (Personagem.PoderesRaca == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] ALERTA CRÍTICO: Personagem.PoderesRaca era NULL. Reinstanciando. Personagem HASH: {Personagem.GetHashCode()}");
+                Personagem.PoderesRaca = new System.Collections.ObjectModel.ObservableCollection<PoderesData>();
+            }
+
+            // ETAPA 1: LIMPEZA DOS MOD E PODERES DA RAÇA ANTERIOR
+            RemoverModRacaAnterior();
+            Personagem.PoderesRaca.Clear();
+            System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] Modificadores e Poderes da raça anterior removidos/limpos.");
+            RacaSelecionadaDetalhes = null;
+
+            // ETAPA 2: LIDAR COM A SELEÇÃO DE NENHUMA RAÇA/INVALIDA
+            if (string.IsNullOrWhiteSpace(nomeNovaRaca))
+            {
+                System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] Nome da nova raça é nulo ou vazio. Nenhum modificador ou poder de raça será aplicado.");
+                RecalculateAll();
+                return;
+            }
+
+            // ETAPA 3: ENCONTRAR OS DETALHES DA NOVA RAÇA
+            if (_todasRacasComDetalhes == null || !_todasRacasComDetalhes.Any())
+            {
+                System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] ERRO: _todasRacasComDetalhes está vazia ou nula. As raças não foram carregadas do DataService. Tentando carregar agora...");
+                await LoadDataAsync();
+                if (_todasRacasComDetalhes == null || !_todasRacasComDetalhes.Any())
+                {
+                    System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] ERRO FATAL: Falha ao carregar _todasRacasComDetalhes. Abortando aplicação de raça.");
+                    RecalculateAll();
+                    return;
+                }
+            }
+
+            var racaEncontrada = _todasRacasComDetalhes.FirstOrDefault(r => r.Nome.Equals(nomeNovaRaca, StringComparison.OrdinalIgnoreCase));
+
+            if (racaEncontrada == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Raça '{nomeNovaRaca}' não encontrada na lista _todasRacasComDetalhes.");
+                RecalculateAll();
+                return;
+            }
+
+            // ETAPA 4: APLICAR MODIFICADORES DA NOVA RAÇA
+            RacaSelecionadaDetalhes = racaEncontrada;
+            System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Aplicando modificadores para a raça: {racaEncontrada.Nome}");
+
+            AplicarModificador("Forca", racaEncontrada.ModForca);
+            AplicarModificador("Destreza", racaEncontrada.ModDestreza);
+            AplicarModificador("Constituicao", racaEncontrada.ModConstituicao);
+            AplicarModificador("Inteligencia", racaEncontrada.ModInteligencia);
+            AplicarModificador("Sabedoria", racaEncontrada.ModSabedoria);
+            AplicarModificador("Carisma", racaEncontrada.ModCarisma);
+
+
+            // ETAPA 5: CARREGAR E APLICAR PODERES DA NOVA RAÇA
+            if (RacaSelecionadaDetalhes.ListaPoderesRacaNomes != null && RacaSelecionadaDetalhes.ListaPoderesRacaNomes.Any())
+            {
+                System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Raça '{RacaSelecionadaDetalhes.Nome}' tem os seguintes nomes de poderes para carregar: {string.Join(", ", RacaSelecionadaDetalhes.ListaPoderesRacaNomes)}");
+                try 
+                {
+                    List<PoderesData> poderesDaRacaDb = await _databaseService.GetPoderesPorNomeETipoAsync(
+                        RacaSelecionadaDetalhes.ListaPoderesRacaNomes, TipoPoderEnum.Raca);
+
+                    if (poderesDaRacaDb != null && poderesDaRacaDb.Any())
+                    {
+                        foreach (var poder in poderesDaRacaDb.OrderBy(p => p.Nome))
+                        {
+                            Personagem.PoderesRaca.Add(poder);
+                        }
+                        System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] {Personagem.PoderesRaca.Count} poderes raciais carregados e adicionados para {RacaSelecionadaDetalhes.Nome}.");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Nenhum poder de raça encontrado no banco para os nomes fornecidos para a raça {RacaSelecionadaDetalhes.Nome}.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Nenhum poder de raça encontrado no banco para os nomes fornecidos para a raça {RacaSelecionadaDetalhes.Nome}.");
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Raça '{RacaSelecionadaDetalhes.Nome}' não possui nomes de poderes de raça listados.");
+            }
+
+            // ETAPA 6: LIDAR COM MOD DE ATRIBUTOS LIVRES
+            if (racaEncontrada.ModLivres > 0 && !string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes.DescricaoModLivres))
+            {
+                System.Diagnostics.Debug.WriteLine($"[AplicarModificadoresRaca] Raça {racaEncontrada.Nome} tem {racaEncontrada.ModLivres} bônus livres: {RacaSelecionadaDetalhes.DescricaoModLivres}");
+
+                string mensagemPopup = $"A raça {RacaSelecionadaDetalhes.Nome} concede: {RacaSelecionadaDetalhes.DescricaoModLivres}.";
+
+                if (!string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes.ExcecoesModLivres))
+                {
+                    mensagemPopup += $"\n(Exceto em: {RacaSelecionadaDetalhes.ExcecoesModLivres})";
+                }
+                mensagemPopup += "\nLembre-se de distribuir estes pontos manualmente nos atributos.";
+
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    var popupViewModel = new AtributosLivresPopupViewModel(mensagemPopup);
+                    var popup = new AtributosLivresPopupView(popupViewModel);
+                    await Shell.Current.ShowPopupAsync(popup);
+                });
+            }
+
+            // ETAPA 7: RECALCULAR TODOS OS STATUS
+            RecalculateAll();
+            System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] Finalizado. Status recalculados.");
+        }
 
         // --- Sessão de Recálculo ---
-        private void Personagem_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private async void Personagem_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             bool recalcularStatus = false;
 
             if (e.PropertyName == nameof(PersonagemModel.Raca))
             {
-                AplicarModificadoresRaca(Personagem.Raca);
+                await AplicarModificadoresRaca(Personagem.Raca);
                 recalcularStatus = true;
             }
 
@@ -312,71 +435,6 @@ namespace T20FichaComDB.MVVM.ViewModels
             {
                 RecalculateAll();
             }
-        }
-
-        // --- LÓGICA PARA APLICAR OS MOD DE RAÇA
-        private void AplicarModificadoresRaca (string? nomeNovaRaca)
-        {
-            if (Personagem == null) return;
-
-            // 1. REMOVER MOD RAÇA
-            RemoverModRacaAnterior();
-            RacaSelecionadaDetalhes = null;
-
-              
-            if (string.IsNullOrWhiteSpace(nomeNovaRaca))
-            {
-                System.Diagnostics.Debug.WriteLine("Raça limpa ou inválida. Nenhum modificador aplicado.");
-                RecalculateAll();
-                return;
-            }
-
-            // 2. ENCONTRAR DADOS DA NOVA RAÇA
-            var racaEncontrada = _todasRacasComDetalhes.FirstOrDefault(r => r.Nome.Equals(nomeNovaRaca, StringComparison.OrdinalIgnoreCase));
-
-            if (racaEncontrada == null)
-            {
-                System.Diagnostics.Debug.WriteLine($"Raça '{nomeNovaRaca}' não encontrada nos dados carregados.");
-                RacaSelecionadaDetalhes = null;
-                RecalculateAll();
-                return; // Raça não encontrada
-            }
-
-
-            // 3. APLICAR MODIFICADORES FIXOS E GUARDAR
-            RacaSelecionadaDetalhes = racaEncontrada;
-            System.Diagnostics.Debug.WriteLine($"Aplicando modificadores para a raça: {racaEncontrada.Nome}");
-
-            // 4. LIDAR COM MODIFICADORES LIVRES
-            AplicarModificador("Forca", racaEncontrada.ModForca);
-            AplicarModificador("Destreza", racaEncontrada.ModDestreza);
-            AplicarModificador("Constituicao", racaEncontrada.ModConstituicao);
-            AplicarModificador("Inteligencia", racaEncontrada.ModInteligencia);
-            AplicarModificador("Sabedoria", racaEncontrada.ModSabedoria);
-            AplicarModificador("Carisma", racaEncontrada.ModCarisma);
-
-            // 5. LIDAR COM MODIFICADORES LIVRES
-            if (racaEncontrada.ModLivres > 0 && !string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes.DescricaoModLivres))
-            {
-                System.Diagnostics.Debug.WriteLine($"Raça {racaEncontrada.Nome} tem {racaEncontrada.ModLivres} bônus livres: {racaEncontrada.DescricaoModLivres}");
-
-                string mensagemPopup = $"A raça {RacaSelecionadaDetalhes?.Nome} concede: {RacaSelecionadaDetalhes?.DescricaoModLivres}.";
-
-                if (!string.IsNullOrWhiteSpace(RacaSelecionadaDetalhes?.ExcecoesModLivres))
-                {
-                    mensagemPopup += $"\n(Exceto em: {RacaSelecionadaDetalhes.ExcecoesModLivres})";
-                }
-                mensagemPopup += "\nLembre-se de distribuir estes pontos manualmente nos atributos.";
-
-
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    var popupViewModel = new AtributosLivresPopupViewModel(mensagemPopup);
-                    var popup = new AtributosLivresPopupView(popupViewModel);
-                    await Shell.Current.ShowPopupAsync(popup);
-                });
-            }
-            RecalculateAll();
         }
 
         private void AplicarModificador (string atributo, int valor)

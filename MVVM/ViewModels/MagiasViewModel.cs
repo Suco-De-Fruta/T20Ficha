@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
-using T20FichaComDB.MVVM.Views.Popup;
+using T20FichaComDB.MVVM.Views.Popups;
 using T20FichaComDB.Services;
 
 namespace T20FichaComDB.MVVM.ViewModels

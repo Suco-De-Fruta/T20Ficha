@@ -1,4 +1,4 @@
-namespace T20FichaComDB.MVVM.Views.Popup;
+namespace T20FichaComDB.MVVM.Views.Popups;
 using CommunityToolkit.Mvvm;
 using T20FichaComDB.MVVM.ViewModels;
 using CommunityToolkit.Maui.Views;

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+             xmlns:model="clr-namespace:T20FichaComDB.Data.Entities"
+             x:Class="T20FichaComDB.MVVM.Views.FichaPoderesView"
+             x:DataType="vm:PoderesViewModel" Title="Poderes">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="15">
+
+            <Border Padding="10" Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+                
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Poderes de Raça" FontSize="Medium" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding PoderesRaca}" EmptyView="Nenhum poder racial para a raça selecionada."
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PoderesData">
+                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="3" />
+                                    </Border.StrokeShape>
+                                    
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </VerticalStackLayout.GestureRecognizers>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="10" Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+                
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Poderes de Classe" FontSize="Medium" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding PoderesClasse}"
+                                    EmptyView="Nenhum poder de classe."
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PoderesData">
+                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="3" />
+                                    </Border.StrokeShape>
+                                    
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </VerticalStackLayout.GestureRecognizers>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="10" Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+                
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Poderes Gerais" FontSize="Medium" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding PoderesGerais}"
+                                    EmptyView="Nenhum poder geral selecionado."
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PoderesData">
+                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="3" />
+                                    </Border.StrokeShape>
+                                    
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </VerticalStackLayout.GestureRecognizers>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="10" Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Poderes Concedidos (Divindade)" FontSize="Medium" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding PoderesConcedidos}"
+                                    EmptyView="Nenhum poder concedido pela divindade."
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PoderesData">
+                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="3" />
+                                    </Border.StrokeShape>
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </VerticalStackLayout.GestureRecognizers>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

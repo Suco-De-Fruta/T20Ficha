@@ -79,10 +79,16 @@
 	  <MauiXaml Update="MVVM\Views\FichaPart1View.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\Popup\AtributosLivresPopupView.xaml">
+	  <MauiXaml Update="MVVM\Views\FichaPoderesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\Popup\SelecaoMagiasPopupView.xaml">
+	  <MauiXaml Update="MVVM\Views\Popups\AtributosLivresPopupView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\Popups\DetalhesPoderesPopupView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\Popups\SelecaoMagiasPopupView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -95,6 +101,12 @@
 	  <MauiAsset Include="Data\Seeds\MagiasDatabase.json" />
 	  <MauiAsset Include="Data\Seeds\PoderesRacaDatabase.json" />
 	  <MauiAsset Include="Data\Seeds\RacasDatabase.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="MVVM\Views\Popups\DetalhesPoderesPopupView.xaml.cs">
+	    <DependentUpon>DetalhesPoderesPopupView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>

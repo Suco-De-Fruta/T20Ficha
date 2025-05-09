@@ -2,8 +2,9 @@ using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.ApplicationModel;
 using T20FichaComDB.MVVM.ViewModels;
 using T20FichaComDB.MVVM.Views;
+using CommunityToolkit.Maui.Extensions;
 
-namespace T20FichaComDB.MVVM.Views.Popup
+namespace T20FichaComDB.MVVM.Views.Popups
 {
 	public partial class AtributosLivresPopupView : CommunityToolkit.Maui.Views.Popup
 	{

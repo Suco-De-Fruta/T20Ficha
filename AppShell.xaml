@@ -19,6 +19,11 @@
         ContentTemplate="{DataTemplate local:FichaMagiasView}"
         Route="FichaMagias1View" />
 
+        <ShellContent
+        Title="Poderes"
+        ContentTemplate="{DataTemplate local:FichaPoderesView}"
+        Route="FichaPoderesView" /> 
+
     </TabBar>
 
 

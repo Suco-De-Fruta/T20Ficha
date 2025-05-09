@@ -5,7 +5,7 @@
                xmlns:viewmodels="clr-namespace:T20FichaComDB.MVVM.ViewModels"
                xmlns:entities="clr-namespace:T20FichaComDB.Data.Entities"
                xmlns:converters="clr-namespace:T20FichaComDB.Converters"
-               x:Class="T20FichaComDB.MVVM.Views.Popup.SelecaoMagiasPopupView"
+               x:Class="T20FichaComDB.MVVM.Views.Popups.SelecaoMagiasPopupView"
                x:DataType="viewmodels:SelecaoMagiasPopupViewModel"
                Color="Transparent">
 
