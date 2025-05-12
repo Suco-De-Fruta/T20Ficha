@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.MVVM.Views.Popups;
@@ -29,65 +30,69 @@ namespace T20FichaComDB.MVVM.ViewModels
             _dataService = dataService;
 
             _personagemViewModel.PropertyChanged += PersonagemViewModel_PropertyChanged;
-            AtualizarPersonagem(_personagemViewModel.Personagem);
+            //AtualizarPersonagem(_personagemViewModel.Personagem);
         }
 
         private void PersonagemViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(PersonagemViewModel.Personagem))
             {
-                AtualizarPersonagem(_personagemViewModel.Personagem);
+                //AtualizarPersonagem(_personagemViewModel.Personagem);
             }
         }
 
-        private void AtualizarPersonagem(PersonagemModel? personagem)
-        {
-            if (personagem != null && _personagem.PoderesRaca != null)
-            {
-                _personagem.PoderesRaca.CollectionChanged -= PoderesRaca_CollectionChanged;
-            }
-            _personagem = personagem;
+        //private void AtualizarPersonagem(PersonagemModel? personagem)
+        //{
+        //    if (personagem != null && _personagem.PoderesRaca != null)
+        //    {
+        //        _personagem.PoderesRaca.CollectionChanged -= PoderesRaca_CollectionChanged;
+        //    }
+        //    _personagem = personagem;
 
-            if (_personagem != null)
-            {
-                if (_personagem.PoderesRaca != null)
-                {
-                    _personagem.PoderesRaca.CollectionChanged += PoderesRaca_CollectionChanged;
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("AVISO CRÍTICO: _personagem.PoderesRaca é NULL ao tentar INSCREVER em PoderesViewModel.");
-                }
-                    OnPropertyChanged(nameof(PoderesRaca));
-                    OnPropertyChanged(nameof(PoderesClasse));
-                    OnPropertyChanged(nameof(PoderesConcedidos));
-                    OnPropertyChanged(nameof(PoderesGerais));
-                    OnPropertyChanged(nameof(PoderesOrigem));
-            }
-            else
-            {
-                OnPropertyChanged(nameof(PoderesRaca));
-                OnPropertyChanged(nameof(PoderesClasse));
-                OnPropertyChanged(nameof(PoderesConcedidos));
-                OnPropertyChanged(nameof(PoderesGerais));
-                OnPropertyChanged(nameof(PoderesOrigem));
-            }
-        }
+        //    Debug.WriteLine($"PoderesViewModel.AtualizarPersonagem: Personagem is {(personagem == null ? "NULL" : "NOT NULL")}");
+
+        //    if (_personagem != null)
+        //    {
+        //        Debug.WriteLine($"PoderesViewModel.AtualizarPersonagem: PoderesRaca Count: {personagem.PoderesRaca?.Count ?? -1}");
+
+        //        if (_personagem.PoderesRaca != null)
+        //        {
+        //            _personagem.PoderesRaca.CollectionChanged += PoderesRaca_CollectionChanged;
+        //        }
+        //        else
+        //        {
+        //            System.Diagnostics.Debug.WriteLine("AVISO CRÍTICO: _personagem.PoderesRaca é NULL ao tentar INSCREVER em PoderesViewModel.");
+        //        }
+        //            OnPropertyChanged(nameof(PoderesRaca));
+        //            OnPropertyChanged(nameof(PoderesClasse));
+        //            OnPropertyChanged(nameof(PoderesConcedidos));
+        //            OnPropertyChanged(nameof(PoderesGerais));
+        //            OnPropertyChanged(nameof(PoderesOrigem));
+        //    }
+        //    else
+        //    {
+        //        OnPropertyChanged(nameof(PoderesRaca));
+        //        OnPropertyChanged(nameof(PoderesClasse));
+        //        OnPropertyChanged(nameof(PoderesConcedidos));
+        //        OnPropertyChanged(nameof(PoderesGerais));
+        //        OnPropertyChanged(nameof(PoderesOrigem));
+        //    }
+        //}
 
         private void PoderesRaca_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(PoderesRaca));
         }
 
-        [RelayCommand]
-        private async Task MostrarDetalhesPoder(PoderesData? poder)
-        {
-            if (poder == null) return;
+        //[RelayCommand]
+        //private async Task MostrarDetalhesPoder(PoderesData? poder)
+        //{
+        //    if (poder == null) return;
 
-            var popupViewModel = new DetalhesPoderesPopupViewModel(poder);
-            var popup = new DetalhesPoderesPopupView(popupViewModel);
-            await Shell.Current.ShowPopupAsync(popup);
-        }
+        //    var popupViewModel = new DetalhesPoderesPopupViewModel(poder);
+        //    var popup = new DetalhesPoderesPopupView(popupViewModel);
+        //    await Shell.Current.ShowPopupAsync(popup);
+        //}
 
     }
 }

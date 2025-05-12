@@ -7,6 +7,7 @@ using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.Services;
 using T20FichaComDB.MVVM.Views.Popups;
 using CommunityToolkit.Maui.Views;
+using System.Diagnostics;
 
 namespace T20FichaComDB.MVVM.ViewModels
 {
@@ -23,6 +24,11 @@ namespace T20FichaComDB.MVVM.ViewModels
         public ObservableCollection<string> ClassesDisponiveis { get; } = new();
         public ObservableCollection<string> OrigensDisponiveis { get; } = new();
         public ObservableCollection<string> DivindadesDisponiveis { get; } = new();
+        public ObservableCollection<PoderesData> PoderesRaca => _personagem?.PoderesRaca ?? new ObservableCollection<PoderesData>();
+        public ObservableCollection<PoderesData> PoderesClasse => _personagem?.PoderesClasse ?? new ObservableCollection<PoderesData>();
+        public ObservableCollection<PoderesData> PoderesConcedidos => _personagem?.PoderesConcedidos ?? new ObservableCollection<PoderesData>();
+        public ObservableCollection<PoderesData> PoderesGerais => _personagem?.PoderesGerais ?? new ObservableCollection<PoderesData>();
+        public ObservableCollection<PoderesData> PoderesOrigem => _personagem?.PoderesOrigem ?? new ObservableCollection<PoderesData>();
 
         private List<RacasData> _todasRacasComDetalhes = new ();
 
@@ -61,6 +67,7 @@ namespace T20FichaComDB.MVVM.ViewModels
                 if (OrigensDisponiveis.Any()) OrigensDisponiveis.Clear();
                 if (ClassesDisponiveis.Any()) ClassesDisponiveis.Clear();
                 if (DivindadesDisponiveis.Any()) DivindadesDisponiveis.Clear();
+                if (PoderesRaca.Any()) PoderesRaca.Clear();
                 _todasRacasComDetalhes.Clear();
 
                 // -- CARREGAR DO BANCO DE DADOS
@@ -68,12 +75,17 @@ namespace T20FichaComDB.MVVM.ViewModels
                 var origensDB = await _databaseService.GetOrigensAsync();
                 var classesDB = await _databaseService.GetClassesAsync();
                 var divindadesDB = await _databaseService.GetDivindadesAsync();
+                //var poderesDB = await _databaseService.GetPoderesPorTipoAsync(TipoPoderEnum.Raca);
 
                 if (racasDB != null)
                 {
                     _todasRacasComDetalhes.AddRange(racasDB);
                     foreach (var raca in racasDB.OrderBy(r => r.Nome)) RacasDisponiveis.Add(raca.Nome);
                 }
+                //if (poderesDB != null)
+                //{
+                //    foreach (var poder in poderesDB.OrderBy(p => p.Nome)) PoderesRaca.Add(poder);
+                //}
                 if (origensDB != null) foreach (var origem in origensDB.OrderBy(o => o.Nome)) OrigensDisponiveis.Add(origem.Nome);
                 if (classesDB != null) foreach (var classe in classesDB.OrderBy(c => c.Nome)) ClassesDisponiveis.Add(classe.Nome);
                 if (divindadesDB != null) foreach (var divindade in divindadesDB.OrderBy(d => d.Nome)) DivindadesDisponiveis.Add(divindade.Nome);
@@ -83,6 +95,8 @@ namespace T20FichaComDB.MVVM.ViewModels
                 System.Diagnostics.Debug.WriteLine($"Erro ao carregar dados: {ex.Message}");
                 await Shell.Current.DisplayAlert("Erro", "Não foi possível carregar os dados de referência.", "OK");
             }
+
+            System.Diagnostics.Debug.WriteLine($"RacasDisponiveis Count after load: {RacasDisponiveis.Count}");
         }
 
         // Comando para Salvar
@@ -404,6 +418,60 @@ namespace T20FichaComDB.MVVM.ViewModels
             RecalculateAll();
             System.Diagnostics.Debug.WriteLine("[AplicarModificadoresRaca] Finalizado. Status recalculados.");
         }
+
+        private void PersonagemViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PersonagemViewModel.Personagem))
+            {
+                AtualizarPersonagem(Personagem);
+            }
+        }
+
+        private void AtualizarPersonagem(PersonagemModel? personagem)
+        {
+            if (personagem != null && _personagem.PoderesRaca != null)
+            {
+                _personagem.PoderesRaca.CollectionChanged -= PoderesRaca_CollectionChanged;
+            }
+            _personagem = personagem;
+
+            Debug.WriteLine($"PoderesViewModel.AtualizarPersonagem: Personagem is {(personagem == null ? "NULL" : "NOT NULL")}");
+
+            if (_personagem != null)
+            {
+                Debug.WriteLine($"PoderesViewModel.AtualizarPersonagem: PoderesRaca Count: {personagem.PoderesRaca?.Count ?? -1}");
+
+                if (_personagem.PoderesRaca != null)
+                {
+                    _personagem.PoderesRaca.CollectionChanged += PoderesRaca_CollectionChanged;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("AVISO CRÍTICO: _personagem.PoderesRaca é NULL ao tentar INSCREVER em PoderesViewModel.");
+                }
+                OnPropertyChanged(nameof(PoderesRaca));
+            }
+            else
+            {
+                OnPropertyChanged(nameof(PoderesRaca));
+            }
+        }
+
+        private void PoderesRaca_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(PoderesRaca));
+        }
+
+        [RelayCommand]
+        private async Task MostrarDetalhesPoder(PoderesData? poder)
+        {
+            if (poder == null) return;
+
+            var popupViewModel = new DetalhesPoderesPopupViewModel(poder);
+            var popup = new DetalhesPoderesPopupView(popupViewModel);
+            await Shell.Current.ShowPopupAsync(popup);
+        }
+
 
         // --- Sessão de Recálculo ---
         private async void Personagem_PropertyChanged(object? sender, PropertyChangedEventArgs e)
