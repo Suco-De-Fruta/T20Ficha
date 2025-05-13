@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels"
              xmlns:model="clr-namespace:T20FichaComDB.Data.Entities"
              x:Class="T20FichaComDB.MVVM.Views.FichaPoderesView"
-             x:DataType="vm:PersonagemViewModel" Title="Poderes">
+             x:DataType="vm:PoderesViewModel" Title="Poderes">
 
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="15">
@@ -29,7 +29,7 @@
                                         <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
                                         <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
                                         <VerticalStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PersonagemViewModel}}, Path=MostrarDetalhesPoderCommand}"
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
                                                                   CommandParameter="{Binding .}"/>
                                         </VerticalStackLayout.GestureRecognizers>
                                     </VerticalStackLayout>

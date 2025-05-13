@@ -25,7 +25,7 @@
 
                         <Label Text="Raça:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
                         <Picker Title="Selecione a Raça" Grid.Row="2" Grid.Column="1" 
-                                ItemsSource="{Binding RacasDisponiveis}" SelectedItem="{Binding Personagem.Raca}"/>
+                                ItemsSource="{Binding RacasViewModel.RacasDisponiveisNomes}" SelectedItem="{Binding RacasViewModel.NomeRacaSelecionadaPicker}"/>
 
                         <Label Text="Origem:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
                         <Picker Title="Selecione a Origem" Grid.Row="3" Grid.Column="1" 

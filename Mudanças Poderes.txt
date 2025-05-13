@@ -1,6 +1,0 @@
-mudanças
-
-BindingContext = FichaPoderesView
-		 FichaPoderesViewModel
-
-PersonagemViewModel

@@ -664,6 +664,19 @@
     "PoderesRacaNome": "Cauda,Inocência Dissimulada,Presentes de Sszzaas,Fraquezas Ofídicas"
   },
   {
+    "Nome": "Naidora",
+    "ModForca": 0,
+    "ModDestreza": 2,
+    "ModConstituicao": 1,
+    "ModInteligencia": 0,
+    "ModSabedoria": 0,
+    "ModCarisma": 1,
+    "ModLivres": 0,
+    "DescricaoModLivres": null,
+    "ExcecoesModLivres": null,
+    "PoderesRacaNome": "Alma das Nuvens,Sentidos Élficos,Asas Emplumadas"
+  },
+  {
     "Nome": "Nezumi",
     "ModForca": 0,
     "ModDestreza": 1,

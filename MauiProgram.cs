@@ -21,11 +21,13 @@ namespace T20FichaComDB
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+
+            // --- Registros de ViewModels e Services ---
             builder.Services.AddSingleton<DataService>();
             builder.Services.AddSingleton<PersonagemViewModel>();
             builder.Services.AddSingleton<PoderesViewModel>();
-
             builder.Services.AddTransient<MagiasViewModel>();
+            builder.Services.AddTransient<RacasViewModel>();
             builder.Services.AddTransient<SelecaoMagiasPopupViewModel>();
             builder.Services.AddTransient<DetalhesPoderesPopupViewModel>();
 

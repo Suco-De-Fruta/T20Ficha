@@ -4,7 +4,7 @@ namespace T20FichaComDB.MVVM.Views;
 
 public partial class FichaPoderesView : ContentPage
 {
-	public FichaPoderesView(PersonagemViewModel viewModel)
+	public FichaPoderesView(PoderesViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;
@@ -13,7 +13,7 @@ public partial class FichaPoderesView : ContentPage
 	protected override void OnAppearing()
     {
         base.OnAppearing();
-        if (BindingContext is PersonagemViewModel vm)
+        if (BindingContext is PoderesViewModel vm)
         {
             System.Diagnostics.Debug.WriteLine($"FichaPoderesView Aparecendo. Personagem no VM de Poderes: {vm.PoderesRaca != null}");
         }

@@ -40,8 +40,13 @@
     "TipoPoder": "Raca"
   },
   {
+    "Nome": "Alma das Nuvens",
+    "Descricao": "Você recebe resistência a encantamento +2.",
+    "TipoPoder": "Raca"
+  },
+  {
     "Nome": "Ambição Herdada",
-    "Descricao": "Você recebe um poder geral ou poder único de origem (Tormenta20, p. 85) à sua escolha.",
+    "Descricao": "Você recebe um poder geral ou poder único de origem (Tormenta 20, p. 85) à sua escolha.",
     "TipoPoder": "Raca"
   },
   {
@@ -71,7 +76,7 @@
   },
   {
     "Nome": "Armadilha Terrível",
-    "Descricao": "Escolham uma magia de 1º círculo que tenha como alvo uma criatura ou que tenha um efeito em área e que cause dano ou um efeito negativo (como uma condição ou penalidade). Vocês possuem uma armadilha portátil que contém essa magia. Sua armadilha usa as mesmas regras de engenhocas (veja Tormenta20, p. 70), mas é acionada com Sobrevivência e tem Sabedoria como atributo-chave. Vocês podem escolher esta habilidade mais de uma vez para magias diferentes.",
+    "Descricao": "Escolham uma magia de 1º círculo que tenha como alvo uma criatura ou que tenha um efeito em área e que cause dano ou um efeito negativo (como uma condição ou penalidade). Vocês possuem uma armadilha portátil que contém essa magia. Sua armadilha usa as mesmas regras de engenhocas (veja Tormenta 20, p. 70), mas é acionada com Sobrevivência e tem Sabedoria como atributo-chave. Vocês podem escolher esta habilidade mais de uma vez para magias diferentes.",
     "TipoPoder": "Raca"
   },
   {
@@ -132,6 +137,11 @@
   {
     "Nome": "Asas Desorientadoras",
     "Descricao": "Quando estão livres, suas asas podem ser usadas para distrair seus oponentes. Se não estiver usando-as para voar, você recebe os benefícios de Finta Aprimorada. Se tiver esse poder, em vez disso o bônus em Enganação para fintar aumenta para +5.",
+    "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Asas Emplumadas",
+    "Descricao": "Você pode gastar 1 PM por rodada para voar com deslocamento 12m. Enquanto está voando dessa forma, você recebe +2 na Defesa e em Reflexos.",
     "TipoPoder": "Raca"
   },
   {
@@ -341,7 +351,7 @@
   },
   {
     "Nome": "Empatia Selvagem",
-    "Descricao": "Você pode se comunicar com animais por meio de linguagem corporal e vocalizações. Você pode usar Adestramento para mudar atitude e persuasão com animais (veja Diplomacia, no livro base na página 118). Caso receba esta habilidade novamente, recebe +2 em Adestramento.",
+    "Descricao": "Você pode se comunicar com animais por meio de linguagem corporal e vocalizações. Você pode usar Adestramento para mudar atitude e persuasão com animais (veja Diplomacia, no Tormenta 20 na p. 118). Caso receba esta habilidade novamente, recebe +2 em Adestramento.",
     "TipoPoder": "Raca"
   },
   {
@@ -406,7 +416,7 @@
   },
   {
     "Nome": "Ex-Familiar",
-    "Descricao": "Vocês recebem +2 PM e os benefícios de um tipo de familiar, escolhidos entre os familiares básicos de arcanista (veja Tormenta20, p. 38). Se não tiverem um atributo-chave para conjuração, para efeitos desta habilidade vocês usam Carisma.",
+    "Descricao": "Vocês recebem +2 PM e os benefícios de um tipo de familiar, escolhidos entre os familiares básicos de arcanista (veja Tormenta 20, p. 38). Se não tiverem um atributo-chave para conjuração, para efeitos desta habilidade vocês usam Carisma.",
     "TipoPoder": "Raca"
   },
   {
@@ -731,7 +741,7 @@
   },
   {
     "Nome": "Peste Esguia",
-    "Descricao": "Seu tamanho é Pequeno (veja no livro base a página 106 Tormenta 20), mas seu deslocamento se mantém 9m. Apesar de pequenos, goblins são rápidos.",
+    "Descricao": "Seu tamanho é Pequeno (veja no Tormenta 20 na p. 106, mas seu deslocamento se mantém 9m. Apesar de pequenos, goblins são rápidos.",
     "TipoPoder": "Raca"
   },
   {
