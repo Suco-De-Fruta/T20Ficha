@@ -88,6 +88,9 @@
 	  <MauiXaml Update="MVVM\Views\Popups\DetalhesPoderesPopupView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\Popups\SelecaoOpcaoPoderesPoppupView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\Popups\SelecaoMagiasPopupView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -106,6 +109,9 @@
 	<ItemGroup>
 	  <Compile Update="MVVM\Views\Popups\DetalhesPoderesPopupView.xaml.cs">
 	    <DependentUpon>DetalhesPoderesPopupView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MVVM\Views\Popups\SelecaoOpcaoPoderesPoppupView.xaml.cs">
+	    <DependentUpon>SelecaoOpcaoPoderesPoppupView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

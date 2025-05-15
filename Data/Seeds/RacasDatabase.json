@@ -10,7 +10,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Herança Divina,Luz Sagrada"
+    "PoderesRacaNome": "Herança Divina,Herança Celestial"
   },
   {
     "Nome": "Anão",
@@ -179,7 +179,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Barro,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Barro,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Bronze",
@@ -192,7 +192,7 @@
     "ModLivres": 2,
     "DescricaoModLivres": "+1 em dois Atributos",
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Bronze,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Bronze,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Carne",
@@ -205,7 +205,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Carne,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Carne,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Espelhos",
@@ -218,7 +218,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Espelhos,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Espelhos,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Ferro",
@@ -231,7 +231,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Ferro,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Ferro,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Gelo Eterno",
@@ -244,7 +244,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Gelo Eterno,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Gelo Eterno,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Pedra",
@@ -257,7 +257,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Pedra,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Pedra,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Golem de Sucata",
@@ -270,7 +270,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Chassi,Material de Sucata,Criatura Artificial,Propósito de Criação"
+    "PoderesRacaNome": "Chassi,Material de Sucata,Criatura Artificial,Propósito de Criação,Fonte de Energia"
   },
   {
     "Nome": "Harpia",
@@ -817,7 +817,7 @@
     "ModLivres": 0,
     "DescricaoModLivres": null,
     "ExcecoesModLivres": null,
-    "PoderesRacaNome": "Herança Divina,Sombras Profanas"
+    "PoderesRacaNome": "Herança Divina,Herança Celestial"
   },
   {
     "Nome": "Tabrachi",

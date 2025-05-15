@@ -3,30 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels"
              xmlns:model="clr-namespace:T20FichaComDB.Data.Entities"
-             x:Class="T20FichaComDB.MVVM.Views.FichaPoderesView"
+             xmlns:converters="clr-namespace:T20FichaComDB.Converters" x:Class="T20FichaComDB.MVVM.Views.FichaPoderesView"
              x:DataType="vm:PoderesViewModel" Title="Poderes">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:PoderParentesesConverter x:Key="PoderParentesesConverter" />
+            <converters:OpcaoEscolhidaPoderConverter x:Key="OpcaoEscolhidaPoderConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="15">
-
             <Border Padding="10" Stroke="LightGray">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="5" />
                 </Border.StrokeShape>
-                
+
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Poderes de Raça" FontSize="Medium" FontAttributes="Bold"/>
-                    <CollectionView ItemsSource="{Binding PoderesRaca}" EmptyView="Nenhum poder racial para a raça selecionada."
-                                    SelectionMode="None">
+                    <CollectionView ItemsSource="{Binding PoderesRaca}" EmptyView="Nenhum poder de raça." SelectionMode="None">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:PoderesData">
                                 <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="3" />
                                     </Border.StrokeShape>
-                                    
+
                                     <VerticalStackLayout>
-                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label FontSize="Small">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Nome}" FontAttributes="Bold"/>
+                                                    <Span>
+                                                        <Span.Text>
+                                                            <MultiBinding Converter="{StaticResource PoderParentesesConverter}">
+                                                                <Binding Path="Nome"/>
+                                                                <Binding Path="Personagem.EscolhasDePoderesFeitas" Source="{RelativeSource AncestorType={x:Type vm:PoderesViewModel}}"/>
+                                                                <Binding Source="Abrir" />
+                                                            </MultiBinding>
+                                                        </Span.Text>
+                                                    </Span>
+                                                    <Span Text="{Binding Nome, Converter={StaticResource OpcaoEscolhidaPoderConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=Personagem.EscolhasDePoderesFeitas}}"/>
+                                                    <Span>
+                                                        <Span.Text>
+                                                            <MultiBinding Converter="{StaticResource PoderParentesesConverter}">
+                                                                <Binding Path="Nome"/>
+                                                                <Binding Path="Personagem.EscolhasDePoderesFeitas" Source="{RelativeSource AncestorType={x:Type vm:PoderesViewModel}}"/>
+                                                                <Binding Source="Fechar" />
+                                                            </MultiBinding>
+                                                        </Span.Text>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                         <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
                                         <VerticalStackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
@@ -39,101 +69,6 @@
                     </CollectionView>
                 </VerticalStackLayout>
             </Border>
-
-            <!--<Border Padding="10" Stroke="LightGray">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Poderes de Classe" FontSize="Medium" FontAttributes="Bold"/>
-                    <CollectionView ItemsSource="{Binding PoderesClasse}"
-                                    EmptyView="Nenhum poder de classe."
-                                    SelectionMode="None">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:PoderesData">
-                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="3" />
-                                    </Border.StrokeShape>
-                                    
-                                    <VerticalStackLayout>
-                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
-                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
-                                        <VerticalStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
-                                                                  CommandParameter="{Binding .}"/>
-                                        </VerticalStackLayout.GestureRecognizers>
-                                    </VerticalStackLayout>
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="10" Stroke="LightGray">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Poderes Gerais" FontSize="Medium" FontAttributes="Bold"/>
-                    <CollectionView ItemsSource="{Binding PoderesGerais}"
-                                    EmptyView="Nenhum poder geral selecionado."
-                                    SelectionMode="None">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:PoderesData">
-                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="3" />
-                                    </Border.StrokeShape>
-                                    
-                                    <VerticalStackLayout>
-                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
-                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
-                                        <VerticalStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
-                                                                  CommandParameter="{Binding .}"/>
-                                        </VerticalStackLayout.GestureRecognizers>
-                                    </VerticalStackLayout>
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="10" Stroke="LightGray">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Poderes Concedidos (Divindade)" FontSize="Medium" FontAttributes="Bold"/>
-                    <CollectionView ItemsSource="{Binding PoderesConcedidos}"
-                                    EmptyView="Nenhum poder concedido pela divindade."
-                                    SelectionMode="None">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:PoderesData">
-                                <Border Padding="8" Margin="0,0,0,5" Stroke="Gainsboro">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="3" />
-                                    </Border.StrokeShape>
-                                    <VerticalStackLayout>
-                                        <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Small"/>
-                                        <Label Text="{Binding Descricao}" FontSize="Micro" LineBreakMode="WordWrap"/>
-                                        <VerticalStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PoderesViewModel}}, Path=MostrarDetalhesPoderCommand}"
-                                                                  CommandParameter="{Binding .}"/>
-                                        </VerticalStackLayout.GestureRecognizers>
-                                    </VerticalStackLayout>
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </Border>-->
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

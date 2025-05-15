@@ -4,9 +4,11 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.MVVM.Models;
 using T20FichaComDB.MVVM.Views.Popups;
+using T20FichaComDB.MVVM.ViewModels.Popups;
 using T20FichaComDB.Services;
 
 namespace T20FichaComDB.MVVM.ViewModels
@@ -14,7 +16,6 @@ namespace T20FichaComDB.MVVM.ViewModels
     public partial class PersonagemViewModel : ObservableObject
     {
         private readonly DataService _databaseService;
-        private int _personagemAtualID = 0;
         public RacasViewModel RacasViewModel { get; }
 
         [ObservableProperty]
@@ -263,6 +264,7 @@ namespace T20FichaComDB.MVVM.ViewModels
 
         private async void RacaViewModel_RacaChanged(object? sender, EventArgs e)
         {
+
             if (Personagem == null) return;
 
             Debug.WriteLine($"[PersonagemViewModel] RacaViewModel_RacaChanged disparado. Nova raça selecionada no RacasViewModel: {RacasViewModel.RacaSelecionadaDetalhes?.Nome ?? "Nenhuma"}");
@@ -271,7 +273,23 @@ namespace T20FichaComDB.MVVM.ViewModels
             ReverterUltimosModificadoresDeAtributo();
 
             // 2. Limpar poderes da raça anterior do PersonagemModel
-            Personagem.PoderesRaca.Clear();
+            if (Personagem.PoderesRaca.Any())
+            {
+                var nomesPoderesRacaAnterior = Personagem.PoderesRaca
+                                               .Where(p => p.RequerEscolha)
+                                               .Select(p => p.Nome)
+                                               .ToList();
+
+                foreach (var nomePoder in nomesPoderesRacaAnterior)
+                {
+                    if (Personagem.EscolhasDePoderesFeitas.ContainsKey(nomePoder))
+                    {
+                        Personagem.EscolhasDePoderesFeitas.Remove(nomePoder);
+                        Debug.WriteLine($"[PersonagemViewModel] Escolha para o poder '{nomePoder}' da raça anterior removida.");
+                    }
+                }
+                Personagem.PoderesRaca.Clear();
+            }
 
             // 3. Se uma nova raça foi selecionada no RacasViewModel, aplicar seus dados
             if (RacasViewModel.RacaSelecionadaDetalhes != null)
@@ -285,7 +303,7 @@ namespace T20FichaComDB.MVVM.ViewModels
 
                 foreach (var poder in RacasViewModel.PoderesDaRacaSelecionada)
                 {
-                    if (!Personagem.PoderesRaca.Any(p => p.Id == poder.Id)) // Evitar duplicatas se a lógica permitir
+                    if (!Personagem.PoderesRaca.Any(p => p.Id == poder.Id)) // Evitar duplicatas
                     {
                         Personagem.PoderesRaca.Add(poder);
                     }

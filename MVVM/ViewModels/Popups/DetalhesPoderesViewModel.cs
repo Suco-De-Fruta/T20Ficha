@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using T20FichaComDB.Data.Entities;
 using System;
 
-namespace T20FichaComDB.MVVM.ViewModels
+namespace T20FichaComDB.MVVM.ViewModels.Popups
 {
     public partial class DetalhesPoderesPopupViewModel : ObservableObject
     {

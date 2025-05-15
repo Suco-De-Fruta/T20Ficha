@@ -16,7 +16,7 @@
 
                 <VerticalStackLayout Spacing="10">
 
-                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="5">
                         <Label Text="Personagem:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
                         <Entry Placeholder="Nome do Personagem" Grid.Row="0" Grid.Column="1" Text="{Binding Personagem.Nome}" />
 
@@ -33,15 +33,17 @@
 
                         <Label Text="Classe &amp; Nível:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
                         <HorizontalStackLayout Grid.Row="4" Grid.Column="1" Spacing="5">
-                            <Picker Title="Selecione a Classe" HorizontalOptions="FillAndExpand" WidthRequest="137" 
+                            <Picker Title="Selecione a Classe" WidthRequest="137" 
                                     ItemsSource="{Binding ClassesDisponiveis}" SelectedItem="{Binding Personagem.Classe}"/>
 
                             <Entry Placeholder="Nível" WidthRequest="50" Keyboard="Numeric" HorizontalTextAlignment="Center" 
                                    Text="{Binding Personagem.Nivel}"/>
                         </HorizontalStackLayout>
 
-                        <Label Text="Divindade:" Grid.Row="5" Grid.Column="0" VerticalOptions="Center"/>
-                        <Picker Title="Devoto de" Grid.Row="5" Grid.Column="1" 
+                        <Label Text="{Binding Personagem.Patamar}" Grid.Row="5" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" />
+
+                        <Label Text="Divindade:" Grid.Row="6" Grid.Column="0" VerticalOptions="Center"/>
+                        <Picker Title="Devoto de" Grid.Row="6" Grid.Column="1" 
                                 ItemsSource="{Binding DivindadesDisponiveis}" SelectedItem="{Binding Personagem.Divindade}"/>
                     </Grid>
                 </VerticalStackLayout>

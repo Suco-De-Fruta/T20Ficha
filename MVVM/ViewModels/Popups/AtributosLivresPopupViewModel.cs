@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace T20FichaComDB.MVVM.ViewModels
+namespace T20FichaComDB.MVVM.ViewModels.Popups
 {
     public partial class AtributosLivresPopupViewModel : ObservableObject
     {

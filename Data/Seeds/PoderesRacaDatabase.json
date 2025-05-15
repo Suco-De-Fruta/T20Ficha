@@ -430,26 +430,6 @@
     "TipoPoder": "Raca"
   },
   {
-    "Nome": "Fonte Alquímica",
-    "Descricao": "Uma mistura alquímica gera a energia necessária à sua vida. Você pode gastar uma ação padrão para ingerir um item alquímico qualquer; se fizer isso, recupera 1 PM.",
-    "TipoPoder": "Raca"
-  },
-  {
-    "Nome": "Fonte Elemental",
-    "Descricao": "Você possui um espírito elemental preso em seu corpo. Escolha entre água (frio), ar (eletricidade), fogo (fogo) e terra (ácido). Você é imune a dano desse tipo. Se fosse sofrer dano mágico desse tipo, em vez disso cura PV em quantidade igual à metade do dano. Por exemplo, se um golem com espírito elemental do fogo é atingido por uma Bola de Fogo que causa 30 pontos de dano, em vez de sofrer esse dano, ele recupera 15 PV.",
-    "TipoPoder": "Raca"
-  },
-  {
-    "Nome": "Fonte Sagrada",
-    "Descricao": "Você foi animado por um texto ou símbolo sagrado depositado em seu corpo. Você pode lançar uma magia divina de 1º círculo a sua escolha (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM. Alguém treinado em Religião pode trocar essa magia com um ritual que demora um dia e exige o gasto de um pergaminho mágico com outra magia de 1º círculo.",
-    "TipoPoder": "Raca"
-  },
-  {
-    "Nome": "Fonte a Vapor",
-    "Descricao": "Seu corpo é movido por vapor e engrenagens. Você é imune a dano de fogo; se fosse sofrer dano desse tipo, em vez disso seu deslocamento aumenta em 4,5m por 1 rodada. Entretanto, dano de frio deixa-o lento por 1 rodada. Você pode gastar uma ação padrão e PM para soprar um jato de vapor escaldante em um cone de 4,5m. Criaturas na área sofrem 1d6 pontos de dano de fogo por PM gasto e ficam em chamas (Ref CD Con reduz à metade e evita a condição).",
-    "TipoPoder": "Raca"
-  },
-  {
     "Nome": "Força dos Titãs",
     "Descricao": "Quando acerta um ataque corpo a corpo ou de arremesso, você pode gastar 1 PM. Se fizer isso pode rolar mais uma vez qualquer resultado máximo da rolagem de dano e adicionar o novo resultado ao dano causado.",
     "TipoPoder": "Raca"
@@ -532,11 +512,6 @@
   {
     "Nome": "Linguarudo",
     "Descricao": "Sua língua é uma arma natural que pode atacar inimigos a até 3m (dano 1d4, crítico x2, impacto). Ela é uma arma versátil, fornecendo +2 em testes para desarmar e derrubar. Uma vez por rodada, quando usa a ação agredir com outra arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com a língua.",
-    "TipoPoder": "Raca"
-  },
-  {
-    "Nome": "Luz Sagrada",
-    "Descricao": "Você recebe +2 em Diplomacia e Intuição. Além disso, pode lançar Luz (como uma magia divina; atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
     "TipoPoder": "Raca"
   },
   {
@@ -940,11 +915,6 @@
     "TipoPoder": "Raca"
   },
   {
-    "Nome": "Sombras Profanas",
-    "Descricao": "Você recebe +2 em Enganação e Furtividade. Além disso, pode lançar Escuridão (como uma magia divina; atributo-chave Inteligência). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
-    "TipoPoder": "Raca"
-  },
-  {
     "Nome": "Somos Explosivos",
     "Descricao": "Vocês podem gastar uma ação completa, 1 PM e uma quantidade de PV (limitado pelo seu nível) para arremessar um kobold explosivo em um ponto em alcance curto. Criaturas a até 3m desse ponto sofrem 1d6 pontos de dano de impacto por PV gasto (Ref CD Des reduz à metade). Sempre que rolar o valor máximo em um dos dados de dano, o dano aumenta em +1d6.",
     "TipoPoder": "Raca"
@@ -1023,5 +993,86 @@
     "Nome": "Versátil",
     "Descricao": "Você se torna treinado em duas perícias a sua escolha (não precisam ser da sua classe). Você pode trocar uma dessas perícias por um poder geral a sua escolha.",
     "TipoPoder": "Raca"
+  },
+  {
+    "Nome": "Herança Celestial",
+    "Descricao": "Reconhecer a pluralidade dos celestiais abre um leque de opções para a raça suraggel. Não importando se é aggelus ou sulfure, você pode descender de criaturas nascidas em qualquer dos reinos, sem distinção entre o bem e o mal. Pode escolher à vontade ser um aggelus com traços de deuses malignos ou um sulfure com traços de deuses bondosos.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "DescricaoDaEscolha": "Escolha sua Herança Celestial:",
+    "OpcoesDisponiveis": "Herança de Al-Gazara,Luz Sagrada,Sombras Profanas",
+    "GrupoDeEscolha": null
+  },
+  {
+    "Nome": "Fonte de Energia",
+    "Descricao": "Golens são imbuídos com uma energia vital.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "DescricaoDaEscolha": "Escolha sua fonte de energia:",
+    "OpcoesDisponiveis": "Alquímica,Elemental,Sagrada,Vapor",
+    "GrupoDeEscolha": null
+  },
+  {
+    "Nome": "Alquímica",
+    "Descricao": "Uma mistura alquímica gera a energia necessária à sua vida. Você pode gastar uma ação padrão para ingerir um item alquímico qualquer; se fizer isso, recupera 1 PM.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "FonteDeEnergia",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
+  },
+  {
+    "Nome": "Elemental",
+    "Descricao": "Você possui um espírito elemental preso em seu corpo. Escolha entre água (frio), ar (eletricidade), fogo (fogo) e terra (ácido). Você é imune a dano desse tipo. Se fosse sofrer dano mágico deste tipo, em vez disso cura PV em quantidade igual à metade do dano.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "FonteDeEnergia",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
+  },
+  {
+    "Nome": "Sagrada",
+    "Descricao": "Você foi animado por um texto ou símbolo sagrado depositado em seu corpo. Você pode lançar uma magia divina de 1º círculo a sua escolha (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM. Alguém treinado em Religião pode trocar essa magia com um ritual que demora um dia e exige o gasto de um pergaminho mágico com outra magia de 1° círculo.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "FonteDeEnergia",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
+  },
+  {
+    "Nome": "Vapor",
+    "Descricao": "Seu corpo é movido por vapor e engrenagens. Você é imune a dano de fogo; se fosse sofrer dano desse tipo, em vez disso seu deslocamento aumenta em 4,5m por 1 rodada. Entretanto, dano de frio deixa-o lento por 1 rodada. Você pode gastar uma ação padrão e PM para soprar um jato de vapor escaldante em um cone de 4,5m. Criaturas na área sofrem 1d6 pontos de dano de fogo por PM gasto e ficam em chamas (Teste Reflexos, CD Con, reduz à metade e evita a condição).",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "FonteDeEnergia",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
+  },
+  {
+    "Nome": "Herança de Al-Gazara",
+    "Descricao": "Devido à presença do puro caos primordial de Nimb em seu sangue, você recebe +1 em um atributo aleatório.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "Herança Celestial",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
+  },
+  {
+    "Nome": "Luz Sagrada",
+    "Descricao": "Você recebe +2 em Diplomacia e Intuição. Além disso, pode lançar Luz (como uma magia divina; atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "Herança Celestial",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
+  },
+  {
+    "Nome": "Sombras Profanas",
+    "Descricao": "Você recebe +2 em Enganação e Furtividade. Além disso, pode lançar Escuridão (como uma magia divina; atributo-chave Inteligência). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
+    "TipoPoder": "Raca",
+    "Fonte": null,
+    "GrupoDeEscolha": "Herança Celestial",
+    "DescricaoDaEscolha": null,
+    "OpcoesDisponiveis": null
   }
 ]

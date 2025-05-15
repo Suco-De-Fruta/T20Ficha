@@ -2,11 +2,11 @@
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels" x:Class="T20FichaComDB.MVVM.Views.Popups.DetalhesPoderesPopupView"
+             xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels.Popups" x:Class="T20FichaComDB.MVVM.Views.Popups.DetalhesPoderesPopupView"
              x:DataType="vm:DetalhesPoderesPopupViewModel"
              Color="Transparent">
 
-    <Border Margin="25" Padding="0" Stroke="Gray" 
+    <Border Margin="25" Padding="0" Stroke="#3f0f12" 
             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}" 
             VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="320">
         
@@ -14,11 +14,13 @@
             <RoundRectangle CornerRadius="10" />
         </Border.StrokeShape>
 
-
-        <VerticalStackLayout>
-            <Label Text="{Binding Poder.Nome}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" Padding="10" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"/>
+        <VerticalStackLayout BackgroundColor="#b02b2e">
+            <Label Text="{Binding Poder.Nome}" FontSize="Large" 
+                   FontAttributes="Bold" HorizontalTextAlignment="Center" Padding="10" 
+                   BackgroundColor="#b02b2e" TextColor="#f0dc82" FontFamily="Tormenta20"/>
+            
             <ScrollView Padding="15" MaximumHeightRequest="300">
-                <Label Text="{Binding Poder.Descricao}" LineBreakMode="WordWrap"/>
+                <Label Text="{Binding Poder.Descricao}" LineBreakMode="WordWrap" TextColor="White" FontFamily="Lowan-Old-Style-Regular"/>
             </ScrollView>
             <Button Text="Fechar" Command="{Binding FecharPopupCommand}" Margin="10" HorizontalOptions="Fill"/>
         </VerticalStackLayout>

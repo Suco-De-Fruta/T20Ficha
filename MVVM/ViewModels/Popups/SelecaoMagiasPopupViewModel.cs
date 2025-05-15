@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using T20FichaComDB.Data.Entities;
 using T20FichaComDB.Services;
 
-namespace T20FichaComDB.MVVM.ViewModels
+namespace T20FichaComDB.MVVM.ViewModels.Popups
 {
     public partial class SelecaoMagiasPopupViewModel : ObservableObject
     {

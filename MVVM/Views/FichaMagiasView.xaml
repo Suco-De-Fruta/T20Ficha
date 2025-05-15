@@ -21,7 +21,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="5" />
                 </Border.StrokeShape>
-                
+
                 <VerticalStackLayout Spacing="5">
                     <Label Text="CD das suas Magias" 
                            FontAttributes="Bold" 
@@ -84,7 +84,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            
+
                             <Label Grid.Row="0" Grid.Column="0"
                                    Text="{Binding CDCalculado}"
                                    FontAttributes="Bold"
@@ -102,7 +102,7 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="5" />
                     </Border.StrokeShape>
-                    
+
                     <VerticalStackLayout Spacing="5">
                         <Label Text="1º Círculo - 1 PM" FontAttributes="Bold"/>
                         <CollectionView ItemsSource="{Binding MagiasCirculo1}" MinimumHeightRequest="50" HeightRequest="150" EmptyView="Nenhuma magia conhecida">
@@ -266,10 +266,7 @@
                         </Button>
                     </VerticalStackLayout>
                 </Frame>
-
             </Grid>
-
         </StackLayout>
     </ScrollView>
-
 </ContentPage>

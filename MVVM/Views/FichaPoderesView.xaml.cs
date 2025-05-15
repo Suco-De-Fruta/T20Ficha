@@ -1,4 +1,5 @@
 using T20FichaComDB.MVVM.ViewModels;
+using System.Threading.Tasks;
 
 namespace T20FichaComDB.MVVM.Views;
 
@@ -10,12 +11,13 @@ public partial class FichaPoderesView : ContentPage
         BindingContext = viewModel;
     }
 
-	protected override void OnAppearing()
+	protected override async void OnAppearing()
     {
         base.OnAppearing();
         if (BindingContext is PoderesViewModel vm)
         {
             System.Diagnostics.Debug.WriteLine($"FichaPoderesView Aparecendo. Personagem no VM de Poderes: {vm.PoderesRaca != null}");
+            await vm.VerificarEPromoverEscolhasDePoderesRacaAsync();
         }
     }
 }

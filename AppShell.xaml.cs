@@ -14,6 +14,7 @@ namespace T20FichaComDB
             Routing.RegisterRoute(nameof(SelecaoMagiasPopupView), typeof(SelecaoMagiasPopupView));
             Routing.RegisterRoute(nameof(AtributosLivresPopupView), typeof(AtributosLivresPopupView));
             Routing.RegisterRoute(nameof(DetalhesPoderesPopupView), typeof(DetalhesPoderesPopupView));
+            Routing.RegisterRoute(nameof(SelecaoOpcaoPoderesPopupView), typeof(SelecaoOpcaoPoderesPopupView));
         }
     }
 }

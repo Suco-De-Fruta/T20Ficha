@@ -29,11 +29,31 @@ namespace T20FichaComDB.Data.Entities
 
         public string Fonte { get; set; }
 
+        public string? GrupoDeEscolhas { get; set; }
+
+        public string? DescricaoDaEscolha { get; set; }
+
+        public string? OpcoesDisponiveis { get; set; }
+
+
         [Ignore]
         public TipoPoderEnum TipoPoderEnum
         {
             get => Enum.TryParse<TipoPoderEnum>(TipoPoder, true, out var result) ? result : TipoPoderEnum.Geral;
             set => TipoPoder = value.ToString();
+        }
+
+        [Ignore]
+        public bool RequerEscolha => !string.IsNullOrWhiteSpace(OpcoesDisponiveis) && !string.IsNullOrWhiteSpace(DescricaoDaEscolha);
+
+        [Ignore]
+        public List<string> ListaOpcoesDisponiveis
+        {
+            get => string.IsNullOrWhiteSpace(OpcoesDisponiveis)
+                          ? new List<string>() 
+                          : OpcoesDisponiveis.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries
+                          | StringSplitOptions.TrimEntries).ToList();
+            set => OpcoesDisponiveis = value != null ? string.Join(",", value) : null;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using T20FichaComDB.MVVM.ViewModels;
+using T20FichaComDB.MVVM.ViewModels.Popups;
 using T20FichaComDB.MVVM.Views;
 using T20FichaComDB.Services;
 using T20FichaComDB.MVVM.Views.Popups;
@@ -30,6 +31,7 @@ namespace T20FichaComDB
             builder.Services.AddTransient<RacasViewModel>();
             builder.Services.AddTransient<SelecaoMagiasPopupViewModel>();
             builder.Services.AddTransient<DetalhesPoderesPopupViewModel>();
+            builder.Services.AddTransient<SelecaoOpcaoPoderesPoppupViewModel>();
 
             // --- Registros de Views ---
             builder.Services.AddTransient<FichaPart1View>();
@@ -40,6 +42,7 @@ namespace T20FichaComDB
             builder.Services.AddTransient<SelecaoMagiasPopupView>();
             builder.Services.AddTransient<AtributosLivresPopupView>();
             builder.Services.AddTransient<DetalhesPoderesPopupView>();
+            builder.Services.AddTransient<SelecaoOpcaoPoderesPopupView>();
 
 
 #if DEBUG

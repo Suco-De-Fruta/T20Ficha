@@ -1,6 +1,6 @@
 namespace T20FichaComDB.MVVM.Views.Popups;
 using CommunityToolkit.Mvvm;
-using T20FichaComDB.MVVM.ViewModels;
+using T20FichaComDB.MVVM.ViewModels.Popups;
 using CommunityToolkit.Maui.Views;
 
 public partial class SelecaoMagiasPopupView : CommunityToolkit.Maui.Views.Popup

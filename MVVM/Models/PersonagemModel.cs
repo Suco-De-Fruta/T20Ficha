@@ -70,6 +70,22 @@ namespace T20FichaComDB.MVVM.Models
         [ObservableProperty]
         private ObservableCollection<PoderesData> _poderesRaca = new();
 
+        private Dictionary<string, string> _escolhasDePoderesFeitas = new();
+
+        public Dictionary<string, string> EscolhasDePoderesFeitas
+        {
+            get => _escolhasDePoderesFeitas;
+            set
+            {
+                if (SetProperty(ref _escolhasDePoderesFeitas, value))
+                {
+                    EscolhasDePoderesFeitasChanged?.Invoke();
+                }
+            }
+        }
+
+        public event Action? EscolhasDePoderesFeitasChanged;
+
         [ObservableProperty]
         private ObservableCollection<PoderesData> _poderesClasse = new();
 
@@ -94,13 +110,6 @@ namespace T20FichaComDB.MVVM.Models
         // ----- PERÍCIAS --- //
         //public ObservableCollection<Pericias> Pericias { get; set; } = new();
 
-        //// ----- PLACEHOLDER PARA OS PODERES ----- //
-        //public ObservableCollection<string> PoderesRaça { get; set; } = new();
-        //public ObservableCollection<string> PoderesClasse { get; set; } = new();
-        //public ObservableCollection<string> PoderesOrigem { get; set; } = new();
-        //public ObservableCollection<string> PoderesConcedido { get; set; } = new();
-        //public ObservableCollection<string> PoderesGerais { get; set; } = new();
-
         //// ------ PLACEHOLDER PARA O INVENTARIO ---- //
         //public ObservableCollection<string> InventarioItens { get; set; } = new();
         //[ObservableProperty] string? _equipArmadura;
@@ -108,7 +117,7 @@ namespace T20FichaComDB.MVVM.Models
         //[ObservableProperty] string? _equipArma;
         //[ObservableProperty] int _tibares;
 
-        // ------ MAGIAS PLACEHOLDER -------- //
+        // ------ MAGIAS -------- //
         [ObservableProperty]
         public ObservableCollection<MagiasData> _magiasConhecidas = new();
 
@@ -130,7 +139,9 @@ namespace T20FichaComDB.MVVM.Models
         {
             Nivel = 1;
             MagiasConhecidas = new ObservableCollection<MagiasData>();
+
             PoderesRaca = new ObservableCollection<PoderesData>();
+
             PoderesClasse = new ObservableCollection<PoderesData>();
             PoderesGerais = new ObservableCollection<PoderesData>();
             PoderesConcedidos = new ObservableCollection<PoderesData>();

@@ -1,6 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.ApplicationModel;
-using T20FichaComDB.MVVM.ViewModels;
+using T20FichaComDB.MVVM.ViewModels.Popups;
 using T20FichaComDB.MVVM.Views;
 using CommunityToolkit.Maui.Extensions;
 

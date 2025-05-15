@@ -2,7 +2,7 @@
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               xmlns:viewmodels="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+               xmlns:viewmodels="clr-namespace:T20FichaComDB.MVVM.ViewModels.Popups"
                xmlns:entities="clr-namespace:T20FichaComDB.Data.Entities"
                xmlns:converters="clr-namespace:T20FichaComDB.Converters"
                x:Class="T20FichaComDB.MVVM.Views.Popups.SelecaoMagiasPopupView"

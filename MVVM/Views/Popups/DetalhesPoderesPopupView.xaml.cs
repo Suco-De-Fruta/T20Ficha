@@ -1,5 +1,5 @@
 using CommunityToolkit.Maui.Views;
-using T20FichaComDB.MVVM.ViewModels;
+using T20FichaComDB.MVVM.ViewModels.Popups;
 
 namespace T20FichaComDB.MVVM.Views.Popups
 {
