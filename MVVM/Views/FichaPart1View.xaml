@@ -42,9 +42,9 @@
 
                         <Label Text="{Binding Personagem.Patamar}" Grid.Row="5" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" />
 
-                        <Label Text="Divindade:" Grid.Row="6" Grid.Column="0" VerticalOptions="Center"/>
-                        <Picker Title="Devoto de" Grid.Row="6" Grid.Column="1" 
-                                ItemsSource="{Binding DivindadesDisponiveis}" SelectedItem="{Binding Personagem.Divindade}"/>
+                        <Label  Text="Divindade:" Grid.Row="6" Grid.Column="0" VerticalOptions="Center"/>
+                        <Button Grid.Row="6" Grid.Column="1" 
+                                Text="{Binding NomeDivindadeSelecionadaDisplay}" Command="{Binding AbrirSelecaoDivindadePopupCommand}" />
                     </Grid>
                 </VerticalStackLayout>
             </Border>

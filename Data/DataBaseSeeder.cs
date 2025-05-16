@@ -1,5 +1,7 @@
 ﻿using SQLite;
+using System.Diagnostics;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using T20FichaComDB.Data.Entities;
 
 namespace T20FichaComDB.Data
@@ -21,19 +23,19 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<RacasData>().CountAsync() == 0)
             {
-                System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças vazia, tentando popular do JSON... ---");
+                Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças vazia, tentando popular do JSON... ---");
 
                 List<RacasData> racasBase = null;
 
                 try
                 {
                     string jsonFileName = "Data/Seeds/RacasDatabase.json";
-                    System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: Tentando ler o arquivo: {jsonFileName} ---");
+                    Debug.WriteLine($"--- SeedRacasAsync: Tentando ler o arquivo: {jsonFileName} ---");
 
                     using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
                     if (stream == null)
                     {
-                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedRacasAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
+                        Debug.WriteLine($"--- ERRO SeedRacasAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
                         return;
                     }
 
@@ -45,11 +47,11 @@ namespace T20FichaComDB.Data
                         PropertyNameCaseInsensitive = true
                     });
 
-                    System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: JSON desserializado. Número de raças encontradas: {racasBase?.Count ?? 0} ---");
+                    Debug.WriteLine($"--- SeedRacasAsync: JSON desserializado. Número de raças encontradas: {racasBase?.Count ?? 0} ---");
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"--- ERRO FATAL SeedRacasAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
+                    Debug.WriteLine($"--- ERRO FATAL SeedRacasAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
                     return;
                 }
 
@@ -57,24 +59,24 @@ namespace T20FichaComDB.Data
                 {
                     try
                     {
-                        System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: Tentando inserir {racasBase.Count} raças no banco... ---");
+                        Debug.WriteLine($"--- SeedRacasAsync: Tentando inserir {racasBase.Count} raças no banco... ---");
                         await connection.InsertAllAsync(racasBase);
-                        System.Diagnostics.Debug.WriteLine($"--- SeedRacasAsync: {racasBase.Count} raças INSERIDAS com sucesso! ---");
+                        Debug.WriteLine($"--- SeedRacasAsync: {racasBase.Count} raças INSERIDAS com sucesso! ---");
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedRacasAsync: Falha ao inserir raças no banco: {ex.ToString()} ---");
+                        Debug.WriteLine($"--- ERRO SeedRacasAsync: Falha ao inserir raças no banco: {ex.ToString()} ---");
                     }
 
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Nenhuma raça encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                    Debug.WriteLine("--- SeedRacasAsync: Nenhuma raça encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
                 }
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças já contém dados. Pulo a população. ---");
+                Debug.WriteLine("--- SeedRacasAsync: Tabela de Raças já contém dados. Pulo a população. ---");
             }
         }
 
@@ -82,7 +84,7 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<PoderesData>().CountAsync() == 0)
             {
-                System.Diagnostics.Debug.WriteLine("--- SeedPoderesAsync: Tabela de Poderes vazia, tentando popular do JSON... ---");
+                Debug.WriteLine("--- SeedPoderesAsync: Tabela de Poderes vazia, tentando popular do JSON... ---");
                 List<PoderesData> poderesBase = null;
                 try
                 {
@@ -90,7 +92,7 @@ namespace T20FichaComDB.Data
                     using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
                     if (stream == null)
                     {
-                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedPoderesAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
+                        Debug.WriteLine($"--- ERRO SeedPoderesAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
                         return;
                     }
                     using var reader = new StreamReader(stream);
@@ -99,27 +101,27 @@ namespace T20FichaComDB.Data
                     {
                         PropertyNameCaseInsensitive = true
                     });
-                    System.Diagnostics.Debug.WriteLine($"--- SeedPoderesAsync: JSON desserializado. Número de poderes encontrados: {poderesBase?.Count ?? 0} ---");
+                    Debug.WriteLine($"--- SeedPoderesAsync: JSON desserializado. Número de poderes encontrados: {poderesBase?.Count ?? 0} ---");
 
                     if (poderesBase != null && poderesBase.Any())
                     {
                         await connection.InsertAllAsync(poderesBase);
-                        System.Diagnostics.Debug.WriteLine($"--- SeedPoderesRacaAsync: {poderesBase.Count} poderes INSERIDOS com sucesso! ---");
+                        Debug.WriteLine($"--- SeedPoderesRacaAsync: {poderesBase.Count} poderes INSERIDOS com sucesso! ---");
                     }
                     else
                     {
-                        System.Diagnostics.Debug.WriteLine("--- SeedPoderesRacaAsync: Nenhum poder encontrado no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                        Debug.WriteLine("--- SeedPoderesRacaAsync: Nenhum poder encontrado no arquivo JSON ou erro na desserialização. Banco não populado. ---");
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"--- ERRO FATAL SeedPoderesRacaAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
+                    Debug.WriteLine($"--- ERRO FATAL SeedPoderesRacaAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
                     return;
                 }
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("--- SeedPoderesRacaAsync: Tabela de Poderes já contém dados. Pulo a população. ---");
+                Debug.WriteLine("--- SeedPoderesRacaAsync: Tabela de Poderes já contém dados. Pulo a população. ---");
             }
         }
 
@@ -151,18 +153,63 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<DivindadesData>().CountAsync() == 0)
             {
-                var divindadesBase = new List<DivindadesData>
+                Debug.WriteLine("--- SeedDivindadesAsync: Tabela de Divindades vazia, tentando popular do JSON... ---");
+
+                List<DivindadesData> divindadesBase = null;
+
+                try
                 {
-                    new DivindadesData { Nome = "Aharadak" }, new DivindadesData { Nome = "Allihanna" }, new DivindadesData { Nome = "Arsenal" },
-                    new DivindadesData { Nome = "Azgher" }, new DivindadesData { Nome = "Hyninn" }, new DivindadesData { Nome = "Kallyadranoch" },
-                    new DivindadesData { Nome = "Khalmyr" }, new DivindadesData { Nome = "Lena" }, new DivindadesData { Nome = "Lin-Wu" },
-                    new DivindadesData { Nome = "Marah" }, new DivindadesData { Nome = "Megalokk" }, new DivindadesData { Nome = "Nimb" },
-                    new DivindadesData { Nome = "Oceano" }, new DivindadesData { Nome = "Sszzaas" }, new DivindadesData { Nome = "Tanna-Toh" },
-                    new DivindadesData { Nome = "Tenebra" }, new DivindadesData { Nome = "Thwor" }, new DivindadesData { Nome = "Thyatis" },
-                    new DivindadesData { Nome = "Valkaria" }, new DivindadesData { Nome = "Wynna" }, new DivindadesData { Nome = "Gwendolynn" },
-                    new DivindadesData { Nome = "Mauziell" }, new DivindadesData { Nome = "Tibar" }
-                };
-                await connection.InsertAllAsync(divindadesBase);
+                    string jsonFileName = "Data/Seeds/DivindadesDatabase.json";
+                    Debug.WriteLine($"--- SeedDivindadesAsync: Tentando ler o arquivo: {jsonFileName} ---");
+
+                    using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
+                    if (stream == null)
+                    {
+                        Debug.WriteLine($"--- ERRO SeedDivindadesAsync: Não foi possível encontrar o arquivo {jsonFileName}. Verifique a Build Action! ---");
+                        return;
+                    }
+
+                    using var reader = new StreamReader(stream);
+                    string jsonContent = await reader.ReadToEndAsync();
+
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
+
+                    options.Converters.Add(new JsonStringEnumConverter());
+
+                    divindadesBase = JsonSerializer.Deserialize<List<DivindadesData>>(jsonContent, options);
+
+                    Debug.WriteLine($"--- SeedDivindadesAsync: JSON desserializado. Número de divindades encontradas: {divindadesBase?.Count ?? 0} ---");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"--- ERRO FATAL SeedDivindadesAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
+                    return;
+                }
+
+                if (divindadesBase != null && divindadesBase.Any())
+                {
+                    try
+                    {
+                        Debug.WriteLine($"--- SeedDivindadesAsync: Tentando inserir {divindadesBase.Count} divindades no banco... ---");
+                        await connection.InsertAllAsync(divindadesBase);
+                        Debug.WriteLine($"--- SeedDivindadesAsync: {divindadesBase.Count} divindades INSERIDAS com sucesso! ---");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"--- ERRO SeedDivindadesAsync: Falha ao inserir divindades no banco: {ex.ToString()} ---");
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("--- SeedDivindadesAsync: Nenhuma divindade encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                }
+            }
+            else
+            {
+                Debug.WriteLine("--- SeedDivindadesAsync: Tabela de Divindades já contém dados. Pulo a população. ---");
             }
         }
 
@@ -191,34 +238,34 @@ namespace T20FichaComDB.Data
         {
             if (await connection.Table<MagiasData>().CountAsync() == 0)
             {
-                System.Diagnostics.Debug.WriteLine("--- SeedMagiasAsync: Tabela de Magias vazia, tentando popular... ---");
+                Debug.WriteLine("--- SeedMagiasAsync: Tabela de Magias vazia, tentando popular... ---");
 
                 List<MagiasData> magiasBase = null;
                 try
                 {
                     string jsonFileName = "Data/Seeds/MagiasDatabase.json";
-                    System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: Tentando ler o arquivo: {jsonFileName} ---");
+                    Debug.WriteLine($"--- SeedMagiasAsync: Tentando ler o arquivo: {jsonFileName} ---");
                     using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFileName);
                     if (stream == null)
                     {
-                        System.Diagnostics.Debug.WriteLine($"--- ERRO SeedMagiasAsync: Não foi possível encontrar o arquivo {jsonFileName} no pacote. Verifique a Build Action! ---");
+                        Debug.WriteLine($"--- ERRO SeedMagiasAsync: Não foi possível encontrar o arquivo {jsonFileName} no pacote. Verifique a Build Action! ---");
                         return;
                     }
 
                     using var reader = new StreamReader(stream);
                     string jsonContent = await reader.ReadToEndAsync();
-                    System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: Conteúdo JSON lido (primeiros 200 chars): {jsonContent.Substring(0, Math.Min(jsonContent.Length, 200))} ---");
+                    Debug.WriteLine($"--- SeedMagiasAsync: Conteúdo JSON lido (primeiros 200 chars): {jsonContent.Substring(0, Math.Min(jsonContent.Length, 200))} ---");
 
                     magiasBase = JsonSerializer.Deserialize<List<MagiasData>>(jsonContent, new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true
                     });
 
-                    System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: JSON desserializado. Número de magias encontradas: {magiasBase?.Count ?? 0} ---");
+                    Debug.WriteLine($"--- SeedMagiasAsync: JSON desserializado. Número de magias encontradas: {magiasBase?.Count ?? 0} ---");
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"--- ERRO FATAL SeedMagiasAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
+                    Debug.WriteLine($"--- ERRO FATAL SeedMagiasAsync: Falha ao ler/desserializar JSON: {ex.ToString()} ---");
                     return;
                 }
 
@@ -226,18 +273,18 @@ namespace T20FichaComDB.Data
                 {
                     try
                     {
-                        System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: Tentando inserir {magiasBase.Count} magias no banco... ---");
+                        Debug.WriteLine($"--- SeedMagiasAsync: Tentando inserir {magiasBase.Count} magias no banco... ---");
                         await connection.InsertAllAsync(magiasBase);
-                        System.Diagnostics.Debug.WriteLine($"--- SeedMagiasAsync: {magiasBase.Count} magias INSERIDAS com sucesso! ---");
+                        Debug.WriteLine($"--- SeedMagiasAsync: {magiasBase.Count} magias INSERIDAS com sucesso! ---");
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine("--- SeedMagiasAsync: Nenhuma magia encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
+                        Debug.WriteLine("--- SeedMagiasAsync: Nenhuma magia encontrada no arquivo JSON ou erro na desserialização. Banco não populado. ---");
                     }
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("--- SeedMagiasAsync: Tabela de Magias já contém dados. Pulo a população. ---");
+                    Debug.WriteLine("--- SeedMagiasAsync: Tabela de Magias já contém dados. Pulo a população. ---");
                 }
             }
         }

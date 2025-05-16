@@ -1,0 +1,55 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:popupViewModels="clr-namespace:T20FichaComDB.MVVM.ViewModels.Popups"
+               xmlns:entities="clr-namespace:T20FichaComDB.Data.Entities"
+               xmlns:models="clr-namespace:T20FichaComDB.MVVM.Models"
+               x:Class="T20FichaComDB.MVVM.Views.Popups.SelecaoDivindadePopupView"
+               x:DataType="popupViewModels:SelecaoDivindadePopupViewModel"
+               Size="320,500">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="5"
+                             BackgroundColor="White">
+
+            <Label Text="Selecione uma Divindade"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
+
+            <CollectionView ItemsSource="{Binding DivindadesAgrupadasNoPopup}"
+                            IsGrouped="True"
+                            SelectionMode="None"
+                            VerticalOptions="FillAndExpand">
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate x:DataType="models:GrupoDivindade">
+                        <Label Text="{Binding NomeDoGrupo}"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               Padding="5,10,5,5"
+                               BackgroundColor="LightSlateGray"
+                               TextColor="White"/>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:DivindadesData">
+                        <Grid Padding="10,8" BackgroundColor="Transparent">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SelecionarDivindadeCommand, Source={RelativeSource AncestorType={x:Type popupViewModels:SelecaoDivindadePopupViewModel}}}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                            <Label Text="{Binding Nome}" VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Fechar"
+                    Command="{Binding FecharPopupCommand}"
+                    Margin="0,10,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</toolkit:Popup>,
+    

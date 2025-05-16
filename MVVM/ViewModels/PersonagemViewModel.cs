@@ -24,9 +24,19 @@ namespace T20FichaComDB.MVVM.ViewModels
         // Coleções para preencher Pickers/ListViews na UI 
         public ObservableCollection<string> ClassesDisponiveis { get; } = new();
         public ObservableCollection<string> OrigensDisponiveis { get; } = new();
-        public ObservableCollection<string> DivindadesDisponiveis { get; } = new();
+
+        public class GrupoDivindade : ObservableCollection<DivindadesData>
+        {
+            public string NomeDoGrupo { get; private set; }
+            public GrupoDivindade(string nomeDoGrupo, IEnumerable<DivindadesData> divindades) : base(divindades)
+            {
+                NomeDoGrupo = nomeDoGrupo;
+            }
+        }
+        public ObservableCollection<GrupoDivindade> DivindadesAgrupadas { get; } = new();
 
         private Dictionary<string, int> _ultimosModRaca = new();
+
 
         #region PROCESSO 1: Inicialização e Carregamento de Dados Essenciais
 
@@ -52,11 +62,13 @@ namespace T20FichaComDB.MVVM.ViewModels
                 await RacasViewModel.InitializeAsync();
             }
 
-            if (!ClassesDisponiveis.Any() && !OrigensDisponiveis.Any() && !DivindadesDisponiveis.Any())
+            if (!ClassesDisponiveis.Any() && !OrigensDisponiveis.Any() && !DivindadesAgrupadas.Any())
             {
                 await LoadDataAsync();
             }
         }
+
+        public string NomeDivindadeSelecionadaDisplay => DivindadeSelecionadaObj?.Nome ?? "Nenhuma";
 
         private async Task LoadDataAsync()
         {
@@ -64,7 +76,7 @@ namespace T20FichaComDB.MVVM.ViewModels
             {
                 if (OrigensDisponiveis.Any()) OrigensDisponiveis.Clear();
                 if (ClassesDisponiveis.Any()) ClassesDisponiveis.Clear();
-                if (DivindadesDisponiveis.Any()) DivindadesDisponiveis.Clear();
+                if (DivindadesAgrupadas.Any()) DivindadesAgrupadas.Clear();
 
                 var origensDB = await _databaseService.GetOrigensAsync();
                 var classesDB = await _databaseService.GetClassesAsync();
@@ -72,7 +84,27 @@ namespace T20FichaComDB.MVVM.ViewModels
 
                 if (origensDB != null) foreach (var origem in origensDB.OrderBy(o => o.Nome)) OrigensDisponiveis.Add(origem.Nome);
                 if (classesDB != null) foreach (var classe in classesDB.OrderBy(c => c.Nome)) ClassesDisponiveis.Add(classe.Nome);
-                if (divindadesDB != null) foreach (var divindade in divindadesDB.OrderBy(d => d.Nome)) DivindadesDisponiveis.Add(divindade.Nome);
+                if (divindadesDB != null)
+                {
+                    var todasOrdenadas = divindadesDB.OrderBy(d => d.Panteao) 
+                                        .ThenBy(d => d.Nome);
+
+                    var maiores = todasOrdenadas.Where(d => d.Panteao == DivindadesData.PanteaoEnum.Maior).ToList();
+                    var menores = todasOrdenadas.Where(d => d.Panteao == DivindadesData.PanteaoEnum.Menor).ToList();
+
+                    if (maiores.Any())
+                    {
+                        DivindadesAgrupadas.Add(new GrupoDivindade("Deuses Maiores", maiores));
+                    }
+                    if (menores.Any())
+                    {
+                        DivindadesAgrupadas.Add(new GrupoDivindade("Deuses Menores", menores));
+                    }
+                }
+                if (Personagem != null && !string.IsNullOrEmpty(Personagem.Divindade))
+                {
+                    DivindadeSelecionadaObj = divindadesDB.FirstOrDefault(d => d.Nome == Personagem.Divindade);
+                }
             }
             catch (Exception ex)
             {
@@ -594,6 +626,30 @@ namespace T20FichaComDB.MVVM.ViewModels
                 Personagem.PVatual = Personagem.MaxPV;
                 Personagem.PMatual = Personagem.MaxPM;
             }
+        }
+
+        [RelayCommand]
+        private async Task AbrirSelecaoDivindadePopupAsync()
+        {
+            var popupViewModel = new SelecaoDivindadePopupViewModel(this);
+            var popup = new SelecaoDivindadePopupView(popupViewModel);
+            await Shell.Current.ShowPopupAsync(popup);
+        }
+
+        [ObservableProperty]
+        private DivindadesData _divindadeSelecionadaObj;
+
+        partial void OnDivindadeSelecionadaObjChanged(DivindadesData value)
+        {
+            if (value != null)
+            {
+                Personagem.Divindade = value.Nome;
+            }
+            else
+            {
+                Personagem.Divindade = null;
+            }
+            OnPropertyChanged(nameof(NomeDivindadeSelecionadaDisplay));
         }
 
         #endregion FIM DO PROCESSO 5

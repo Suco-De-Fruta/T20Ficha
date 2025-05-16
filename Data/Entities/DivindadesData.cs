@@ -9,5 +9,14 @@ namespace T20FichaComDB.Data.Entities
 
         [MaxLength(100), Unique]
         public string Nome { get; set; }
+        public enum PanteaoEnum
+        {
+            Maior,
+            Menor
+        }
+
+        public PanteaoEnum Panteao { get; set; }
+
+        public int? StatusDivino { get; set; }
     }
 }
