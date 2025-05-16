@@ -79,6 +79,9 @@
 	  <MauiXaml Update="MVVM\Views\FichaPart1View.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\FichaPericiasView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\FichaPoderesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

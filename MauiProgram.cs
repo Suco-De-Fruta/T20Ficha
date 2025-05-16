@@ -29,6 +29,7 @@ namespace T20FichaComDB
             builder.Services.AddSingleton<PoderesViewModel>();
             builder.Services.AddTransient<MagiasViewModel>();
             builder.Services.AddTransient<RacasViewModel>();
+            builder.Services.AddTransient<PericiasViewModel>();
             builder.Services.AddTransient<SelecaoMagiasPopupViewModel>();
             builder.Services.AddTransient<DetalhesPoderesPopupViewModel>();
             builder.Services.AddTransient<SelecaoOpcaoPoderesPoppupViewModel>();
@@ -37,6 +38,7 @@ namespace T20FichaComDB
             builder.Services.AddTransient<FichaPart1View>();
             builder.Services.AddTransient<FichaMagiasView>();
             builder.Services.AddTransient<FichaPoderesView>();
+            builder.Services.AddTransient<FichaPericiasView>();
 
             // --- Registros de Popups (Views) ---
             builder.Services.AddTransient<SelecaoMagiasPopupView>();

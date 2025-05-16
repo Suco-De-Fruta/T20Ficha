@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:T20FichaComDB.MVVM.ViewModels"
+             xmlns:model="clr-namespace:T20FichaComDB.MVVM.Models"
+             x:Class="T20FichaComDB.MVVM.Views.FichaPericiasView"
+             x:DataType="vm:PericiasViewModel"
+             Title="Perícias">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Grid ColumnDefinitions="0.5*, 2.5*, *, 1.1*, 1*, 1*, *" ColumnSpacing="5" Padding="0.3">
+                <Label Grid.Column="1" Text="Perícia" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="2" Text="Total" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="3" Text="Atributo" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="4" Text="Treino" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="5" Text="Nível/2" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="6" Text="Outros" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding ListaPericias}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:PericiasModel">
+                        <Grid ColumnDefinitions="0.5*, 2.5*, *, 1.1*, 1*, 1*, *" ColumnSpacing="5" Padding="0.3">
+                            <CheckBox Grid.Column="0" IsChecked="{Binding Treinada}" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="{Binding NomePericia}" VerticalTextAlignment="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding SoTreinado}" Value="True">
+                                        <Setter Property="FontAttributes" Value="Italic"/>
+                                        <Setter Property="ToolTipProperties.Text" Value="Apenas Treinado"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PericiasViewModel}}, Path=DebugLogPericiaCommand}" CommandParameter="{Binding .}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Grid.Column="2" Text="{Binding ValorTotal}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Picker Grid.Column="3" ItemsSource="{Binding ListaAtributosDisponiveis}" SelectedItem="{Binding AtributoChaveSelecionado}" FontSize="Small" Margin="-5,0" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Column="4" Text="{Binding BonusTreinamentoCalculado}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="5" Text="{Binding ValorMetadeNivel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Entry Grid.Column="6" Text="{Binding OutrosBonus}" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="Small" Margin="-5,0" VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

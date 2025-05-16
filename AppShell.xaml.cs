@@ -11,6 +11,7 @@ namespace T20FichaComDB
             Routing.RegisterRoute(nameof(FichaPart1View), typeof(FichaPart1View));
             Routing.RegisterRoute(nameof(FichaMagiasView), typeof(FichaMagiasView));
             Routing.RegisterRoute(nameof(FichaPoderesView), typeof(FichaPoderesView));
+            Routing.RegisterRoute(nameof(FichaPericiasView), typeof(FichaPericiasView));
             Routing.RegisterRoute(nameof(SelecaoMagiasPopupView), typeof(SelecaoMagiasPopupView));
             Routing.RegisterRoute(nameof(AtributosLivresPopupView), typeof(AtributosLivresPopupView));
             Routing.RegisterRoute(nameof(DetalhesPoderesPopupView), typeof(DetalhesPoderesPopupView));

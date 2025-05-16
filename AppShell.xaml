@@ -9,21 +9,11 @@
 
     <TabBar>
 
-        <ShellContent
-        Title="Ficha"
-        ContentTemplate="{DataTemplate local:FichaPart1View}"
-        Route="FichaPart1View" />
-
-        <ShellContent
-        Title="Magias"
-        ContentTemplate="{DataTemplate local:FichaMagiasView}"
-        Route="FichaMagias1View" />
-
-        <ShellContent
-        Title="Poderes"
-        ContentTemplate="{DataTemplate local:FichaPoderesView}"
-        Route="FichaPoderesView" /> 
-
+        <ShellContent Title="Ficha" ContentTemplate="{DataTemplate local:FichaPart1View}" Route="FichaPart1View" />
+        <ShellContent Title="Perícias" ContentTemplate="{DataTemplate local:FichaPericiasView}" Route="FichaPericiasView" />
+        <ShellContent Title="Poderes" ContentTemplate="{DataTemplate local:FichaPoderesView}" Route="FichaPoderesView" />
+        <ShellContent Title="Magias" ContentTemplate="{DataTemplate local:FichaMagiasView}" Route="FichaMagias1View" />
+        
     </TabBar>
 
 

@@ -117,6 +117,9 @@ namespace T20FichaComDB.MVVM.Models
         //[ObservableProperty] string? _equipArma;
         //[ObservableProperty] int _tibares;
 
+        [ObservableProperty]
+        private int _penalidadeArmaduraTotal;
+
         // ------ MAGIAS -------- //
         [ObservableProperty]
         public ObservableCollection<MagiasData> _magiasConhecidas = new();
@@ -139,6 +142,7 @@ namespace T20FichaComDB.MVVM.Models
         {
             Nivel = 1;
             MagiasConhecidas = new ObservableCollection<MagiasData>();
+            PenalidadeArmaduraTotal = 0;
 
             PoderesRaca = new ObservableCollection<PoderesData>();
 
